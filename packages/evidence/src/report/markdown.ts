@@ -33,7 +33,7 @@ export function renderMarkdown(report: Report): string {
   const lines: string[] = [
     '# Electricity consumption evidence report',
     '',
-    `Generated ${report.generatedAt.slice(0, 16).replace('T', ' ')} UTC with Meter Sakshi and the Open Tariff India dataset.`,
+    `Generated ${report.generatedAt.slice(0, 16).replace('T', ' ')} UTC with Meter Sakshi and the OpenBijli dataset.`,
     '',
     `- Utility: ${md(c.utilityId.toUpperCase())}; sanctioned load ${c.sanctionedLoadKw} kW; ${c.meter.type} meter${c.meter.serial ? ` ${md(c.meter.serial)}` : ''}`,
     `- Device ${md(report.device.deviceId)}, meter constant ${report.device.impPerKwhUsed} imp/kWh`,

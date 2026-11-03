@@ -1,10 +1,28 @@
 {
-  "name": "@open-tariff-india/evidence",
+  "name": "@openbijli/evidence",
   "version": "0.1.0",
   "description": "Meter Sakshi evidence engine: verifies hash-chained pulse logs from a non-contact meter LED reader, reconciles them against bills and prepaid deductions, and renders a dispute report.",
+  "author": "OpenBijli contributors",
+  "homepage": "https://github.com/byjoellobo/openbijli/tree/main/packages/evidence#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byjoellobo/openbijli.git",
+    "directory": "packages/evidence"
+  },
+  "bugs": {
+    "url": "https://github.com/byjoellobo/openbijli/issues"
+  },
   "type": "module",
   "license": "MIT",
-  "keywords": ["india", "electricity", "smart-meter", "prepaid-meter", "check-meter", "billing-dispute", "esp32"],
+  "keywords": [
+    "india",
+    "electricity",
+    "smart-meter",
+    "prepaid-meter",
+    "check-meter",
+    "billing-dispute",
+    "esp32"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
@@ -16,17 +34,24 @@
   "bin": {
     "meter-sakshi": "./dist/cli.js"
   },
-  "files": ["dist", "src", "README.md"],
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@open-tariff-india/data": "0.1.0",
-    "@open-tariff-india/engine": "0.1.0",
+    "@openbijli/data": "0.1.0",
+    "@openbijli/engine": "0.1.0",
     "zod": "^4.6.7"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

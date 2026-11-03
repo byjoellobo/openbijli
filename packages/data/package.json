@@ -1,10 +1,28 @@
 {
-  "name": "@open-tariff-india/data",
+  "name": "@openbijli/data",
   "version": "0.1.0",
   "description": "Versioned, source-linked Indian electricity retail tariffs (slabs, fixed charges, ToD, subsidies, rooftop solar metering and export rates).",
+  "author": "OpenBijli contributors",
+  "homepage": "https://github.com/byjoellobo/openbijli/tree/main/packages/data#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byjoellobo/openbijli.git",
+    "directory": "packages/data"
+  },
+  "bugs": {
+    "url": "https://github.com/byjoellobo/openbijli/issues"
+  },
   "type": "module",
   "license": "MIT AND CC-BY-4.0",
-  "keywords": ["india", "electricity", "tariff", "discom", "rooftop-solar", "net-metering", "open-data"],
+  "keywords": [
+    "india",
+    "electricity",
+    "tariff",
+    "discom",
+    "rooftop-solar",
+    "net-metering",
+    "open-data"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
@@ -19,7 +37,12 @@
     },
     "./tariff-book.schema.json": "./tariff-book.schema.json"
   },
-  "files": ["dist", "src", "tariff-book.schema.json", "README.md"],
+  "files": [
+    "dist",
+    "src",
+    "tariff-book.schema.json",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node -e \"require('fs').copyFileSync('../../data/schema/tariff-book.schema.json','tariff-book.schema.json')\""
   },
@@ -29,5 +52,8 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

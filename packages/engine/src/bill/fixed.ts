@@ -1,4 +1,4 @@
-import type { FixedChargeRule } from '@open-tariff-india/data';
+import type { FixedChargeRule } from '@openbijli/data';
 import { matchesCondition } from './context.js';
 import { TariffDataError } from './energy.js';
 import type { BillContext } from './types.js';

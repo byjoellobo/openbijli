@@ -1,4 +1,4 @@
-import type { EnergySchedule } from '@open-tariff-india/data';
+import type { EnergySchedule } from '@openbijli/data';
 import { matchesCondition } from './context.js';
 import type { BillContext } from './types.js';
 

@@ -1,4 +1,4 @@
-import type { Subsidy } from '@open-tariff-india/data';
+import type { Subsidy } from '@openbijli/data';
 import type { SubsidyOptions } from './types.js';
 
 export interface CoreTotals {

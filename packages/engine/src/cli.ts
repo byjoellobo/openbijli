@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * open-tariff CLI
+ * openbijli CLI
  *
- *   open-tariff utilities
- *   open-tariff bill  --utility mescom --units 250 --load 3 [--enrolled --baseline 120] [--tariff-only]
- *   open-tariff solar --utility mescom --monthly 250 --load 3 [--roof 4]
+ *   openbijli utilities
+ *   openbijli bill  --utility mescom --units 250 --load 3 [--enrolled --baseline 120] [--tariff-only]
+ *   openbijli solar --utility mescom --monthly 250 --load 3 [--roof 4]
  */
 import { parseArgs } from 'node:util';
-import { catalog, getSolarResourceForUtility, getTariff, getUtilities } from '@open-tariff-india/data';
+import { catalog, getSolarResourceForUtility, getTariff, getUtilities } from '@openbijli/data';
 import { computeBill } from './bill/compute.js';
 import { formatInr } from './money.js';
 import { simulateSolar } from './solar/simulate.js';
@@ -99,7 +99,7 @@ function main(): void {
       solar(values);
       return;
     default:
-      out('usage: open-tariff utilities | bill --utility ID --units N --load KW | solar --utility ID --monthly N --load KW');
+      out('usage: openbijli utilities | bill --utility ID --units N --load KW | solar --utility ID --monthly N --load KW');
       process.exitCode = positionals[0] ? 1 : 0;
   }
 }

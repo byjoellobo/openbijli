@@ -1,4 +1,4 @@
-import type { ContextFlag, Verification } from '@open-tariff-india/data';
+import type { ContextFlag, Verification } from '@openbijli/data';
 
 export type Phase = 'single' | 'three';
 export type Area = 'urban' | 'rural';

@@ -138,7 +138,7 @@ export function renderHtml(report: Report): string {
 <title>Meter Sakshi evidence report: ${escapeHtml(report.caseFile.utilityId.toUpperCase())}</title><style>${STYLE}</style></head>
 <body><main>
 <h1>Electricity consumption evidence report</h1>
-<p class="lede">Prepared with Meter Sakshi, a non-contact reader of the meter's pulse LED, and the Open Tariff India dataset. Generated ${escapeHtml(report.generatedAt.slice(0, 16).replace('T', ' '))} UTC.</p>
+<p class="lede">Prepared with Meter Sakshi, a non-contact reader of the meter's pulse LED, and the OpenBijli dataset. Generated ${escapeHtml(report.generatedAt.slice(0, 16).replace('T', ' '))} UTC.</p>
 ${consumerBlock(report)}
 <h2>Findings</h2>
 ${report.findings.map(findingHtml).join('')}

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { getSolarResourceForUtility } from '@open-tariff-india/data';
-import { DEFAULT_ASSUMPTIONS, LOAD_PROFILES, simulateSolar, type LoadProfileId, type SolarSimulationResult } from '@open-tariff-india/engine';
+import { getSolarResourceForUtility } from '@openbijli/data';
+import { DEFAULT_ASSUMPTIONS, LOAD_PROFILES, simulateSolar, type LoadProfileId, type SolarSimulationResult } from '@openbijli/engine';
 import { Notes } from '../components/BillSheet';
 import { ResultBar } from '../components/ResultBar';
 import { SizeChart } from '../components/SizeChart';

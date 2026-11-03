@@ -1,4 +1,4 @@
-import type { Verification } from '@open-tariff-india/data';
+import type { Verification } from '@openbijli/data';
 
 const MARK_LABEL: Readonly<Record<Verification, string>> = {
   verified: 'Read in the tariff order or regulation',

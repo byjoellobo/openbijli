@@ -1,4 +1,4 @@
-import type { AdditionalCharge } from '@open-tariff-india/data';
+import type { AdditionalCharge } from '@openbijli/data';
 import { matchesCondition } from './context.js';
 import type { BillContext } from './types.js';
 

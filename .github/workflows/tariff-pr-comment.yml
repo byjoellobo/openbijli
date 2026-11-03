@@ -47,7 +47,7 @@ jobs:
               .replace(/!\[[^\]]*\]\([^)]*\)/g, '[image removed]')
               .replace(/@/g, '@​');                   // no mentions
             if (body.length > 60000) body = body.slice(0, 60000) + '\n\n_(truncated)_';
-            const marker = '<!-- open-tariff-review -->';
+            const marker = '<!-- openbijli-review -->';
             const status = run.conclusion === 'success' ? '' : '\n\n> Validation failed: see the "Tariff PR review" run.';
             body = `${marker}\n${body}${status}`;
 

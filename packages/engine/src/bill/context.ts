@@ -1,4 +1,4 @@
-import type { Citation, Condition, TariffBook } from '@open-tariff-india/data';
+import type { Citation, Condition, TariffBook } from '@openbijli/data';
 import type { BillContext, ResolvedCitation } from './types.js';
 
 /** True when every constraint present in the condition holds for the context. */

@@ -1,4 +1,4 @@
-import type { SizeResult } from '@open-tariff-india/engine';
+import type { SizeResult } from '@openbijli/engine';
 import { inr } from '../lib/format';
 
 interface SizeChartProps {

@@ -58,7 +58,7 @@ export interface Report {
 export const METHOD: readonly string[] = [
   "Meter Sakshi counts the flashes of the electricity meter's own test LED (marked imp/kWh or pulses/kWh on the meter). Each flash is a fixed amount of energy registered by the meter, so the count is the meter's own measurement, read without opening, wiring into or touching the meter.",
   'The device writes one record per minute: UTC time, pulse count and status flags. Each record includes a SHA-256 hash of the previous record, so editing, removing or reordering a record inside the export breaks the chain at that point.',
-  'Bills are compared with the pulses logged between the billing period dates. Amounts are recomputed from the published tariff order in the Open Tariff India dataset, with every rate linked to its source.',
+  'Bills are compared with the pulses logged between the billing period dates. Amounts are recomputed from the published tariff order in the OpenBijli dataset, with every rate linked to its source.',
 ];
 
 export const LIMITATIONS: readonly string[] = [

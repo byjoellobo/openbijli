@@ -1,9 +1,9 @@
 /**
- * Connects the evidence engine to the bundled Open Tariff India data and bill engine.
+ * Connects the evidence engine to the bundled OpenBijli data and bill engine.
  * Kept separate so the analysis code stays pure and testable with any tariff source.
  */
-import { catalog, getTariff, type ConsumerProtectionItem, type TariffBook } from '@open-tariff-india/data';
-import { computeBill } from '@open-tariff-india/engine';
+import { catalog, getTariff, type ConsumerProtectionItem, type TariffBook } from '@openbijli/data';
+import { computeBill } from '@openbijli/engine';
 import type { TariffComputer } from './analysis/reconcile.js';
 import type { CaseFile } from './case.js';
 import type { RightsItem } from './report/build.js';

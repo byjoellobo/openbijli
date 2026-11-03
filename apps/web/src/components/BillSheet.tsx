@@ -1,4 +1,4 @@
-import type { Bill, ResolvedCitation } from '@open-tariff-india/engine';
+import type { Bill, ResolvedCitation } from '@openbijli/engine';
 import { inr, safeHref } from '../lib/format';
 import { MarkLegend, VerificationMark } from './Legend';
 

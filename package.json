@@ -1,5 +1,5 @@
 {
-  "name": "open-tariff-india",
+  "name": "openbijli",
   "private": true,
   "version": "0.1.0",
   "description": "Versioned, source-linked Indian electricity tariff data, a TypeScript bill engine, a rooftop solar payback simulator and the Meter Sakshi non-contact check meter.",
@@ -26,7 +26,8 @@
     "test": "npm run data:build && vitest run",
     "test:coverage": "npm run data:build && vitest run --coverage",
     "build": "npm run data:build && npm run build --workspaces --if-present",
-    "dev": "npm run data:build && npm run dev -w @open-tariff-india/web"
+    "dev": "npm run data:build && npm run dev -w @openbijli/web",
+    "test:e2e": "npm run data:build && npm run test:e2e -w @openbijli/web"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
@@ -35,5 +36,13 @@
     "typescript": "^7.0.2",
     "vitest": "^5.0.5",
     "zod": "^4.6.7"
+  },
+  "homepage": "https://byjoellobo.github.io/openbijli/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byjoellobo/openbijli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/byjoellobo/openbijli/issues"
   }
 }

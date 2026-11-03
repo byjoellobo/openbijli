@@ -1,5 +1,5 @@
 /**
- * @open-tariff-india/engine
+ * @openbijli/engine
  *
  * computeBill()   one billing cycle from a tariff book (slabs, fixed, ToD, charges,
  *                 subsidies, net metering / net billing / gross metering)

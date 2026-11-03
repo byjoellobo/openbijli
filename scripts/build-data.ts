@@ -18,9 +18,9 @@ const log = (line: string): void => {
 };
 
 const JSON_SCHEMAS: ReadonlyArray<{ file: string; title: string; schema: z.ZodType }> = [
-  { file: 'tariff-book.schema.json', title: 'Open Tariff India tariff book', schema: TariffBookSchema },
-  { file: 'solar-resource.schema.json', title: 'Open Tariff India solar resource file', schema: SolarResourceFileSchema },
-  { file: 'national.schema.json', title: 'Open Tariff India national parameters', schema: NationalFileSchema },
+  { file: 'tariff-book.schema.json', title: 'OpenBijli tariff book', schema: TariffBookSchema },
+  { file: 'solar-resource.schema.json', title: 'OpenBijli solar resource file', schema: SolarResourceFileSchema },
+  { file: 'national.schema.json', title: 'OpenBijli national parameters', schema: NationalFileSchema },
 ];
 
 function jsonSchemaText(schema: z.ZodType, title: string): string {

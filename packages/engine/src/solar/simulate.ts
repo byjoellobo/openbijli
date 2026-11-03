@@ -1,4 +1,4 @@
-import type { Category, CentralSubsidy, ContextFlag, SolarRegime, SolarResource, TariffBook } from '@open-tariff-india/data';
+import type { Category, CentralSubsidy, ContextFlag, SolarRegime, SolarResource, TariffBook } from '@openbijli/data';
 import { computeBill } from '../bill/compute.js';
 import { matchesCondition } from '../bill/context.js';
 import { regimesForCapacity } from '../bill/solar.js';

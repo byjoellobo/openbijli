@@ -1,5 +1,5 @@
 /**
- * @open-tariff-india/evidence: the Meter Sakshi evidence engine.
+ * @openbijli/evidence: the Meter Sakshi evidence engine.
  *
  *   const log = parseLog(csvText);
  *   const report = await buildReport({ log, caseFile, billFor: tariffComputerFor(caseFile), rights: rightsFor(id) });

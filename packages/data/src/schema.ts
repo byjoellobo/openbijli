@@ -1,5 +1,5 @@
 /**
- * The Open Tariff India data model.
+ * The OpenBijli data model.
  *
  * One "tariff book" = one regulator's retail tariff for one financial year, which may
  * apply to several utilities (e.g. KERC's uniform tariff covers BESCOM and MESCOM).

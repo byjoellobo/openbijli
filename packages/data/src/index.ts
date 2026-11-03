@@ -1,8 +1,8 @@
 /**
- * @open-tariff-india/data
+ * @openbijli/data
  *
  * The bundled, validated tariff catalog plus lookup helpers. Schemas and validation
- * live in the "@open-tariff-india/data/schema" entry point so that browser bundles
+ * live in the "@openbijli/data/schema" entry point so that browser bundles
  * that only read data do not ship zod.
  */
 import { catalog as bundled } from './generated/catalog.js';

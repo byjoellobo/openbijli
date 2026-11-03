@@ -4,7 +4,7 @@
  * solar fixed-charge rebate, Kerala's ToD threshold and banking charge.
  */
 import { describe, expect, it } from 'vitest';
-import type { Category, SolarRegime } from '@open-tariff-india/data';
+import type { Category, SolarRegime } from '@openbijli/data';
 import { computeBill, roundLoad, settleSolarCycle } from '../src/index.js';
 import { exportRateFor } from '../src/bill/solar.js';
 import { book, domestic, withCategory } from './fixtures.js';

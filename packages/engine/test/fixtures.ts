@@ -2,7 +2,7 @@
  * A synthetic tariff book that exercises every engine feature. Values are invented
  * round numbers so expected bills can be worked out by hand in the tests.
  */
-import type { Category, SolarResource, TariffBook } from '@open-tariff-india/data';
+import type { Category, SolarResource, TariffBook } from '@openbijli/data';
 
 const cite = [{ ref: 'order' }];
 

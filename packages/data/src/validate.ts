@@ -1,5 +1,5 @@
 /**
- * Validation entry point ("@open-tariff-india/data/schema"). Used by the build script,
+ * Validation entry point ("@openbijli/data/schema"). Used by the build script,
  * CI, and anyone checking a hand-edited tariff file.
  */
 import type { z } from 'zod';

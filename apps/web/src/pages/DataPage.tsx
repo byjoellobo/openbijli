@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { catalog, type AdditionalCharge, type TariffBook } from '@open-tariff-india/data';
+import { catalog, type AdditionalCharge, type TariffBook } from '@openbijli/data';
 import { MarkLegend, VerificationMark } from '../components/Legend';
 import { safeHref } from '../lib/format';
 

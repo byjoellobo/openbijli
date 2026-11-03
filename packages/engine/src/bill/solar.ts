@@ -1,4 +1,4 @@
-import type { RooftopSolar, SolarRegime } from '@open-tariff-india/data';
+import type { RooftopSolar, SolarRegime } from '@openbijli/data';
 import { TariffDataError } from './energy.js';
 import type { SolarCycleInput, SolarCycleResult } from './types.js';
 

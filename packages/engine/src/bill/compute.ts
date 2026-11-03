@@ -1,4 +1,4 @@
-import type { Category, TariffBook } from '@open-tariff-india/data';
+import type { Category, TariffBook } from '@openbijli/data';
 import { roundPaise, sum } from '../money.js';
 import { computeCharges, type SolarChargeInput } from './charges.js';
 import { resolveCitations } from './context.js';

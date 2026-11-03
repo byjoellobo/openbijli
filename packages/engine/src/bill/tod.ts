@@ -1,4 +1,4 @@
-import type { Tod, TodPeriod } from '@open-tariff-india/data';
+import type { Tod, TodPeriod } from '@openbijli/data';
 import { matchesCondition } from './context.js';
 import type { BillContext } from './types.js';
 

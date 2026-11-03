@@ -1,4 +1,4 @@
-import { catalog, getTariff, getUtilities, type TariffBook, type UtilitySummary } from '@open-tariff-india/data';
+import { catalog, getTariff, getUtilities, type TariffBook, type UtilitySummary } from '@openbijli/data';
 
 export const utilities: readonly UtilitySummary[] = getUtilities();
 

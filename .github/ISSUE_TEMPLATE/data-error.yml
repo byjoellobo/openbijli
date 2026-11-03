@@ -20,7 +20,7 @@ body:
   - type: textarea
     id: actual
     attributes:
-      label: What Open Tariff India gives
+      label: What OpenBijli gives
       description: Units, sanctioned load, and the engine's line items.
   - type: input
     id: source

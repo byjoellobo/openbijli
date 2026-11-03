@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { computeBill, type Bill } from '@open-tariff-india/engine';
-import type { ContextFlag } from '@open-tariff-india/data';
+import { computeBill, type Bill } from '@openbijli/engine';
+import type { ContextFlag } from '@openbijli/data';
 import { BillSheet } from '../components/BillSheet';
 import { ResultBar } from '../components/ResultBar';
 import { UtilitySelect } from '../components/UtilitySelect';

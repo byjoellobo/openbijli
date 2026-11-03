@@ -1,10 +1,29 @@
 {
-  "name": "@open-tariff-india/engine",
+  "name": "@openbijli/engine",
   "version": "0.1.0",
   "description": "Indian electricity bill engine (slabs, fixed charges, ToD, subsidies, net metering/net billing/gross metering) and a rooftop solar right-sizing and payback simulator.",
+  "author": "OpenBijli contributors",
+  "homepage": "https://github.com/byjoellobo/openbijli/tree/main/packages/engine#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byjoellobo/openbijli.git",
+    "directory": "packages/engine"
+  },
+  "bugs": {
+    "url": "https://github.com/byjoellobo/openbijli/issues"
+  },
   "type": "module",
   "license": "MIT",
-  "keywords": ["india", "electricity", "bill", "tariff", "rooftop-solar", "net-metering", "payback", "pm-surya-ghar"],
+  "keywords": [
+    "india",
+    "electricity",
+    "bill",
+    "tariff",
+    "rooftop-solar",
+    "net-metering",
+    "payback",
+    "pm-surya-ghar"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
@@ -14,17 +33,24 @@
     }
   },
   "bin": {
-    "open-tariff": "./dist/cli.js"
+    "openbijli": "./dist/cli.js"
   },
-  "files": ["dist", "src", "README.md"],
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@open-tariff-india/data": "0.1.0"
+    "@openbijli/data": "0.1.0"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }
