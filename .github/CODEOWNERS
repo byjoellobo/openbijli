@@ -1,3 +1,9 @@
+# Code owners are requested for review automatically. Later rules take precedence.
+# Docs: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything.
+*                         @byjoellobo
+
 # Each tariff book should have at least one maintainer who reads that state's orders.
 # Uncomment and replace <owner> with real GitHub handles or teams once maintainers sign up.
 #

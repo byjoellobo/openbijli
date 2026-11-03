@@ -1,0 +1,77 @@
+name: Bug report
+description: Something in the web app, CLIs, packages or Meter Sakshi firmware does not work as it should.
+title: '[bug] '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+        - A **wrong tariff value or bill amount** is a data issue: please use the "Wrong number or bill" form instead.
+        - A **security problem** must be reported privately: see SECURITY.md.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Web app
+        - Bill engine (@openbijli/engine or the openbijli CLI)
+        - Evidence engine (@openbijli/evidence or the meter-sakshi CLI)
+        - Data package (@openbijli/data) or schema
+        - Meter Sakshi firmware or ESPHome config
+        - Scripts or CI workflows
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem. Include error messages or screenshots if you have them.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The inputs you used (utility, units, load, options) or the command you ran.
+      placeholder: |
+        1. Open Check a bill
+        2. Choose MESCOM, 200 units, 3 kW
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Release tag, package version, or commit. Write "live demo" if you used the GitHub Pages site.
+      placeholder: v0.1.0
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser and device, or Node.js version and OS, or board and PlatformIO version.
+      placeholder: Chrome 140 on Android 15 / Node 24 on Ubuntu / ESP32 DevKit
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or output
+      description: Paste any relevant output. Remove personal details (name, account number, address, meter serial) first.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and this has not been reported.
+          required: true
+        - label: I removed personal details from everything above.
+          required: true

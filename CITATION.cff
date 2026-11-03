@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: >-
+  If you use OpenBijli software or its tariff data, please cite it using the
+  metadata below. Attribute the data as "OpenBijli contributors, tariff data
+  (CC BY 4.0)".
+type: software
+title: "OpenBijli: open Indian electricity tariff data, bill engine and rooftop solar simulator"
+abstract: >-
+  OpenBijli is a versioned, source-linked dataset of Indian household
+  electricity tariffs (one JSON tariff book per regulator and financial year,
+  with citations to the page of each tariff order), a TypeScript bill engine,
+  a rooftop solar right-sizing and payback simulator, an evidence engine for
+  billing disputes, and Meter Sakshi, a non-contact check meter that reads an
+  electricity meter's pulse LED. Release 0.1.0 covers 9 tariff books and 25
+  utilities for FY 2026-27. The code is licensed under MIT; the tariff data in
+  data/ under CC BY 4.0; the Meter Sakshi hardware designs under
+  CERN-OHL-P-2.0.
+authors:
+  - name: "OpenBijli contributors"
+repository-code: "https://github.com/byjoellobo/openbijli"
+url: "https://byjoellobo.github.io/openbijli/"
+license: MIT
+version: "0.1.0"
+date-released: "2026-11-03"
+keywords:
+  - india
+  - electricity
+  - tariff
+  - electricity bill
+  - discom
+  - rooftop solar
+  - net metering
+  - PM Surya Ghar
+  - smart meter
+  - prepaid meter
+  - open data
+  - energy policy

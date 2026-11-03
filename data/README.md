@@ -1,4 +1,7 @@
-# Data
+# OpenBijli tariff data
+
+The source of truth for every rate OpenBijli uses. Each value cites the page of the tariff
+order, regulation or gazette it comes from, and says how sure we are of it.
 
 | Path | Contents |
 |---|---|
@@ -9,4 +12,8 @@
 
 How to read and edit a book: [docs/data-model.md](../docs/data-model.md).
 How the yearly update works: [docs/tariff-update-workflow.md](../docs/tariff-update-workflow.md).
-Licence: CC BY 4.0, see [LICENSE.md](LICENSE.md).
+Validate your changes with `npm run data:check` before opening a pull request.
+
+Licence: CC BY 4.0, see [LICENSE.md](LICENSE.md). Attribute as "OpenBijli contributors,
+tariff data (CC BY 4.0)". The data is also available as the
+[`@openbijli/data`](../packages/data/README.md) package.

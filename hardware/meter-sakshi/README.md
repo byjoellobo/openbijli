@@ -3,8 +3,11 @@
 *Sakshi* (साक्षी) means witness. Meter Sakshi is a non-contact check meter: an ESP32 with an
 optical sensor held by a 3D-printed clip over the kWh pulse LED on the outside of your
 electricity meter. It logs the meter's own pulses minute by minute, records when household
-supply drops and returns, and exports a hash-chained log that the Open Tariff India evidence
-engine turns into a dispute report.
+supply drops and returns, and exports a hash-chained log that the
+[OpenBijli](../../README.md) evidence engine
+([`@openbijli/evidence`](../../packages/evidence/README.md)) turns into a dispute report.
+You can try the report builder with demo data in the
+[web app](https://byjoellobo.github.io/openbijli/#/sakshi).
 
 **It never opens, wires into or alters the meter.** Read
 [docs/safety-and-legal.md](docs/safety-and-legal.md) before installing.
@@ -112,3 +115,9 @@ the device's own uptime, so a spoofed time server cannot push records into the f
 | `samples/` | A 3-day demo log and case file (regenerate with `npm run sample:log`) |
 | `docs/log-format.md` | The log and hash-chain specification |
 | `docs/safety-and-legal.md` | Rules for installation, and what is out of scope |
+
+## Licence
+
+Hardware designs (enclosure, wiring and assembly documentation): CERN-OHL-P-2.0, see
+[hardware/LICENSE.md](../LICENSE.md). Firmware and the ESPHome configuration: MIT, see the
+repository [LICENSE](../../LICENSE).

@@ -1,0 +1,57 @@
+name: Feature request
+description: Suggest a new feature, a new state or utility, or an improvement.
+title: '[feature] '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. For an open-ended idea, a [Discussion](https://github.com/byjoellobo/openbijli/discussions) may be a better place to start.
+        To report that a **new tariff order** is out, use the "New tariff order published" form.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Web app
+        - Bill engine
+        - Rooftop solar simulator
+        - Evidence engine or dispute report
+        - Tariff data coverage (new state or utility)
+        - Meter Sakshi hardware or firmware
+        - Developer tooling or CI
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Who is affected and what can they not do today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to happen?
+      description: Describe the change. For data coverage, link the regulator and tariff order if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Project principles
+      options:
+        - label: This keeps the rule that the device never opens, wires into or alters the meter.
+        - label: This keeps the app local first (no user data leaves the browser).
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help?
+      options:
+        - label: I would like to open a pull request for this.
