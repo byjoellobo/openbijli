@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig, type Plugin } from 'vite';
+import pkg from './package.json' with { type: 'json' };
 
 // Content-Security-Policy for the built site (GitHub Pages cannot set headers, so it goes in
 // a meta tag). Added at build time only: the dev server relies on inline scripts for HMR.
@@ -17,7 +18,7 @@ const CSP = [
 
 function contentSecurityPolicy(): Plugin {
   return {
-    name: 'open-tariff-csp',
+    name: 'openbijli-csp',
     apply: 'build',
     transformIndexHtml: (html) => html.replace('<meta charset="utf-8" />', `<meta charset="utf-8" />\n    <meta http-equiv="Content-Security-Policy" content="${CSP}" />`),
   };
@@ -28,6 +29,9 @@ function contentSecurityPolicy(): Plugin {
 export default defineConfig({
   base: process.env.BASE_PATH ?? '/',
   plugins: [react(), contentSecurityPolicy()],
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+  },
   resolve: {
     conditions: ['source', 'module', 'browser', 'development|production'],
   },

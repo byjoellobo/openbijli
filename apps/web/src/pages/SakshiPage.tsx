@@ -9,7 +9,7 @@ import {
   tariffComputerFor,
   type CaseFile,
   type Report,
-} from '@open-tariff-india/evidence';
+} from '@openbijli/evidence';
 import { UtilitySelect } from '../components/UtilitySelect';
 import { DEFAULT_UTILITY } from '../lib/catalog';
 import { parseNumber } from '../lib/format';
@@ -67,7 +67,7 @@ export function SakshiPage() {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
 
-  async function loadSample(): Promise<void> {
+  async function loadSample(): Promise<{ csv: string; sample: CaseFile }> {
     const [{ default: csv }, { default: caseJson }] = await Promise.all([
       import('../../../../hardware/meter-sakshi/samples/sample-log.csv?raw'),
       import('../../../../hardware/meter-sakshi/samples/sample-case.json?raw'),
@@ -86,6 +86,23 @@ export function SakshiPage() {
     setExtras({ ...(sample.creepTests ? { creepTests: sample.creepTests } : {}), ...(sample.referenceTests ? { referenceTests: sample.referenceTests } : {}) });
     setReport(null);
     setError('');
+    return { csv, sample };
+  }
+
+  /** Loads the demo log and case, then builds its report straight away. */
+  async function showExample(): Promise<void> {
+    setBusy(true);
+    setError('');
+    try {
+      const { csv, sample } = await loadSample();
+      const data = await buildReport({ log: parseLog(csv), caseFile: sample, billFor: tariffComputerFor(sample), rights: rightsFor(sample.utilityId) });
+      setReport({ data, html: renderHtml(data) });
+      requestAnimationFrame(() => document.getElementById('result')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function onFile(file: File | undefined): Promise<void> {
@@ -136,9 +153,9 @@ export function SakshiPage() {
 
   return (
     <>
-      <h1>
+      <h1 className="with-pulse">
         <span className="pulse" aria-hidden="true" />
-        Build evidence for a billing dispute
+        <span>Build evidence for a billing dispute</span>
       </h1>
       <p className="lede">
         Meter Sakshi counts the flashes of your meter's own pulse LED without touching the meter. Load its log, add the bill you
@@ -155,7 +172,12 @@ export function SakshiPage() {
               <small>{logName ? `Loaded: ${logName}` : 'On the device page, choose Download log.'}</small>
             </label>
             <div className="actions">
-              <button type="button" className="quiet" onClick={() => void loadSample()}>
+              <button
+                type="button"
+                className="quiet"
+                disabled={busy}
+                onClick={() => loadSample().catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))}
+              >
                 No device yet? Try demo data
               </button>
             </div>
@@ -254,10 +276,26 @@ export function SakshiPage() {
           ) : (
             <div className="placeholder">
               <h2>Your report will appear here</h2>
-              <p>
-                It compares each bill with what the meter itself registered, checks prepaid deductions against the tariff, times how
-                long supply took to return after a recharge, and lists the complaint routes the rules give you.
-              </p>
+              <p>It checks your case from four sides:</p>
+              <ul className="check-list">
+                <li>
+                  <strong>Units billed</strong> against what the meter itself registered
+                </li>
+                <li>
+                  <strong>Prepaid deductions</strong> against the published tariff
+                </li>
+                <li>
+                  <strong>Reconnection time</strong> after each recharge
+                </li>
+                <li>
+                  <strong>Where to complain</strong> under your state's rules
+                </li>
+              </ul>
+              <div className="actions">
+                <button type="button" className="quiet" disabled={busy} onClick={() => void showExample()}>
+                  See an example report
+                </button>
+              </div>
             </div>
           )}
         </section>
