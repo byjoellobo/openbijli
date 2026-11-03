@@ -22,3 +22,10 @@ hardware/meter-sakshi/firmware/include/secrets.h
 
 # Copied into the data package at build time
 packages/data/tariff-book.schema.json
+
+# Playwright
+apps/web/playwright-report/
+apps/web/test-results/
+
+# Local design-tool caches
+.impeccable/
