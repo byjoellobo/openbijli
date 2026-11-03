@@ -70,10 +70,12 @@ jobs:
           fi
       - uses: actions/checkout@v5
         with:
-          ref: ${{ env.TAG }}
+          ref: refs/tags/${{ env.TAG }}
           fetch-depth: 0
       - name: Only build releases whose commit is on main
-        run: git merge-base --is-ancestor "$(git rev-parse "$TAG^{commit}")" origin/main
+        run: |
+          test "$(git rev-parse HEAD)" = "$(git rev-parse "refs/tags/$TAG^{commit}")"
+          git merge-base --is-ancestor HEAD origin/main
       - uses: actions/setup-node@v5
         with:
           node-version: 24
