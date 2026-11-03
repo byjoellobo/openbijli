@@ -1,0 +1,30 @@
+name: Meter Sakshi firmware
+
+on:
+  push:
+    branches: [main]
+    paths: ['hardware/meter-sakshi/firmware/**']
+  pull_request:
+    paths: ['hardware/meter-sakshi/firmware/**']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.platformio
+          key: pio-${{ hashFiles('hardware/meter-sakshi/firmware/platformio.ini') }}
+      - run: pip install --upgrade platformio
+      - name: Build and run native unit tests
+        working-directory: hardware/meter-sakshi/firmware
+        run: |
+          pio test -e native
+          pio run -e esp32dev

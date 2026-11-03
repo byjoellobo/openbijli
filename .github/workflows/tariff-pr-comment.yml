@@ -1,0 +1,57 @@
+name: Tariff PR comment
+
+# Privileged half of the tariff review. It never checks out or runs PR code, and it treats
+# the artifact from tariff-pr.yml as untrusted text: the PR number comes from the trusted
+# workflow_run event (checked against the head commit and this repository), and the body is
+# neutralised (no mentions, raw HTML or images) before it is posted as one sticky comment.
+on:
+  workflow_run:
+    workflows: ['Tariff PR review']
+    types: [completed]
+
+permissions:
+  pull-requests: write
+  actions: read
+
+jobs:
+  comment:
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: tariff-review
+          path: review
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const { owner, repo } = context.repo;
+            const run = context.payload.workflow_run;
+
+            // Resolve the PR from trusted event data, never from the artifact.
+            let pr = (run.pull_requests || []).find((p) => p.head && p.head.sha === run.head_sha);
+            if (!pr) {
+              const { data } = await github.rest.repos.listPullRequestsAssociatedWithCommit({ owner, repo, commit_sha: run.head_sha });
+              pr = data.find((p) => p.head.sha === run.head_sha && p.base.repo.full_name === `${owner}/${repo}` && p.state === 'open');
+            }
+            if (!pr) { core.info('No open PR matches this run; nothing to post.'); return; }
+            const issue_number = pr.number;
+
+            // Treat the summary as untrusted Markdown.
+            let body = fs.readFileSync('review/summary.md', 'utf8');
+            body = body
+              .replace(/<[^>]*>/g, '')                    // raw HTML
+              .replace(/!\[[^\]]*\]\([^)]*\)/g, '[image removed]')
+              .replace(/@/g, '@​');                   // no mentions
+            if (body.length > 60000) body = body.slice(0, 60000) + '\n\n_(truncated)_';
+            const marker = '<!-- open-tariff-review -->';
+            const status = run.conclusion === 'success' ? '' : '\n\n> Validation failed: see the "Tariff PR review" run.';
+            body = `${marker}\n${body}${status}`;
+
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number });
+            const existing = comments.find((c) => c.user && c.user.login === 'github-actions[bot]' && c.body && c.body.startsWith(marker));
+            if (existing) await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            else await github.rest.issues.createComment({ owner, repo, issue_number, body });

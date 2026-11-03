@@ -1,0 +1,431 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "mh-msedcl",
+  "title": "Maharashtra MSEDCL retail tariff (MERC), LT I(B) Residential",
+  "state": "Maharashtra",
+  "stateCode": "MH",
+  "regulator": { "name": "Maharashtra Electricity Regulatory Commission", "short": "MERC", "url": "https://merc.gov.in/" },
+  "utilities": [
+    {
+      "id": "msedcl",
+      "name": "Maharashtra State Electricity Distribution Company Limited (Mahavitaran)",
+      "shortName": "MSEDCL",
+      "servedArea": "Maharashtra, except areas served by other licensees (the Mumbai licensees Tata Power, Adani Electricity Mumbai and BEST, and Torrent Power)",
+      "website": "https://www.mahadiscom.in/",
+      "solarResource": "pune"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "effectiveTo": "2027-03-31",
+  "status": "partial",
+  "order": {
+    "title": "MERC Order in Case No. 75 of 2025 (25 March 2026, post remand): review of the MSEDCL MYT Order in Case No. 217 of 2024 and revised tariffs for FY 2026-27, read with the MYT Order (28 March 2025, 5th Control Period FY 2025-26 to FY 2029-30), which stands modified only to the extent ruled in the review order",
+    "cite": [
+      { "ref": "merc-75-2025", "page": "p.95 of 123", "quote": "Summary of LT Tariff for FY 2026-27, effective from 1 April, 2026 ... LT I(B): LT - Residential ... 1-100 units Rs/conn/mth 130 3.96 1.60 5.56" },
+      { "ref": "merc-75-2025", "page": "p.90 of 123", "quote": "Multi Year tariff Order dated 28 March 2025 issued in Case No. 217 of 2024 stands modified to the extent ruled in this Order. All other parts of the MYT Order remain unchanged." }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "LT I(B)",
+      "name": "LT I(B) Residential",
+      "description": "Low/medium voltage supply to private residential premises, government and staff quarters, housing-society common facilities used exclusively for domestic purposes, places of worship and similar premises listed in the MYT tariff schedule. Below Poverty Line consumers are a separate category (LT I(A)) not modelled here. Energy and wheeling charges are per kWh for loads below 20 kW; at 20 kW and above the order bills them per kVAh, which this book does not model.",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "telescopic",
+            "label": "LT I(B) Residential, telescopic slabs",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 100, "rate": 3.96 },
+              { "upTo": 300, "rate": 10.8 },
+              { "upTo": 500, "rate": 15.03 },
+              { "upTo": null, "rate": 17.53 }
+            ]
+          }
+        ],
+        "note": "Energy charge only. The order prints the wheeling charge (Rs 1.60/kWh, all slabs) in a separate column and a 'Total Variable Charge' of 5.56 / 12.40 / 16.64 / 19.13; wheeling is a separate line in this book. The printed 301-500 total (16.64) is 0.01 above 15.03 + 1.60. Telescopic billing continues from the MYT Order, including for residential consumers with rooftop solar (billed on net units).",
+        "cite": [
+          { "ref": "merc-75-2025", "page": "p.95 of 123", "quote": "1-100 units Rs/conn/mth 130 3.96 1.60 5.56 ... 101-300 units Rs/conn/mth 130 10.80 1.60 12.40 ... 301-500 units Rs/conn/mth 130 15.03 1.60 16.64 ... Above 500 units Rs/conn/mth 130 17.53 1.60 19.13" },
+          { "ref": "merc-75-2025", "page": "p.95 of 123", "quote": "Energy Charges & Wheeling Charges for consumer categories with load 20kW and above are in Rs./kVAh, and for load below 20 kW are in Rs/kWh." },
+          { "ref": "merc-myt-217-2024", "page": "p.582 of 827", "quote": "LT I (B) - Residential consumers have been billed under a telescopic tariff structure, wherein consumers have been charged progressively higher rates as their consumption has increased." },
+          { "ref": "merc-myt-217-2024", "page": "p.583 of 827", "quote": "Further, as usual, the telescopic benefit shall be continued for Residential Consumers with RTS." }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "three-phase",
+            "label": "Fixed charge, three-phase (Rs 435/month, plus Rs 215 per 10 kW or part above 10 kW)",
+            "when": { "phase": "three" },
+            "bandBy": "load_kw",
+            "method": "whole",
+            "bands": [
+              { "upTo": 10, "amount": 435, "per": "connection" },
+              { "upTo": 20, "amount": 650, "per": "connection" },
+              { "upTo": 30, "amount": 865, "per": "connection" },
+              { "upTo": 40, "amount": 1080, "per": "connection" },
+              { "upTo": 50, "amount": 1295, "per": "connection" },
+              { "upTo": null, "amount": 1510, "per": "connection" }
+            ],
+            "period": "month",
+            "loadRounding": "none"
+          },
+          {
+            "id": "single-phase",
+            "label": "Fixed charge, single-phase (Rs 130/month)",
+            "bandBy": "none",
+            "method": "whole",
+            "bands": [{ "upTo": null, "amount": 130, "per": "connection" }],
+            "period": "month",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "Three-phase connections pay Rs 435 instead of Rs 130. The MYT schedule adds Rs 215/month (FY 2026-27) per 10 kW of load or part thereof above 10 kW; the bands are that step function (435 + 215 per started 10 kW block) and are exact up to 60 kW only, since the schema needs an open-ended last band. The Rs 10/month urban-division additional fixed charge is a separate line.",
+        "cite": [
+          { "ref": "merc-75-2025", "page": "p.95 of 123", "quote": "Three Phase Charges Rs/conn/mth 435" },
+          { "ref": "merc-myt-217-2024", "page": "p.727 of 827", "quote": "Single Phase: Rs. 130 per month ... Three Phase - Rs. 435 per month$$" },
+          { "ref": "merc-myt-217-2024", "page": "p.729 of 827", "quote": "$$An Additional Fixed Charge of Rs.210 per 10 kW load or part thereof above 10 kW load shall also be payable for FY 2025-26. This amount will increase to Rs. 215, Rs. 220, Rs. 225, Rs. 230, per month and per 10 kW, in FY 2026-27, FY 2027-28, and FY 2028-29, FY 2029-39 respectively." }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "per_kwh",
+          "id": "wheeling",
+          "name": "Wheeling charge",
+          "rate": 1.6,
+          "variable": false,
+          "asOf": "2026-04-01",
+          "note": "Same rate for all slabs; billed per kWh for loads below 20 kW.",
+          "cite": [{ "ref": "merc-75-2025", "page": "p.95 of 123", "quote": "1-100 units Rs/conn/mth 130 3.96 1.60 5.56" }],
+          "verification": "verified"
+        },
+        {
+          "kind": "flat",
+          "id": "urban-fixed-charge",
+          "name": "Additional fixed charge, MSEDCL urban divisions",
+          "amount": 10,
+          "period": "month",
+          "appliesIf": { "area": "urban" },
+          "variable": false,
+          "note": "MYT tariff schedule note (o), referenced from the LT I(B) fixed charge for every year of the control period; not restated in the review order, which leaves other MYT provisions unchanged.",
+          "cite": [{ "ref": "merc-myt-217-2024", "page": "p.729 of 827, note (o)", "quote": "Additional Fixed Charge of Rs 10 per connection per month shall be applicable for LT-Domestic category consumers in Urban Divisions of MSEDCL." }],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "fac",
+          "name": "Fuel Adjustment Charge (FAC / Z-FAC)",
+          "rate": 0,
+          "variable": true,
+          "note": "Notified monthly and slab-wise for LT I(B). No FY 2026-27 value was found: MERC's MSEDCL FAC list ends with the June 2025 approval and MSEDCL's latest circular is for billing month Jul-25 (Residential: 1-100 units -0.05, 101-300 -0.10, 301-500 -0.10, above 500 -0.10 Rs/kWh). Placeholder 0 until a current value is added.",
+          "cite": [
+            { "ref": "msedcl-fac-jul25", "quote": "Residential ... 1-100 Units -0.05 ... 101-300 Units -0.10 ... 301-500 Units -0.10 ... Above 500 Units -0.10" },
+            { "ref": "merc-fac-msedcl" }
+          ],
+          "verification": "unverified"
+        },
+        {
+          "kind": "percent",
+          "id": "electricity-duty",
+          "name": "Electricity Duty (Government of Maharashtra), residential",
+          "percent": 16,
+          "of": ["energy", "fixed", "tod", "wheeling", "urban-fixed-charge", "fac"],
+          "variable": false,
+          "asOf": "2016-09-01",
+          "note": "16% of 'consumption charges', which the Electricity Duty Act defines as fixed charges, variable charges such as energy charges, fuel adjustment charges and reliability charges as per the MERC tariff, excluding penal charges and incentives (prompt payment, power factor and similar). Wheeling and the ToD rebate are included here as tariff variable charges (MERC's table groups energy + wheeling as 'Total Variable Charge'); neither is named explicitly in the Act. Rate notified 21 Oct 2016, from the September 2016 billing month; no later residential change found.",
+          "cite": [
+            { "ref": "msedcl-cc-273", "quote": "Part A: Residential ... 16 percent of the consumption charges" },
+            { "ref": "mh-ed-bill-2016", "page": "s.2(e)", "quote": "\"consumption charges\" means the charges levied by the licensee under this Act for the energy consumed by a consumer which shall include the fixed charges such as demand charges, variable charges such as energy charges, fuel adjustment charges and reliability charges, as per the tariff approved by the Commission, but does not include the penal charges or incentives, for delayed or prompt payment, power factor, harmonics, load factor" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "tose",
+          "name": "Tax on Sale of Electricity (ToSE)",
+          "rate": 0,
+          "variable": false,
+          "asOf": "2025-12-01",
+          "note": "Nil for consumers other than industrial or commercial in MSEDCL areas under the GoM notification of 19 Dec 2025 (from 1 Dec 2025). Shown as a zero line for transparency.",
+          "cite": [{ "ref": "msedcl-cc-354", "quote": "(b) in respect of sale of electricity to any other Consumers other than industrial commercial consumers. Nil." }],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_solar_kwh",
+          "id": "grid-support-charge",
+          "name": "Grid Support Charge on rooftop solar generation (LT)",
+          "rate": 1.96,
+          "minSolarKw": 10,
+          "variable": false,
+          "note": "Rs 1.96/unit of generation in FY 2026-27 for net-metering consumers, effective once statewide rooftop capacity reached 5000 MW (MSEDCL reported 5178.81 MW statewide by letter of 20 Feb 2026). Rooftop installations up to 10 kW are exempt; the book reads the 10 kW limit as installed capacity. No MSEDCL billing circular was found. Not included in the duty base.",
+          "cite": [
+            { "ref": "merc-75-2025", "page": "p.84 of 123, Table 9 row O and para 21.12", "quote": "rooftop installations up to 10 kW under net-metering or net-billing arrangements are exempt from the levy of such Grid Support Charges." },
+            { "ref": "merc-75-2025", "page": "p.84 of 123, para 21.14", "quote": "the Commission rules that GSC will apply to all net-metering consumers, which means existing and future consumers, except rooftop installations with a load of up to 10 kW. Further, as stipulated in the Regulations, said GSC shall be levied on generation units." },
+            { "ref": "merc-75-2025", "page": "p.83 of 123, para 21.8", "quote": "MSEDCL, vide its letter dated 20 February 2026, informed that the solar roof top capacity in the State has reached 5178.81 MW with 5006.16 MW capacity in MSEDCL's area of supply." }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "prepaid-rebate",
+          "name": "Prepaid connection rebate (2% of energy charge incl. FAC)",
+          "percent": -2,
+          "of": ["energy", "fac"],
+          "appliesIf": { "flags": ["prepaid"] },
+          "variable": false,
+          "cite": [{ "ref": "merc-myt-217-2024", "page": "p.781 of 827", "quote": "Consumers with prepaid metered connections shall be entitled for rebate of 2% in the Energy Charge Rate (incl FAC) applicable for the consumer category." }],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "prompt-payment-discount",
+          "name": "Prompt payment discount (1%, paid within 7 days of issue)",
+          "percent": -1,
+          "of": ["energy", "fixed", "tod", "wheeling", "urban-fixed-charge", "fac", "grid-support-charge"],
+          "appliesIf": { "flags": ["prompt_payment"] },
+          "variable": false,
+          "note": "On the monthly bill excluding taxes and duties.",
+          "cite": [{ "ref": "merc-myt-217-2024", "page": "p.780 of 827", "quote": "A prompt payment discount of one percent of the monthly bill (excluding Taxes and Duties) shall be provided to consumers for payment of electricity bills within 7 days from the date of their issue." }],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "digital-payment-discount",
+          "name": "Digital payment discount (0.25%, capped at Rs 500)",
+          "percent": -0.25,
+          "of": ["energy", "fixed", "tod", "wheeling", "urban-fixed-charge", "fac", "grid-support-charge"],
+          "appliesIf": { "flags": ["digital_payment"] },
+          "variable": false,
+          "note": "The Rs 500 cap is not modelled; it only binds on bills above Rs 2 lakh.",
+          "cite": [{ "ref": "merc-myt-217-2024", "page": "p.780 of 827", "quote": "A discount of 0.25% of the monthly bill (excluding taxes and duties), subject to a cap of Rs. 500/-, shall be provided to LT category consumers for payment of electricity bills through various modes of digital payment" }],
+          "verification": "verified"
+        }
+      ],
+      "tod": {
+        "applicability": "LT I(B) Residential consumers with a ToD or smart meter, irrespective of load, from the next billing cycle after the meter is installed (rooftop solar consumers included). Solar-hours rebate only; no peak surcharge and no night rebate for residential.",
+        "appliesIf": { "flags": ["smart_meter"] },
+        "mandatory": true,
+        "periods": [
+          {
+            "id": "solar-hours",
+            "name": "Solar hours rebate (09:00-17:00)",
+            "windows": [{ "from": "09:00", "to": "17:00" }],
+            "adjustment": { "type": "per_kwh", "value": -0.85 }
+          }
+        ],
+        "note": "Review order Table 8: residential rebate Rs 0.80 (FY26), 0.85 (FY27), 0.90 (FY28), 0.90 (FY29), 1.00 (FY30) per unit in 09:00-17:00. The review order removed the night-hours rebate. The residential column is 0 for 00:00-09:00 and for the 17:00-24:00 peak (the +20% peak charge applies to other categories only).",
+        "cite": [
+          { "ref": "merc-75-2025", "page": "pp.76-77 of 123, Table 8", "quote": "ToD (Rebate) For LT-Residential & HT-Group Housing Societies* (Rs./unit) ... 09:00 hrs to 17:00 hrs ... Rs. -0.80 (FY 26) Rs. -0.85 (FY 27) Rs. -0.90 (FY 28) Rs. -0.90 (FY 29) Rs. -1.00 (FY 30) ... Peak Hours 17:00 hrs to 24:00 hrs +20%# 0" },
+          { "ref": "merc-myt-217-2024", "page": "p.568 of 827, para 7.13.68", "quote": "approved ToD Rebate (during Solar Hours) shall be available to all residential consumers (irrespective of load) and the same shall be applicable from the next billing cycle after date of installation of ToD Meter/Smart Meter for consumers under LT-Residential category." }
+        ],
+        "verification": "verified"
+      },
+      "subsidies": []
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (MERC Grid Interactive Rooftop RE Regulations 2019, as amended)",
+        "default": true,
+        "minKw": 1,
+        "maxKw": 5000,
+        "exportRate": {
+          "value": null,
+          "basis": "Unadjusted net credited units at the end of each financial year are bought at the MERC Generic Tariff approved for that year; the FY 2026-27 Generic Tariff was not found",
+          "variable": true
+        },
+        "settlement": { "period": "financial_year", "surplus": "paid_at_export_rate" },
+        "note": "Monthly netting; surplus units carry forward bill to bill within the financial year and reset to zero at the start of each settlement period. The FY-end purchase is credited in the following year's first bill; if the credit keeps rising for three consecutive years, 50% is paid by electronic transfer (2023 amendment). LT Residential consumers are exempt from ToD slot-wise banking: credits offset consumption in all hours, including 17:00-24:00, even after a ToD/smart meter is installed. The netting rules are verified; the regime is marked unverified because the purchase rate is unknown.",
+        "cite": [
+          { "ref": "merc-rts-2019", "quote": "c) The unadjusted net credited Units of electricity as at the end of each financial year shall be purchased by the Distribution Licensee at the Generic Tariff approved by the Commission for that year, within the first month of the following year: Provided that, at the beginning of each Settlement Period, the cumulative quantum of injected electricity carried forward will be re-set to zero;" },
+          { "ref": "merc-rts-amd1-2023", "page": "Reg. 11.4(e) provisos", "quote": "Provided that in case such credit amount is continuously increasing at the end of three consecutive financial years, then at the end of third financial year, 50% of the credit amount shall be paid in cash through electronic transfer to the consumer within 60 days of end of such third financial year" },
+          { "ref": "merc-75-2025", "page": "p.79 of 123, para 18.22", "quote": "However, as stated in the MYT Order, consumers in the Residential category are exempted from the applicability of ToD slot-wise banking for their rooftop renewable energy connections under net-metering." },
+          { "ref": "merc-myt-217-2024", "page": "p.571 of 827, para 7.13.79", "quote": "in case of LT-Residential consumers with RTS systems, the benefit of Net Metering or Group Net Metering or Virtual Net Metering shall continue to be available for all hours through out the day for adjustment of surplus energy unit credit including during Peak Hours (17:00 hrs to 24:00 hrs) even after installation of ToD meter/ Smart Meter by such consumer." }
+        ],
+        "verification": "unverified"
+      },
+      {
+        "id": "net-billing",
+        "type": "net_billing",
+        "label": "Net billing (MERC Rooftop RE Regulations, First Amendment 2023)",
+        "default": false,
+        "minKw": 1,
+        "exportRate": {
+          "value": null,
+          "basis": "Exported energy credited at Tgc, the Generic Tariff approved by MERC for the year; FY 2026-27 value not found",
+          "variable": true
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Energy Bill = Fixed Charges + other charges and levies + (Edl x Trst) - (Ere x Tgc) - Billing Credit, with unused billing credit carried to the next month. Capacity limited to sanctioned load/contract demand.",
+        "cite": [{ "ref": "merc-rts-amd1-2023", "page": "Reg. 11.4(A)", "quote": "Energy Bill of consumer = Fixed Charges + other applicable charges and levies + (Edl x Trst) - (Ere x Tgc) - Billing Credit; ... (f) Tgc means the Generic Tariff approved by the Commission for that year;" }],
+        "verification": "unverified"
+      },
+      {
+        "id": "gross-metering",
+        "type": "gross_metering",
+        "label": "Gross metering (MERC Rooftop RE Regulations, as amended)",
+        "default": false,
+        "minKw": 1,
+        "exportRate": {
+          "value": null,
+          "basis": "Entire generation sold to MSEDCL under a power purchase agreement; the purchase rate was not verified (2019 Reg. 12.5 PPA at APPC may survive the 2023 substitution of Reg. 12 and 12.1, but this is an interpretation)",
+          "variable": true
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "cite": [{ "ref": "merc-rts-amd1-2023", "page": "Reg. 12.1", "quote": "12.1 Gross Metering is the arrangement where the Renewable Energy Generating System is setup for selling entire generated power to Distribution Licensee under Power Purchase Agreement" }],
+        "verification": "unverified"
+      }
+    ],
+    "capacityLimit": {
+      "maxKw": 5000,
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Net metering: minimum 1 kW, maximum the lower of 5 MW and sanctioned load/contract demand. Cumulative rooftop capacity on a distribution transformer or feeder is limited to 70% of its rating (the licensee may exceed this after a load study). Applications up to 10 kW complete in all respects are deemed accepted without a technical feasibility study (2024 amendment). Residents of multi-storey buildings may use virtual net metering (2024 amendment)."
+    },
+    "fees": "Registration fee Rs 500 for LT consumers with sanctioned load/contract demand up to 20 kW, plus Rs 100 for every further 20 kW or part (HT Rs 5,000), unless MERC sets otherwise in a schedule of charges. A separate net-metering agreement is not required for PM Surya Ghar portal applications: the online digital agreement is deemed sufficient (Practice Direction, 30 June 2026).",
+    "notes": [
+      "Grid Support Charge of Rs 1.96 per unit of generation (LT, FY 2026-27) applies to net-metering systems above 10 kW; see the grid-support-charge line. Banking charges levied in lieu of GSC stop once GSC is levied.",
+      "Residential billing stays telescopic on the net units after solar set-off.",
+      "No Maharashtra state top-up over the PM Surya Ghar central subsidy was found; the MSEDCL iSMART portal shows only the central CFA (Rs 30,000/kW up to 2 kW, Rs 18,000/kW for the 3rd kW, capped at Rs 78,000)."
+    ],
+    "cite": [
+      { "ref": "merc-rts-amd1-2023", "page": "Reg. 2.1(j) substitution", "quote": "Provided further that in case of Net Metering Arrangement, the capacity of Renewable Energy Generating System shall be limited to 5 MW or Contract Demand/Sanction Load of consumer, whichever is lower:" },
+      { "ref": "merc-rts-2019", "page": "p.5 of 32, Reg. 5.2", "quote": "The cumulative capacity of all Renewable Energy Generating Systems under Net Metering Arrangements and/or Net Billing Arrangements connected to a particular Distribution Transformer/feeder of the Licensee shall not exceed 70% of its rated capacity:" },
+      { "ref": "merc-rts-2019", "page": "pp.9-10 of 32, Reg. 9.1", "quote": "Low Tension Rs. 500 for consumer having Sanctioned Load or Contract Demand Consumer upto 20 kW and Rs 100 thereafter for every 20 kW or part thereof" },
+      { "ref": "merc-rts-amd2-2024", "page": "p.8, Annexure-1 Clause C substitution", "quote": "Provided that the applications for Renewable Energy Generating Systems upto 10 kW capacity, complete in all respects shall be deemed to have been accepted without requiring technical feasibility study" },
+      { "ref": "merc-pd-2026", "page": "p.2, para 2.1", "quote": "Where a consumer applies for a rooftop solar connection through the PMSGY portal, the digital agreement forming part of the online application form on the portal shall be deemed to satisfy the agreement requirement" },
+      { "ref": "msedcl-ismart", "quote": "Subsidy for Residential households Rs 30,000/- per kW up to 2kW Rs 18,000/- per kW for additional capacity up to 3kW Total subsidy for systems larger than 3kW capped at Rs 78,000/-" }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "merc-75-2025": {
+      "title": "MERC Order, Case No. 75 of 2025 (post remand): MSEDCL review of MYT Order dated 28 March 2025 and revision of tariff",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2026/03/MSEDCL-Order_75-of-2025_25032026.pdf",
+      "sha256": "5b1111fa8a7d8f3c44669b649bb12ca9bf3f8a19b8cbac2aa274de51718cd9b3",
+      "type": "regulator_order",
+      "date": "2026-03-25",
+      "accessed": "2026-10-29",
+      "note": "MSEDCL mirror: https://www.mahadiscom.in/wp-content/uploads/2026/07/Tariff-Order_Case-No.-75-of-2025-dated-25th-March-2026.pdf"
+    },
+    "merc-myt-217-2024": {
+      "title": "MERC MYT Order, Case No. 217 of 2024 (MSEDCL, FY 2025-26 to FY 2029-30), including the Approved Tariff Schedule",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2025/03/MSEDCL-MYT-Order_Case_no_217-of-2024.pdf",
+      "sha256": "934701e580059cdf7923aa066117364c413ace1bf7a3c0a599c05357a7558671",
+      "type": "regulator_order",
+      "date": "2025-03-28",
+      "accessed": "2026-10-29",
+      "note": "Page references follow the MSEDCL mirror: https://www.mahadiscom.in/consumer/wp-content/uploads/2025/08/MSEDCL-MYT-Order_Case_no_217-of-2024.pdf"
+    },
+    "msedcl-cc-273": {
+      "title": "MSEDCL Commercial Circular No. 273: Revised rates of Electricity Duty notified by GoM w.e.f. September 2016",
+      "publisher": "MSEDCL",
+      "url": "https://www.mahadiscom.in/consumer/wp-content/uploads/2018/02/Comm_Cir_273.pdf",
+      "sha256": "9c725d4f10a1796cf7053837d26c18b367507b0646ca9571db72d43cc9a542c4",
+      "type": "utility_page",
+      "date": "2016-11-10",
+      "accessed": "2026-10-29"
+    },
+    "msedcl-cc-354": {
+      "title": "MSEDCL Commercial Circular No. 354: Revision in rate of Tax on Sale of Electricity (with GoM notification dated 19 December 2025)",
+      "publisher": "MSEDCL / Government of Maharashtra",
+      "url": "https://www.mahadiscom.in/wp-content/uploads/2026/04/Commercial-Circular-354_Revision-in-Rate-of-ToSE_15-04-2026-F.Rv_.pdf",
+      "sha256": "42e56b62207f9a15bdc991daca8cce16d43546bc6fa3dd58c2d474c93281b129",
+      "type": "utility_page",
+      "date": "2026-04-15",
+      "accessed": "2026-10-29"
+    },
+    "mh-ed-bill-2016": {
+      "title": "Maharashtra Electricity Duty Bill No. 34 of 2016 (definition of consumption charges)",
+      "publisher": "PRS Legislative Research (copy of state bill)",
+      "url": "https://prsindia.org/files/bills_acts/bills_states/maharashtra/2016/Bill%20No.%2034%20of%202016%20MHR.pdf",
+      "sha256": "6fd729389c7f3ab5a9e2e0fa6292da2c639ab41fefc44c5eff7d8be5f4f0cc31",
+      "type": "other",
+      "accessed": "2026-10-29",
+      "note": "Third-party copy of the bill text; used only for the definition of consumption charges."
+    },
+    "merc-rts-2019": {
+      "title": "MERC (Grid Interactive Rooftop Renewable Energy Generating Systems) Regulations, 2019",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2022/07/Grid-Interactive-RRE-Regulations2019-English.pdf",
+      "sha256": "1f7da5391db74a227ee8f116188d1f9fe544ffb447545bc118c4097ad3035d35",
+      "type": "regulation",
+      "accessed": "2026-10-29"
+    },
+    "merc-rts-amd1-2023": {
+      "title": "MERC (Grid Interactive Rooftop Renewable Energy Generating Systems) (First Amendment) Regulations, 2023",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2023/11/First-Amendment-to-MERC-Grid-Interactive-RRE-Regulations.pdf",
+      "sha256": "e3598a43aa25aabb6a35c0288b44e78e6b50c3d3138291de29f96bac8b0be444",
+      "type": "regulation",
+      "accessed": "2026-10-29"
+    },
+    "merc-rts-amd2-2024": {
+      "title": "MERC (Grid Interactive Rooftop Renewable Energy Generating Systems) (Second Amendment) Regulations, 2024",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2024/09/Rooftop-Grid-Interactive-RE-Regulations.pdf",
+      "sha256": "8012c891fa43da119cf961680a57f7cccc5a1bbae06e4e6c7167975a263a67e2",
+      "type": "regulation",
+      "date": "2024-08-29",
+      "accessed": "2026-10-29"
+    },
+    "merc-pd-2026": {
+      "title": "MERC Practice Direction: recognition of digital agreement for rooftop RE systems (waiver of separate net metering agreement)",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2026/06/Practice-Direction_Waving-off-requirement-of-seperate-Net-Metering-Agreement-30-06-2026.pdf",
+      "sha256": "0d68c8be3b2b33b3879b537103e89812fe4f53f79eff69110141c28dc8c013d6",
+      "type": "regulator_order",
+      "date": "2026-06-30",
+      "accessed": "2026-10-29"
+    },
+    "merc-fac-msedcl": {
+      "title": "MERC Fuel Adjustment Charges listing for MSEDCL (latest entry: June 2025 prior approval)",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/fuel-adjustment-charges-type/maharashtra-state-electricity-distribution-co-ltd-msedcl/",
+      "type": "other",
+      "date": "2025-12-05",
+      "accessed": "2026-10-29"
+    },
+    "msedcl-fac-jul25": {
+      "title": "MSEDCL FAC Circular No. 329, billing month Jul-25 (latest FAC circular on the MSEDCL site)",
+      "publisher": "MSEDCL",
+      "url": "https://www.mahadiscom.in/consumer/wp-content/uploads/2025/09/FAC-CIRCULAR-BILLING-MONTH-JUL-25.pdf",
+      "sha256": "c98655f569c95cf0d9eaaa0f5c47f541849cdf59fba84820496cde87b89473f9",
+      "type": "utility_page",
+      "date": "2025-08-04",
+      "accessed": "2026-10-29"
+    },
+    "msedcl-ismart": {
+      "title": "MSEDCL iSMART rooftop solar portal",
+      "publisher": "MSEDCL",
+      "url": "https://portal.mahadiscom.in/ismart/index.php",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "FAC (Z-FAC) for FY 2026-27: no 2026 MERC approval or MSEDCL circular found (MERC list ends at June 2025, MSEDCL circulars at billing month Jul-25). Modelled as 0 (unverified). Sources: merc-fac-msedcl, msedcl-fac-jul25.",
+    "MERC Generic Tariff for FY 2026-27 not found: net-metering year-end surplus and net-billing exports are credited at Rs 0 in this book. Gross-metering purchase rate also unknown.",
+    "Electricity Duty base: the Act names fixed, energy, fuel adjustment and reliability charges; this book also levies the duty on the wheeling charge and the ToD rebate as tariff variable charges, which is an interpretation. The 16% rate dates from the 2016 notification; a 2025-26 gazette check was not possible.",
+    "Additional fixed charges (Rs 215 per 10 kW or part above 10 kW for three-phase; Rs 10/connection/month in urban divisions) come from the MYT tariff schedule notes and are not restated in the review order; no MSEDCL implementation circular for FY 2026-27 was found. The three-phase step is exact only up to 60 kW (the open-ended last band holds Rs 1,510).",
+    "Loads of 20 kW and above are billed per kVAh for energy and wheeling; this book bills kWh.",
+    "Grid Support Charge (Rs 1.96/unit of generation, systems above 10 kW): the order makes it effective at 5000 MW, which MSEDCL reported reaching, but no MSEDCL billing circular was found. The 10 kW exemption is read as installed capacity; the order also says 'load of up to 10 kW'. Whether duty applies to it is unknown (not included).",
+    "No Maharashtra state top-up over PM Surya Ghar was verified (no GR found on the MSEDCL iSMART portal).",
+    "LT I(A) BPL tariff (Rs 35/month fixed, Rs 1.48/kWh) is not modelled.",
+    "No 'go green' e-bill rebate value was verified for FY 2026-27.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [{ "date": "2026-10-29", "summary": "First FY2026-27 book from MERC review order in Case 75 of 2025, the MYT Order in Case 217 of 2024, GoM duty and ToSE notifications, and the MERC rooftop RE regulations." }]
+}

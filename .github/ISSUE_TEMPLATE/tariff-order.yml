@@ -1,0 +1,47 @@
+name: New tariff order published
+description: A regulator issued a new retail tariff, true-up, FPPCA notice or rooftop solar order.
+title: '[tariff] <REGULATOR> <FY>: '
+labels: ['tariff-data']
+body:
+  - type: input
+    id: book
+    attributes:
+      label: Tariff book
+      description: bookId from data/tariffs (e.g. ka-kerc), or "new" for a utility we do not cover yet
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Link to the order (regulator website preferred)
+    validations:
+      required: true
+  - type: input
+    id: dates
+    attributes:
+      label: Order date and effective date
+      placeholder: 'Order 2027-03-28, effective from first reading on or after 2027-04-01'
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of order is it?
+      options:
+        - Annual retail tariff order
+        - Multi-year tariff order / annual performance review
+        - Fuel or power purchase cost adjustment (FPPCA/FAC/PPAC/FPPAS)
+        - Rooftop solar / net metering regulation or tariff
+        - Government subsidy scheme change
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: What changed for households?
+      description: Slab rates, fixed charges, new surcharges, export rates. Page numbers help reviewers.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help?
+      options:
+        - label: I can open the pull request for this order

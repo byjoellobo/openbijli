@@ -1,0 +1,414 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "gj-guvnl",
+  "title": "Gujarat state-owned DISCOMs retail tariff (GERC), RGP Residential",
+  "state": "Gujarat",
+  "stateCode": "GJ",
+  "regulator": { "name": "Gujarat Electricity Regulatory Commission", "short": "GERC", "url": "https://www.gercin.org/" },
+  "utilities": [
+    {
+      "id": "dgvcl",
+      "name": "Dakshin Gujarat Vij Company Limited",
+      "shortName": "DGVCL",
+      "servedArea": "South Gujarat (Surat, Valsad and Bharuch circles)",
+      "website": "https://dgvcl.com/",
+      "solarResource": "surat"
+    },
+    {
+      "id": "mgvcl",
+      "name": "Madhya Gujarat Vij Company Limited",
+      "shortName": "MGVCL",
+      "servedArea": "Central Gujarat (headquartered at Vadodara)",
+      "solarResource": "vadodara"
+    },
+    {
+      "id": "pgvcl",
+      "name": "Paschim Gujarat Vij Company Limited",
+      "shortName": "PGVCL",
+      "servedArea": "Saurashtra and Kutch, west Gujarat (headquartered at Rajkot)",
+      "solarResource": "rajkot"
+    },
+    {
+      "id": "ugvcl",
+      "name": "Uttar Gujarat Vij Company Limited",
+      "shortName": "UGVCL",
+      "servedArea": "North Gujarat (headquartered at Mehsana)",
+      "solarResource": "mehsana"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "effectiveTo": "2027-03-31",
+  "status": "partial",
+  "order": {
+    "title": "GERC Tariff Orders of 25 March 2026: truing up for FY 2024-25 and determination of revised ARR and tariff for FY 2026-27 for DGVCL (Case No. 2581 of 2025), MGVCL (2582/2025), PGVCL (2583/2025) and UGVCL (2584/2025), with a common tariff schedule effective 1 April 2026",
+    "cite": [
+      { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.169 (printed 153)", "quote": "The retail supply Tariffs for DGVCL distribution area determined by the Commission are annexed to this Order and shall come into force with effect from 1st April, 2026." },
+      { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.170 (printed 154), General note 1", "quote": "1. The tariff figures indicated in this tariff schedule are the tariff rates payable by the consumers of Distribution Licensees viz. DGVCL, MGVCL, PGVCL and UGVCL." }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "RGP / RGP (Rural)",
+      "name": "RGP Residential General Purpose",
+      "description": "Residential premises. RGP (Rural) applies to premises within Gram Panchayat areas under the Gujarat Panchayats Act (area: rural in this book); RGP applies to all other residential premises. Single-phase supply up to 6 kW aggregate load, three-phase above 6 kW. Smart pre-paid rates apply only while a positive balance is kept, otherwise the post-paid rates apply for that month. The BPL concession (first 50 units at Rs 1.50, fixed charge Rs 5/month) is not modelled.",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "rgp-prepaid",
+            "label": "RGP, smart pre-paid meter (positive balance)",
+            "when": { "area": "urban", "flags": ["prepaid"] },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 50, "rate": 2.96 },
+              { "upTo": 100, "rate": 3.4 },
+              { "upTo": 250, "rate": 4.03 },
+              { "upTo": null, "rate": 5.04 }
+            ]
+          },
+          {
+            "id": "rgp-rural-prepaid",
+            "label": "RGP (Rural), smart pre-paid meter (positive balance)",
+            "when": { "area": "rural", "flags": ["prepaid"] },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 50, "rate": 2.57 },
+              { "upTo": 100, "rate": 3.01 },
+              { "upTo": 250, "rate": 3.64 },
+              { "upTo": null, "rate": 4.75 }
+            ]
+          },
+          {
+            "id": "rgp-rural",
+            "label": "RGP (Rural), post-paid",
+            "when": { "area": "rural" },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 50, "rate": 2.65 },
+              { "upTo": 100, "rate": 3.1 },
+              { "upTo": 250, "rate": 3.75 },
+              { "upTo": null, "rate": 4.9 }
+            ]
+          },
+          {
+            "id": "rgp",
+            "label": "RGP, post-paid",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 50, "rate": 3.05 },
+              { "upTo": 100, "rate": 3.5 },
+              { "upTo": 250, "rate": 4.15 },
+              { "upTo": null, "rate": 5.2 }
+            ]
+          }
+        ],
+        "note": "Telescopic: first 50 units, next 50, next 150, above 250, on the total monthly consumption. The pre-paid column already includes the 3% RDSS smart pre-paid rebate on energy charges (raised from 2% in this order), so no separate rebate line is added.",
+        "cite": [
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.172 (printed 156), RGP 1.2", "quote": "1.2. ENERGY CHARGES: FOR THE TOTAL MONTHLY CONSUMPTION: (OTHER THAN BPL CONSUMERS) Post-Paid Energy Charge Pre-paid Energy Charge (a) First 50 units 305 Paise per Unit 296 Paise per Unit (b) Next 50 Units 350 Paise per Unit 340 Paise per Unit (c) Next 150 Units 415 Paise per Unit 403 Paise per Unit (d) Above 250 Units 520 Paise per Unit 504 Paise per Unit" },
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.174 (printed 158), RGP (Rural) 2.2", "quote": "2.2. ENERGY CHARGES: FOR THE TOTAL MONTHLY CONSUMPTION: (OTHER THAN BPL CONSUMERS) Post-Paid Energy Charge Pre-paid Energy Charge (a) First 50 units 265 Paise per Unit 257 Paise per Unit (b) Next 50 Units 310 Paise per Unit 301 Paise per Unit (c) Next 150 units 375 Paise per Unit 364 Paise per Unit (d) Above 250 units 490 Paise per Unit 475 Paise per Unit" },
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.173 (printed 157), RGP (Rural)", "quote": "2. RATE: RGP (RURAL) This tariff will be applicable to all services for residential premises located in areas within Gram Panchayat as defined in the Gujarat Panchayats Act." },
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.171 (printed 155), General note 17", "quote": "17. Energy charges for smart pre-paid meter consumers are applicable only when a positive balance is maintained. Any deviation from this leads the consumer to follow the post-paid meter tariff for the respective billing month." },
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.167 (printed 151)", "quote": "the Commission decides to increase the rebate on the Energy Charges to the consumers of LT categories (except AG consumers) covered under RDSS Scheme maintaining positive balance, from 2% to 3%." },
+          { "ref": "gerc-ts-2026", "page": "printed pp.3-4" }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "connected-load",
+            "label": "Fixed charge by connected load (Rs 15 / 25 / 45 / 70 per month)",
+            "bandBy": "load_kw",
+            "method": "whole",
+            "bands": [
+              { "upTo": 2, "amount": 15, "per": "connection" },
+              { "upTo": 4, "amount": 25, "per": "connection" },
+              { "upTo": 6, "amount": 45, "per": "connection" },
+              { "upTo": null, "amount": 70, "per": "connection" }
+            ],
+            "period": "month",
+            "loadRounding": "ceil_half"
+          }
+        ],
+        "note": "Same bands for RGP and RGP (Rural), non-BPL. The order bands on connected load, taken as the maximum load during the billing period; the engine uses sanctioned load. Fractions below 0.5 kW round up to the next 0.5 kW (no effect on band selection here). The minimum bill is the fixed charge.",
+        "cite": [
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.172 (printed 156), RGP 1.1", "quote": "1.1. FIXED CHARGES / MONTH: Range of Connected Load: (Other than BPL Consumers) (a) Up to and including 2 kW Rs. 15/- per month (b) Above 2 to 4 kW Rs. 25/- per month (c) Above 4 to 6 kW Rs. 45/- per month (d) Above 6 kW Rs. 70/- per month" },
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.170 (printed 154), General notes 8 and 9", "quote": "The billing of fixed charges based on contracted load or maximum demand shall be done in multiples of 0.5 (one half) Horse Power, kilo watt or kilo volt ampere (HP, kW, kVA) as the case may be. The fraction of less than 0.5 shall be rounded off to next 0.5. ... 9. The Connected Load for the purpose of billing will be taken as the maximum load during the billing period." }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "per_kwh",
+          "id": "fppas-base",
+          "name": "FPPAS: base fuel and power purchase adjustment surcharge",
+          "rate": 2.45,
+          "variable": true,
+          "asOf": "2026-07-01",
+          "note": "GUVNL letter of 3 Sep 2026: Rs 2.45/unit base FPPAS plus 3.99% variable FPPAS on consumption from 1 July 2026 'till further communication', all categories except agriculture. Previously Rs 2.30/unit + 0.00% from April 2026 (letter of 11 May 2026). No circular for consumption from October 2026 had been published by 29 Oct 2026.",
+          "cite": [
+            { "ref": "guvnl-fppas-q1-2627", "quote": "The FPPAS charges for 1st quarter of FY 2026-27 to be recovered from July 2026 onwards is Rs.2.45/Unit (Base FPPAS) and 3.99% Variable FPPAS." },
+            { "ref": "guvnl-fppas-q4-2526" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "fppas-variable",
+          "name": "FPPAS: variable surcharge (3.99% of energy + base FPPAS + fixed)",
+          "percent": 3.99,
+          "of": ["energy", "fixed", "fppas-base"],
+          "variable": true,
+          "asOf": "2026-07-01",
+          "note": "Applied on energy charge + base FPPAS + fixed charge, not on ToU discounts or other rebates and penalties (para 8.2 of the tariff order), so the ToD line is excluded from the base.",
+          "cite": [
+            { "ref": "guvnl-fppas-q1-2627", "quote": "recover Base FPPAS charge Rs.2.45/Unit and variable FPPAS at 3.99 % (applicable on Energy Charge + Base FPPAS and Fixed/ Demand Charge [Not on Excess Demand Charges, ToU Charges or other rebate/penalties] as per para 8.2 of Tariff Order dated 25.03.2026), for the period from 1st July 2026 till further communication from all category of consumers except Agriculture consumers" },
+            { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.159 (printed 143), para 8.2", "quote": "Monthly FPPAS computed in %, in accordance with the MYT Regulations shall be applicable to Energy Charge + Base FPPAS and Fixed/ Demand Charge (Not on Excess Demand Charges, ToU Charges or other rebate/penalties)." },
+            { "ref": "deshgujarat-fppas-2026" }
+          ],
+          "verification": "verified"
+        }
+      ],
+      "tod": {
+        "applicability": "RGP and RGP (Rural) consumers with a smart meter: 60 paise/unit concession on consumption between 11:00 and 17:00. Discount only; no ToU surcharge for residential.",
+        "appliesIf": { "flags": ["smart_meter"] },
+        "mandatory": true,
+        "periods": [
+          {
+            "id": "solar-hours",
+            "name": "Solar hours discount (11:00-17:00)",
+            "windows": [{ "from": "11:00", "to": "17:00" }],
+            "adjustment": { "type": "per_kwh", "value": -0.6 }
+          }
+        ],
+        "note": "The FY 2026-27 order widened the discount from smart pre-paid meters, 11:00-15:00, to all smart meters, 11:00-17:00.",
+        "cite": [
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.173 (printed 157), RGP 1.4; PDF p.174, RGP (Rural) 2.4", "quote": "Concession of 60 Paise per Unit shall be applicable for the consumption of energy during 1100 Hrs. to 1700 Hrs. for the Consumers with Smart Meter." },
+          { "ref": "gerc-to-dgvcl-2026", "page": "PDF p.165 (printed 149), Table 10-1", "quote": "Concession of 60 Paise per Unit shall be applicable for the consumption of energy during 1100 Hrs. to 1500 Hrs. for the Consumers with Smart Pre-paid Meter." }
+        ],
+        "verification": "verified"
+      },
+      "subsidies": []
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (GERC Net Metering Rooftop Solar PV Regulations 2016, as amended)",
+        "default": true,
+        "minKw": 1,
+        "maxKw": 1000,
+        "exportRate": {
+          "value": 2.25,
+          "basis": "Self-owned and SURYA Gujarat residential systems: Rs 2.25/unit for the first 5 years from commissioning, then 75% of the simple average of GUVNL competitive-bid tariffs for non-park solar in the preceding six-month window, declared six-monthly by GUVNL",
+          "variable": true
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Residential energy accounting is on a billing-cycle basis: surplus after set-off is bought by the DISCOM each cycle, and excess drawal is billed at the RGP tariff. No banking charges for residential consumers. Third-party-owned residential systems get 75% of the GUVNL average, fixed for the agreement term (not modelled). No separate rate for PM Surya Ghar systems was found.",
+        "cite": [
+          { "ref": "gerc-nm-amd3-2022", "page": "pp.9-10, Reg. 9.1.3", "quote": "9.1.3 In case of Residential Consumers, the Energy Accounting shall be carried out on Billing Cycle basis. (i) In the event the electricity injected from the Rooftop Projects set up under Net Metering provisions exceeds the electricity consumed during the billing period, surplus energy generated from the solar project after set off on billing cycle basis shall be purchased by respective Distribution licensee at the following rates. (a) In case of self-owned systems and SURYA Gujarat scheme consumers: At Rs.2.25 / unit for the first 5 years from commissioning of project and thereafter for the remaining term of the project at 75% of the simple average of tariff discovered and contracted under competitive bidding process conducted by GUVNL for non-park based solar projects in the preceding six months period" },
+          { "ref": "gerc-nm-amd3-2022", "page": "p.10, Reg. 9.1.5", "quote": "9.1.5 No Banking charges shall be applicable on solar power consumed by Residential Consumers." }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "gross-metering",
+        "type": "gross_metering",
+        "label": "Gross metering, above 10 kW (GERC Net Metering Regulations, as amended)",
+        "default": false,
+        "minKw": 10,
+        "maxKw": 1000,
+        "exportRate": {
+          "value": null,
+          "basis": "Residential gross-metering energy is bought at the rate set by GERC Order dated 08.08.2019 in Petition No. 1802/2019 (Small Scale Distributed Solar Projects policy 2019); value not retrieved",
+          "variable": false
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Permitted for systems above 10 kW up to 1000 kW. minKw 10 is inclusive in the engine; the regulation says above 10 kW.",
+        "cite": [{ "ref": "gerc-nm-amd3-2022", "quote": "(b) Rooftop Solar PV System shall be permitted for gross-metering provision for projects having capacity of above 10 kW and upto 1000 kW. ... (e) In case of the energy supplied by the Rooftop Solar Power Project set up under gross metering mechanism by Residential Consumer and Government consumers on premises having ownership or legal possession shall be purchased by the Distribution Licensee at the rate determined by the Commission in its Order dated 08.08.2019 in Petition No. 1802/2019" }],
+        "verification": "unverified"
+      }
+    ],
+    "capacityLimit": {
+      "maxKw": 1000,
+      "note": "Net metering from 1 kW up to 1000 kW; residential systems are allowed irrespective of sanctioned load (subject to Supply Code connection limits). Cumulative rooftop capacity on a distribution transformer may not exceed the transformer's capacity. Applications up to 10 kW complete in all respects are deemed accepted without a technical feasibility study (Fourth Amendment 2024). Network strengthening for systems up to 6 kW is borne in the DISCOM's ARR; above 6 kW (LT up to 100 kW) it is recovered per kW at LT new-load charges."
+    },
+    "stateSubsidy": {
+      "description": "Gujarat additional state subsidy under PM Surya Ghar (G.R. dated 22.10.2026) for residential systems up to 2.18 kWp: the state pays the benchmark cost left after the central CFA and the consumer's share (10% general, 5% SC/ST). The per-kW amounts here are derived for general-category consumers (Rs 50,000 - 30,000 - 5,000 = Rs 15,000 per kW up to 2 kW; Rs 45,000 - 18,000 - 4,500 = Rs 22,500 per kW from 2 to 2.18 kW). SC/ST consumers get Rs 17,500 and Rs 24,750. Systems above 2.18 kWp get none.",
+      "tiers": [
+        { "upToKw": 2, "perKw": 15000 },
+        { "upToKw": null, "perKw": 22500 }
+      ],
+      "maxKw": 2.18,
+      "cite": [{ "ref": "gog-gr-rts-2026", "page": "G.R. pp.1-2" }],
+      "verification": "secondary"
+    },
+    "fees": "Connectivity charges (2016 Regulations, Annexure III): Rs 1,500 per connection for 1-6 kW, Rs 10,000 for above 6 kW up to 100 kW, Rs 50,000 for above 100 kW up to 1 MW. GoG G.R. dated 05.08.2025 (as described in the G.R. of 22.10.2026) waived meter, meter-testing, meter-box and connectivity charges aggregating Rs 2,950 for new residential rooftop systems up to 6 kW. No separate written connectivity agreement is needed for PM Surya Ghar systems (Fifth Amendment 2025).",
+    "notes": [
+      "Additional state subsidy (GoG G.R. No. EPCD/BUD/e-file/20/2025/2435/B1 dated 22 Oct 2026, circulated by GUVNL letter 767 of 27 Oct 2026): for new residential rooftop systems up to 2.18 kWp commissioned on or after the G.R. date under PM Surya Ghar, the State pays the balance of the benchmark cost (Rs 50,000/kW for the first 2 kW, Rs 45,000 for the additional kW) after the central CFA and the consumer's contribution of 5% (SC/ST) or 10% (others). Systems above 2.18 kW DC are not eligible; existing systems below 2.18 kWp can top up to a cumulative 2.18 kWp; no further capacity may be added for 3 years. Paid by the DISCOM through DBT, for the duration of PM Surya Ghar.",
+      "The state subsidy is not encoded as stateSubsidy tiers: the schema cannot express the 2.18 kW eligibility cut-off (larger systems get nothing) or the contribution that depends on the consumer's category. Derived per-kW amounts, using the central CFA of Rs 30,000/kW for the first 2 kW and Rs 18,000/kW for the 3rd kW: others Rs 15,000/kW up to 2 kW and Rs 22,500/kW from 2 to 2.18 kW (Rs 34,050 at 2.18 kW); SC/ST Rs 17,500/kW and Rs 24,750/kW (Rs 39,455 at 2.18 kW). These figures are derived, not stated in the G.R.",
+      "No banking charges apply to residential solar consumption."
+    ],
+    "cite": [
+      { "ref": "gerc-nm-amd3-2022", "page": "p.6, Reg. 6.2 substitution", "quote": "(a) Rooftop Solar PV System shall be permitted under net-metering provision for projects having capacity of 1 kW and above and upto 1000 kW." },
+      { "ref": "gerc-nm-amd3-2022", "page": "p.7", "quote": "(i) Solar Projects set up by residential consumers on their rooftop/premises shall be allowed irrespective of consumer sanctioned load." },
+      { "ref": "gerc-nm-amd2-2020", "page": "p.2, Reg. 5 amendment", "quote": "Provided that the cumulative capacity to be allowed at a particular distribution transformer shall not exceed capacity of the distribution transformer;" },
+      { "ref": "gerc-nm-amd4-2024", "page": "98-2, 98-5", "quote": "Provided that the application for Rooftop Solar Photovoltaic systems upto 10 kW capacity, complete in all respect shall be deemed to have been accepted without requiring technical feasibility study" },
+      { "ref": "gerc-nm-2016", "page": "p.30, Annexure-III", "quote": "From 1 kW up to 6 kW INR 1,500 More than 6 kW up to 100 kW INR 10,000 More than 100 kW up to 1 MW INR 50,000" },
+      { "ref": "gerc-nm-amd5-2025", "page": "328-2", "quote": "Provided that there shall not be requirement for execution of separate written connectivity agreement between the Distribution Licensee and the Consumer in case of Solar Rooftop PV Systems installed under PM Surya Ghar Muft Bijli Yojana" },
+      { "ref": "gog-gr-rts-2026", "page": "G.R. pp.1-2 (PDF pp.2-3, scanned)", "quote": "i. A residential consumer of SC/ST category shall have to contribute only 5% of the benchmark cost. ii. A residential consumer other than SC/ST category shall have to contribute only 10% of the benchmark cost. ... (b) Benchmark Cost: The benchmark cost for 1 kW system is fixed at Rs 50,000/kW for the first 2 kW of RTS capacity and Rs 45,000 for the additional kW as per MNRE's OM dated 07-06-2024. (c) The above subsidy shall apply to rooftop solar systems having an installed capacity up to 2.18 kWp and commissioned on or after the date of issuance of this Government Resolution." },
+      { "ref": "gog-gr-rts-2026", "page": "G.R. p.1 (preamble)", "quote": "the State Government, through the Government Resolution read at serial number (2), granted a waiver of meter, meter-testing, meter-box and connectivity charges aggregating to Rs. 2,950 for new rooftop solar systems up to 6 kW in the residential sector" }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "gerc-to-dgvcl-2026": {
+      "title": "GERC Tariff Order, DGVCL, Case No. 2581 of 2025: truing up for FY 2024-25 and revised ARR and tariff for FY 2026-27",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/T3JkZXJzX2ZpbGVzXzU2NTdfMjctMDctMjAyNl80ODU3MDk0",
+      "type": "regulator_order",
+      "date": "2026-03-25",
+      "accessed": "2026-10-29"
+    },
+    "gerc-to-mgvcl-2026": {
+      "title": "GERC Tariff Order, MGVCL, Case No. 2582 of 2025 (FY 2026-27)",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/T3JkZXJzX2ZpbGVzXzU2NThfMjctMDctMjAyNl83NzM3Mjgx",
+      "type": "regulator_order",
+      "date": "2026-03-25",
+      "accessed": "2026-10-29",
+      "note": "Not read in full; carries the common tariff schedule."
+    },
+    "gerc-to-pgvcl-2026": {
+      "title": "GERC Tariff Order, PGVCL, Case No. 2583 of 2025 (FY 2026-27)",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/T3JkZXJzX2ZpbGVzXzU2NTlfMjctMDctMjAyNl83MzY5OTM0",
+      "type": "regulator_order",
+      "date": "2026-03-25",
+      "accessed": "2026-10-29",
+      "note": "Not read in full; carries the common tariff schedule."
+    },
+    "gerc-to-ugvcl-2026": {
+      "title": "GERC Tariff Order, UGVCL, Case No. 2584 of 2025 (FY 2026-27)",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/T3JkZXJzX2ZpbGVzXzU2NjBfMjctMDctMjAyNl80NDcyODQ5",
+      "type": "regulator_order",
+      "date": "2026-03-25",
+      "accessed": "2026-10-29",
+      "note": "Not read in full; carries the common tariff schedule."
+    },
+    "gerc-ts-2026": {
+      "title": "Tariff Schedules of State Owned DISCOMs (DGVCL, MGVCL, PGVCL and UGVCL) w.e.f. 01.04.2026",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/dGFyaWZmc2NoZWR1bGVfcGRmXzE3ODYwOTcyMjFfNzk2NA==",
+      "type": "regulator_order",
+      "accessed": "2026-10-29",
+      "note": "Standalone copy of the common schedule (dated March 2026); same RGP values as the DGVCL order annexure."
+    },
+    "guvnl-fppas-q1-2627": {
+      "title": "GUVNL letter GUVNL/COM/FPPAS/Q1/2026-27/1435: FPPAS applicable on consumption from 1 July 2026",
+      "publisher": "Gujarat Urja Vikas Nigam Limited",
+      "url": "https://www.guvnl.com/documents/fpppa_documents/qua1_26_27/Circular_FS_Q1_FY_2026-27_DISCOM.PDF",
+      "sha256": "8a120e55b1ec6c9c27df2e409aaa72efd9a767c6b5e677f88f3ec34897efc5f6",
+      "type": "utility_page",
+      "date": "2026-09-03",
+      "accessed": "2026-10-29"
+    },
+    "guvnl-fppas-q4-2526": {
+      "title": "GUVNL letter GUVNL/COM/FPPAS/Q4/2025-26/704: FPPAS applicable from 1 April 2026 (Rs 2.30/unit + 0.00%)",
+      "publisher": "Gujarat Urja Vikas Nigam Limited",
+      "url": "https://www.guvnl.com/documents/fpppa_documents/quater4_25_26/Circular_FS_Q4_FY%202025-26_DISCOM.PDF",
+      "sha256": "25318327d8973a59fdbda740619d96de91a13f0ec6a30891d0fb690ddfedbc6d",
+      "type": "utility_page",
+      "date": "2026-05-11",
+      "accessed": "2026-10-29"
+    },
+    "guvnl-fppas-page": {
+      "title": "GUVNL FPPPA / FPPAS documents page",
+      "publisher": "Gujarat Urja Vikas Nigam Limited",
+      "url": "https://www.guvnl.com/guvnl_fpppa.html",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "deshgujarat-fppas-2026": {
+      "title": "Gujarat Electricity Bills to Rise With 3.99% Additional Surcharge",
+      "publisher": "DeshGujarat",
+      "url": "https://deshgujarat.com/2026/10/23/gujarat-electricity-bills-to-rise-with-3-99-additional-surcharge/",
+      "type": "news",
+      "date": "2026-10-23",
+      "accessed": "2026-10-29",
+      "note": "Secondary confirmation of the 3.99% variable FPPAS."
+    },
+    "gerc-nm-2016": {
+      "title": "GERC (Net Metering Rooftop Solar PV Grid Interactive Systems) Regulations, 2016 (Notification No. 5 of 2016)",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/cmVndWxhdGlvbl9lbmdfMTc4Mzk0MjMxN18xODky",
+      "type": "regulation",
+      "date": "2016-06-18",
+      "accessed": "2026-10-29"
+    },
+    "gerc-nm-amd2-2020": {
+      "title": "GERC Net Metering Rooftop Solar PV Regulations, Second Amendment 2020 (Notification No. 2 of 2020)",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/cmVndWxhdGlvbl9lbmdfMTc2Nzc2Njc5M181OTY3",
+      "type": "regulation",
+      "date": "2020-01-22",
+      "accessed": "2026-10-29"
+    },
+    "gerc-nm-amd3-2022": {
+      "title": "GERC Net Metering Rooftop Solar PV Regulations, Third Amendment 2022 (Notification No. 2 of 2022)",
+      "publisher": "Gujarat Electricity Regulatory Commission",
+      "url": "https://www.gercin.org/viewdocument/cmVndWxhdGlvbl9lbmdfMTc2Nzc2NjkzN180NDYx",
+      "type": "regulation",
+      "date": "2022-05-31",
+      "accessed": "2026-10-29"
+    },
+    "gerc-nm-amd4-2024": {
+      "title": "GERC Net Metering Rooftop Solar PV Regulations, Fourth Amendment 2024 (Notification No. 13 of 2024)",
+      "publisher": "Gujarat Electricity Regulatory Commission (Gujarat Government Gazette)",
+      "url": "https://www.gercin.org/viewdocument/cmVndWxhdGlvbl9lbmdfMTc2Nzc2NzA4N185NTkw",
+      "type": "gazette",
+      "date": "2024-09-06",
+      "accessed": "2026-10-29"
+    },
+    "gerc-nm-amd5-2025": {
+      "title": "GERC Net Metering Rooftop Solar PV Regulations, Fifth Amendment 2025 (Notification No. 10 of 2025)",
+      "publisher": "Gujarat Electricity Regulatory Commission (Gujarat Government Gazette)",
+      "url": "https://www.gercin.org/viewdocument/cmVndWxhdGlvbl9lbmdfMTc4Mzk0Mzg3OF81OTQ2",
+      "type": "gazette",
+      "date": "2025-11-03",
+      "accessed": "2026-10-29"
+    },
+    "gog-gr-rts-2026": {
+      "title": "GoG G.R. No. EPCD/BUD/e-file/20/2025/2435/B1: PM Surya Ghar additional state subsidy for rooftop solar up to 2.18 kWp, with GUVNL forwarding letter 767 (27 Oct 2026)",
+      "publisher": "Energy and Petrochemicals Department, Government of Gujarat / GUVNL (hosted by DGVCL)",
+      "url": "https://dgvcl.com/usefulpdf/PM_Surya_Ghar_Muft_Bijli_Yojana_Additional_State_Subsidy_767_dated_27_10_2026.pdf",
+      "type": "gazette",
+      "date": "2026-10-22",
+      "accessed": "2026-10-29",
+      "note": "Scanned document; quotes are transcribed."
+    }
+  },
+  "gaps": [
+    "Electricity Duty for residential consumers (rate and base, urban and Gram Panchayat areas) was not verified from a primary source and is not included, so bills are understated. The tariff schedule says tariffs exclude electricity duty and tax on sale of electricity.",
+    "Tax on sale of electricity for residential consumers: not verified; not included.",
+    "Billing period: the tariff is stated per month and the schedule lets each DISCOM choose the billing period and adjust slabs accordingly; whether RGP is billed monthly or bimonthly was not verified. This book bills monthly.",
+    "FPPAS for consumption from October 2026 (Q2 FY 2026-27) had not been notified by 29 Oct 2026; the July 2026 rates (Rs 2.45/unit + 3.99%) apply 'till further communication'.",
+    "Gross-metering purchase rate for residential systems (GERC Order of 08.08.2019, Petition 1802/2019) not retrieved; credited at Rs 0.",
+    "Net-metering surplus rate after the first 5 years (75% of the GUVNL non-park solar bid average, declared six-monthly) and the third-party-owned rate: current values not retrieved. The book uses Rs 2.25 throughout.",
+    "State rooftop subsidy (G.R. of 22 Oct 2026, systems up to 2.18 kWp) is encoded with derived per-kW amounts for general-category consumers (secondary); the SC/ST amounts (Rs 17,500 and 24,750 per kW) are in the description only.",
+    "Fixed charge bands use connected load (maximum load in the billing period); the engine uses sanctioned load.",
+    "Gross metering applies above 10 kW; the engine's minKw is inclusive, so a system of exactly 10 kW is offered gross metering.",
+    "BPL concession (first 50 units at Rs 1.50/unit, fixed charge Rs 5/month) is not modelled.",
+    "MGVCL, PGVCL and UGVCL orders were not read in full; the common schedule in the DGVCL order and the standalone GERC schedule is assumed for all four.",
+    "No prompt-payment or digital-payment rebate for RGP was found in the FY 2026-27 schedule; DISCOM-level schemes were not checked.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [{ "date": "2026-10-29", "summary": "First FY2026-27 book from the GERC tariff orders of 25 March 2026, the GUVNL FPPAS letter of 3 September 2026, the GERC net metering regulations and the GoG rooftop subsidy G.R. of 22 October 2026." }]
+}

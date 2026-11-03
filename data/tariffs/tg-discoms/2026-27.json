@@ -1,0 +1,362 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "tg-discoms",
+  "title": "Telangana DISCOMs retail supply tariff (TGERC), LT-I Domestic",
+  "state": "Telangana",
+  "stateCode": "TG",
+  "regulator": { "name": "Telangana Electricity Regulatory Commission", "short": "TGERC", "url": "https://tgerc.telangana.gov.in/" },
+  "utilities": [
+    {
+      "id": "tgspdcl",
+      "name": "Southern Power Distribution Company of Telangana Limited",
+      "shortName": "TGSPDCL",
+      "servedArea": "Southern Telangana, headquartered in Hyderabad (district list not verified)",
+      "solarResource": "hyderabad"
+    },
+    {
+      "id": "tgnpdcl",
+      "name": "Northern Power Distribution Company of Telangana Limited",
+      "shortName": "TGNPDCL",
+      "servedArea": "Northern Telangana, headquartered in Warangal (district list not verified)",
+      "solarResource": "warangal"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "effectiveTo": "2027-03-31",
+  "status": "partial",
+  "order": {
+    "title": "TGERC Order on Revised Aggregate Revenue Requirement & Retail Supply Tariffs for FY 2026-27 for Retail Supply Business and Cross Subsidy Surcharge for FY 2026-27 in the supply areas of TGSPDCL and TGNPDCL (30.03.2026)",
+    "cite": [
+      { "ref": "tgerc-rst-2026", "page": "p.241 (PDF p.253), para 3.31.1", "quote": "The Retail Supply Tariffs along with the terms and conditions approved in this Order shall be applicable w.e.f. 01.04.2026 in respect of TGDISCOMs (TGSPDCL & TGNPDCL) and CESS, Sircilla in the Telangana." },
+      { "ref": "tgerc-rst-2026", "page": "p.246 (PDF p.258), para 4.1.1", "quote": "Applicable with effect from 01.04.2026 to 31.03.2027 in respect of two Distribution Licensees in the Telangana (i.e., TGSPDCL and TGNPDCL) and also CESS, Sircilla." }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "LT-I",
+      "name": "LT-I Domestic",
+      "description": "Domestic supply in three sub-categories, LT-I(A), LT-I(B)(i) and LT-I(B)(ii), selected by total monthly consumption. Uniform tariff for TGSPDCL, TGNPDCL and CESS Sircilla from 01.04.2026 to 31.03.2027. Single-phase supply only up to 5 kW contracted load (order 4.11.1(b)). No time-of-day tariff for LT-I in FY2026-27: ToD applies only to listed HT categories. The Government of Telangana budgeted Rs 14,000 crore of power subsidy for FY2026-27, Rs 1,818.79 crore of it for LT-I domestic (order pp.174-175); the order does not turn this into a per-consumer bill rule.",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "lt-1a",
+            "label": "LT-I(A): consumption not exceeding 100 units/month",
+            "when": { "upToUnits": 100 },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 50, "rate": 1.95 },
+              { "upTo": null, "rate": 3.1 }
+            ]
+          },
+          {
+            "id": "lt-1b-i",
+            "label": "LT-I(B)(i): consumption above 100 and up to 200 units/month",
+            "when": { "upToUnits": 200 },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 100, "rate": 3.4 },
+              { "upTo": null, "rate": 4.8 }
+            ]
+          },
+          {
+            "id": "lt-1b-ii",
+            "label": "LT-I(B)(ii): consumption above 200 units/month",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 200, "rate": 5.1 },
+              { "upTo": 300, "rate": 7.7 },
+              { "upTo": 400, "rate": 9.0 },
+              { "upTo": 800, "rate": 9.5 },
+              { "upTo": null, "rate": 10.0 }
+            ]
+          }
+        ],
+        "note": "The sub-category (schedule) is chosen by total monthly consumption (order para 4.2.3); within it, each block of units is charged at its own slab rate. The order does not use the word 'telescopic': slab-wise application is inferred from the slab rows (0-50, 51-100 and so on) listed under each sub-category.",
+        "cite": [
+          { "ref": "tgerc-rst-2026", "page": "p.247 (PDF p.259), para 4.2.3", "quote": "The sub-category LT-I(A) shall be applicable to the consumers having consumption not exceeding 100 units per month. ... LT-I(B)(i) shall be applicable to the consumer with consumption above 100 units but not exceeding 200 units per month. ... LT-I(B)(ii) shall be applicable to the consumer having consumption of above 200 units per month" },
+          { "ref": "tgerc-rst-2026", "page": "p.247 (PDF p.259), para 4.2.4 table", "quote": "LT-I(A): Not exceeding 100 units/month | 0-50 kW 10 1.95 | 51-100 kW 10 3.10 | LT-I(B)(i): ... 0-100 kW 10 3.40 | 101-200 kW 10 4.80 | LT-I(B)(ii): Above 200 units/month | 0-200 kW 10 5.10 | 201-300 kW 10 7.70 | 301-400 kW 10 9.00 | 401-800 kW 10 9.50 | Above 800 units kW 50 10.00" }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "per-kw",
+            "label": "Fixed charge (Rs 10/kW/month; Rs 50/kW/month above 800 units)",
+            "bandBy": "units",
+            "unitsBasis": "cycle",
+            "method": "whole",
+            "bands": [
+              { "upTo": 800, "amount": 10, "per": "kw" },
+              { "upTo": null, "amount": 50, "per": "kw" }
+            ],
+            "period": "month",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "Rs 10 per kW of contracted load per month on every LT-I slab row up to 800 units. The 'Above 800 units' row lists Rs 50/kW; it is applied here to the whole contracted load, since the order does not say whether it replaces Rs 10/kW for all kW. No load rounding or minimum billing load was found in the researched pages; the engine bills the sanctioned load as given.",
+        "cite": [
+          { "ref": "tgerc-rst-2026", "page": "p.247 (PDF p.259), para 4.2.4 table (columns: slab, fixed charge unit, Rs/month, energy Rs/kWh)", "quote": "401-800 kW 10 9.50 | Above 800 units kW 50 10.00" }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "flat_by_units",
+          "id": "customer-charge",
+          "name": "Customer charge (by monthly consumption band)",
+          "bands": [
+            { "upTo": 50, "amount": 40 },
+            { "upTo": 100, "amount": 70 },
+            { "upTo": 200, "amount": 90 },
+            { "upTo": 300, "amount": 100 },
+            { "upTo": 400, "amount": 120 },
+            { "upTo": 800, "amount": 140 },
+            { "upTo": null, "amount": 160 }
+          ],
+          "unitsBasis": "cycle",
+          "period": "month",
+          "variable": false,
+          "asOf": "2026-04-01",
+          "note": "Per connection per month, on top of the per-kW fixed charge. The band is taken from the same monthly consumption that selects the LT-I sub-category (assumed; the order does not say so explicitly).",
+          "cite": [
+            { "ref": "tgerc-rst-2026", "page": "p.266 (PDF p.278), para 4.13", "quote": "Customer Charges ... LT-I: Domestic (Units/month) 0-50 40 | 51-100 70 | 101-200 90 | 201-300 100 | 301-400 120 | 401-800 140 | Above 800 units 160" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "fca",
+          "name": "FCA (fuel cost adjustment)",
+          "rate": 0,
+          "variable": true,
+          "asOf": "2026-06-03",
+          "note": "Monthly FCA/FSA under TGERC MYT Regulation No. 2 of 2023 as amended by Regulation No. 05 of 2026. No FY2026-27 levy value was found. DISCOMs may levy up to Rs 0.30/kWh (positive or negative) without prior TGERC approval; the RST order notes FSA/FCA was not levied for FY2023-24 and FY2024-25. Placeholder 0 until a notified value is added.",
+          "cite": [
+            { "ref": "tgerc-myt-amend-2026", "quote": "The maximum amount of FCA charges that can be levied on the consumers without the prior approval of the Commission is Rs.0.30 per unit (in kWh), whether such charges are positive or negative." }
+          ],
+          "verification": "unverified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "electricity-duty",
+          "name": "Electricity duty",
+          "rate": 0.06,
+          "variable": false,
+          "note": "Statutory duty of six paise per unit on energy sold at more than twelve paise per unit, from the (AP) Electricity Duty Act 1939 as hosted by TGNPDCL. The copy shows no consolidation date and no recent bill or Government of Telangana notification was checked, so this is marked secondary.",
+          "cite": [
+            { "ref": "ap-ed-act-1939", "quote": "a duty calculated at the rate of six paise per unit of energy, on and in respect of all sales of energy ... at a price of more than Twelve paise per unit" }
+          ],
+          "verification": "secondary"
+        }
+      ],
+      "subsidies": [
+        {
+          "rule": "zero_bill_up_to",
+          "id": "gruha-jyothi",
+          "name": "Gruha Jyothi",
+          "authority": "Government of Telangana",
+          "thresholdUnits": 200,
+          "covers": "total",
+          "optIn": true,
+          "eligibility": "Domestic households holding a white ration card (Food Security Card), Aadhaar linked, that applied through Praja Palana. Zero bill when monthly consumption is within 200 units; a beneficiary who uses 201 units or more pays the entire bill at the normal tariff. Scheme GO dated 26 February 2024 (number not found). News describes the limit as 'below 200 units'; 200 units is treated as covered because a June 2024 report says 201 units triggers the full bill. Any baseline or average-consumption rule is unverified, as is whether the zero bill also waives fixed and customer charges and electricity duty (modelled as covering the total).",
+          "solarInteraction": "Not specified in the researched sources.",
+          "cite": [
+            { "ref": "tnm-gruha-jyothi-2024", "quote": "will be issued 'zero bills' if their monthly consumption is below 200 units." },
+            { "ref": "dc-gruha-jyothi-2024", "quote": "should pay the entire bill of 201 units as per the tariff" },
+            { "ref": "siasat-gruha-jyothi-2024" }
+          ],
+          "verification": "secondary"
+        }
+      ]
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (TGERC Rooftop Solar Regulation No. 1 of 2025)",
+        "default": true,
+        "minKw": 1,
+        "maxKw": 500,
+        "exportRate": {
+          "value": 2.57,
+          "basis": "Lowest tariff of solar PPAs/PSAs/PUAs entered by TGDISCOMs under Section 63 in the preceding financial year, notified by TGERC. Rs 2.57 is the NLC 200 MW PUA tariff (approved 17.05.2025), applicable from notification of Regulation No. 1 of 2025 until further proceedings.",
+          "variable": true
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Settlement period is one billing month with no banking: if export exceeds import, the excess units are paid at Rs 2.57 (adjusted in the next bill or deposited to the bank account) and nothing is carried forward; the consumer still gets a monthly minimum bill. If import exceeds export, net units are billed at the retail tariff and must satisfy the minimum charges of the RST order.",
+        "cite": [
+          { "ref": "tgerc-solar-settlement-2025", "quote": "If the quantum of electricity units exported exceeds the quantum imported during the Billing Period, the excess quantum of electricity units shall be settled at the rate equal to that of lowest tariff rate as per solar PPAs/PSAs/PUAs entered by TGDiscoms under Section 63 of the Electricity Act, in the preceding Financial Year." },
+          { "ref": "tgerc-solar-settlement-2025", "quote": "Hence the Commission approves setlement rate of Rs 2.57 per unit" },
+          { "ref": "tgerc-solar-settlement-2025", "page": "p.3", "quote": "The settlement rate specified herein is applicable with effect from the date of notification of Regulation No. 01 of 2025 until the date of issuance of further proceedings issued by the Commission in this regard." },
+          { "ref": "tgerc-rooftop-reg-2025", "page": "Gazette p.6, clause 2.1", "quote": "\"Settlement Period\" means the period of one billing month at the end of which Net Metering, Group Net Metering, Gross Metering and Virtual Net Metering arrangement's settlement of the net credited units ... takes place" },
+          { "ref": "tgerc-rooftop-reg-2025", "page": "Gazette p.7, clause 4.2", "quote": "The eligible consumers of all categories except temporary supply category may install the Rooftop Solar PV System under the Net Metering Arrangement up to 500 (Five Hundred) kwp capacity." }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "gross-metering",
+        "type": "gross_metering",
+        "label": "Gross metering (TGERC Rooftop Solar Regulation No. 1 of 2025)",
+        "default": false,
+        "minKw": 1,
+        "maxKw": 1000,
+        "exportRate": {
+          "value": 2.57,
+          "basis": "Entire generation bought at the same settlement rate as net metering (lowest Section 63 solar PPA/PSA/PUA tariff of the preceding FY; Rs 2.57 per TGERC proceedings of 29.12.2025)",
+          "variable": true
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Total consumption is billed at the retail tariff and a net bill is prepared each billing month. Cannot be combined with net, group or virtual net metering.",
+        "cite": [
+          { "ref": "tgerc-rooftop-reg-2025", "quote": "The Distribution Licensee shall purchase entire power generated from the Rooftop solar PV system at the rate equal to that of lowest tariff rate as per solar PPAs/PSAs/PUAs entered by TGDiscoms under Section 63 of the Electricity Act, in the preceding Financial Year." },
+          { "ref": "tgerc-solar-settlement-2025", "quote": "Hence the Commission approves setlement rate of Rs 2.57 per unit" }
+        ],
+        "verification": "verified"
+      }
+    ],
+    "capacityLimit": {
+      "maxKw": 500,
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Residential consumers: up to 100% of sanctioned load. Net metering 1 kWp to 500 kWp; gross metering up to 1 MWp. Applications up to 10 kWp are deemed accepted without a technical feasibility study; distribution transformer and feeder cumulative caps apply (Regulation clause 5)."
+    },
+    "fees": "Processing fee Rs 2,500 per connection for all LT consumers (Rs 15,000 for HT), Regulation No. 1 of 2025 clause 6.1, read from an OCR-garbled table in the gazette scan.",
+    "notes": [
+      "Group Net Metering (LT-I domestic and HT-VI townships, 10 kWp to under 100 kWp, capacity not above the sum of contracted loads of the parent and participating connections) and Virtual Net Metering (all categories except temporary, 10 kWp to under 100 kWp) are available with the same Rs 2.57 settlement. They are not modelled as regimes because they allocate generation across several connections.",
+      "The settlement rate is to be notified every year; no 2026 proceeding updating Rs 2.57 was found.",
+      "No Telangana state top-up over PM Surya Ghar central assistance was verified from a primary source."
+    ],
+    "cite": [
+      { "ref": "tgerc-rooftop-reg-2025", "page": "Gazette p.8, clause 4.9", "quote": "For residential and Government Consumers: upto a maximum of 100% of consumer's sanctioned load." },
+      { "ref": "tgerc-rooftop-reg-2025", "page": "clause 6.1", "quote": "Applicable fee per connection Rs.2,500 For all LT consumers Rs.15,000 For all HT consumers" },
+      { "ref": "tgerc-rooftop-reg-2025", "quote": "The LT-I (Domestic) and HT-VI (Townships and Residential Colonies) may install the Rooftop Solar PV System under the Group Net Metering Arrangement for less than 100 (One Hundred) kwp capacity." }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "tgerc-rst-2026": {
+      "title": "TGERC Order on Revised ARR & Retail Supply Tariffs for FY 2026-27 (TGSPDCL & TGNPDCL)",
+      "publisher": "Telangana Electricity Regulatory Commission",
+      "url": "https://tgerc.telangana.gov.in/file_upload/uploads/Tariff%20Orders/Current%20Year%20Orders/2026/RST%20Order%20FY%202026-27.pdf",
+      "sha256": "1d76cba9d979bef236b02b3ed98a386dac37c63bf2824338eb71c9adf73baf74",
+      "type": "regulator_order",
+      "date": "2026-03-30",
+      "accessed": "2026-10-29",
+      "note": "PDF page = printed page + 12 (printed p.247 = PDF p.259)."
+    },
+    "tgerc-tariff-schedule-2026": {
+      "title": "TGERC Tariff Schedule 2026-27",
+      "publisher": "Telangana Electricity Regulatory Commission",
+      "url": "https://tgerc.telangana.gov.in/file_upload/uploads/Tariff%20Orders/Tariff%20Schedule/Tariff%20Schedule%202026-27.pdf",
+      "sha256": "8917ddd409ba7ea83f404729c16a70922142b65a1a245fadb3d5fddaf7730664",
+      "type": "regulator_order",
+      "accessed": "2026-10-29",
+      "note": "Scanned PDF, not text-readable; values in this book were taken from the tariff order instead."
+    },
+    "tgerc-trueup-2026": {
+      "title": "TGERC Order on manner of passing on Power Purchase True-up FY 2022-23 and Revenue True-up FY 2023-24 (O.P. Nos. 56-59 of 2025)",
+      "publisher": "Telangana Electricity Regulatory Commission",
+      "url": "https://tgerc.telangana.gov.in/file_upload/uploads/Orders/Commission%20Orders/2026/Trueup%20order%20for%20FY%202022-23%20and%20FY2023-24.pdf",
+      "sha256": "9f7038ef1182b1a38f2a32793d876945aeb7dcb623bcbf16d52fac3ca8dad5ad",
+      "type": "regulator_order",
+      "date": "2026-10-05",
+      "accessed": "2026-10-29"
+    },
+    "tgerc-myt-amend-2026": {
+      "title": "TGERC (Multi Year Tariff) First Amendment Regulation, 2026 (Regulation No. 05 of 2026)",
+      "publisher": "Telangana Electricity Regulatory Commission",
+      "url": "https://tgerc.telangana.gov.in/file_upload/uploads/Regulations/Final/TGERC/2026/1st%20amendment%20to%20MYT%20Regulation%2005%20of%202026.pdf",
+      "sha256": "0acfc1917a81dd8fdf3ed83e6f617b602f5cbc9e551e3f549261d2af85919324",
+      "type": "regulation",
+      "date": "2026-06-03",
+      "accessed": "2026-10-29"
+    },
+    "tgerc-rooftop-reg-2025": {
+      "title": "TGERC (Rooftop Solar PV Grid Interactive Systems) Regulation, 2025 (Regulation No. 1 of 2025), Telangana Gazette No. 634-A",
+      "publisher": "Telangana Electricity Regulatory Commission (Telangana Gazette)",
+      "url": "https://tgerc.telangana.gov.in/file_upload/uploads/Regulations/Final/tserc/2025/Final%20Solar%20Roof%20top%20Regulation%201%20of%202025%2015112025.pdf",
+      "sha256": "7b69784a03c33fbb7c458a6e08abfe3c17ed8525f3fe309a0cee9504d143eb01",
+      "type": "gazette",
+      "date": "2025-11-15",
+      "accessed": "2026-10-29",
+      "note": "Scanned gazette; quotes were read from OCR text. Repeals Regulation No. 6 of 2016 and its amendments."
+    },
+    "tgerc-solar-settlement-2025": {
+      "title": "TGERC Proceedings No. TGERC/Secy/22/2025: settlement rate for solar energy exported by prosumers under Regulation No. 01 of 2025",
+      "publisher": "Telangana Electricity Regulatory Commission",
+      "url": "https://tgerc.telangana.gov.in/file_upload/uploads/Regulations/Final/tserc/2025/Proceeding%20Solar.pdf",
+      "sha256": "5996479acc3723684b68812de3144b4e734cb9b74b3280fae0dec8e7e86f4e70",
+      "type": "regulator_order",
+      "date": "2025-12-29",
+      "accessed": "2026-10-29"
+    },
+    "ap-ed-act-1939": {
+      "title": "Andhra Pradesh Electricity Duty Act, 1939 (copy hosted by TGNPDCL)",
+      "publisher": "TGNPDCL",
+      "url": "https://tgnpdcl.com/Utilites/AP%20Electricity%20Duty%20Act,1939%20.pdf",
+      "sha256": "345deb5cef505e2ac85355e23924046d70a8218f9132c3b1a620d45bce60220a",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Consolidation date of the hosted text is not shown."
+    },
+    "tnm-gruha-jyothi-2024": {
+      "title": "Telangana starts implementing 'Gruha Jyothi' scheme",
+      "publisher": "The News Minute (IANS)",
+      "url": "https://www.thenewsminute.com/telangana/telangana-starts-implementing-gruha-jyothi-scheme",
+      "type": "news",
+      "date": "2024-03-01",
+      "accessed": "2026-10-29"
+    },
+    "siasat-gruha-jyothi-2024": {
+      "title": "Gruha Jyothi: Telangana govt launches free power scheme",
+      "publisher": "Siasat",
+      "url": "https://www.siasat.com/gruha-jyothi-telangana-govt-launches-free-power-scheme-2983871/amp/",
+      "type": "news",
+      "date": "2024-02-27",
+      "accessed": "2026-10-29"
+    },
+    "dc-gruha-jyothi-2024": {
+      "title": "Excess use of power affects Gruha Jyothi beneficiaries",
+      "publisher": "Deccan Chronicle",
+      "url": "https://deccanchronicle.com/news/excess-use-of-power-affects-gruha-jyothi-beneficiaries-900090",
+      "type": "news",
+      "date": "2024-06-21",
+      "accessed": "2026-10-29"
+    },
+    "southfirst-trueup-2026": {
+      "title": "Telangana power bills set to rise from November; discoms allowed to recover Rs 5,420 crore in past costs",
+      "publisher": "The South First",
+      "url": "https://thesouthfirst.com/telangana/telangana-power-bills-set-to-rise-from-november-discoms-allowed-to-recover-%E2%82%B95420-crore-in-past-costs/",
+      "type": "news",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "FCA/FSA: no FY2026-27 monthly value levied on LT consumers was found (TGSPDCL site returned HTTP 403; the TGNPDCL FSA orders page lists only 2012-13 items). Modelled as 0 (unverified); only the Rs 0.30/kWh cap without prior approval is verified (tgerc-myt-amend-2026).",
+    "True-up recovery charge (power purchase true-up FY2022-23 and revenue true-up FY2023-24) starts with bills issued in November 2026: Rs 0.30/unit in the first month and Rs 0.50/unit thereafter, applied not to current consumption but to a monthly quantum of 1/12 of the connection's FY2022-23 (then FY2023-24) consumption, for 29 billing months (TGSPDCL) or 26 (TGNPDCL), capped at the consumer's attributable true-up, as a separate bill line. Not modelled because it depends on past consumption. Sources: tgerc-trueup-2026, southfirst-trueup-2026. The order does not say whether it applies to Gruha Jyothi beneficiaries.",
+    "Gruha Jyothi: the GO (dated 26 February 2024) was not retrieved; the scheme rests on news only. A baseline or average-consumption rule is unverified; whether the zero bill also waives fixed and customer charges and electricity duty is unverified (modelled as covering the total); 'below 200 units' versus 'up to 200 units' is resolved as up to 200 from the 201-unit news report.",
+    "Electricity duty of 6 paise/unit comes from the AP Electricity Duty Act 1939 copy on the TGNPDCL site; no bill or recent Government of Telangana notification confirming the current domestic rate was retrieved.",
+    "Fixed charge above 800 units: the order's table lists Rs 50/kW on the 'Above 800 units' row without saying whether it replaces Rs 10/kW for the whole contracted load; assumed it does.",
+    "The basis for picking the customer-charge band is not stated; assumed to be the same monthly consumption that selects the LT-I sub-category.",
+    "Load rounding and any minimum billing load for the per-kW fixed charge were not researched; the engine bills sanctioned load without rounding.",
+    "Net-metered domestic consumers: Regulation No. 1 of 2025 does not say whether the LT-I sub-category and customer-charge band are chosen on net imported units or on gross consumption; the engine uses net billed units. The RST order's minimum charges for net-metered consumers were not researched.",
+    "No 2026 TGERC proceeding updating the Rs 2.57/kWh settlement rate was found, although the regulation says the rate is notified yearly.",
+    "No state rooftop subsidy top-up over PM Surya Ghar was verified from a primary source.",
+    "Delayed payment surcharge (LT-I(A) Rs 10/month, LT-I(B) Rs 25/month after the due date, 15 days from bill date) is not modelled; bills assume on-time payment.",
+    "CESS Sircilla applies the same RST schedule (order para 3.31.1) but is not listed as a utility in this book.",
+    "TGRPDCL, a new statewide distribution licensee granted on 10.07.2026 for specified consumer categories (true-up order para 4), may change which consumers TGSPDCL and TGNPDCL serve; its scope was not researched.",
+    "Served districts and websites of TGSPDCL and TGNPDCL were not verified (TGSPDCL site returned HTTP 403).",
+    "The official tariff schedule PDF is a scan; all values were taken from the tariff order text.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [
+    { "date": "2026-10-29", "summary": "First FY2026-27 book from the TGERC RST Order of 30.03.2026, MYT First Amendment Regulation 2026, Rooftop Solar Regulation No. 1 of 2025 and the settlement-rate proceedings of 29.12.2025." }
+  ]
+}

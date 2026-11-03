@@ -1,0 +1,32 @@
+{
+  "name": "@open-tariff-india/evidence",
+  "version": "0.1.0",
+  "description": "Meter Sakshi evidence engine: verifies hash-chained pulse logs from a non-contact meter LED reader, reconciles them against bills and prepaid deductions, and renders a dispute report.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["india", "electricity", "smart-meter", "prepaid-meter", "check-meter", "billing-dispute", "esp32"],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "meter-sakshi": "./dist/cli.js"
+  },
+  "files": ["dist", "src", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@open-tariff-india/data": "0.1.0",
+    "@open-tariff-india/engine": "0.1.0",
+    "zod": "^4.6.7"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

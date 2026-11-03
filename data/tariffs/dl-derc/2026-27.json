@@ -1,0 +1,562 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "dl-derc",
+  "title": "Delhi discoms retail tariff (DERC), Domestic",
+  "state": "Delhi",
+  "stateCode": "DL",
+  "regulator": { "name": "Delhi Electricity Regulatory Commission", "short": "DERC", "url": "https://www.derc.gov.in/" },
+  "utilities": [
+    {
+      "id": "brpl",
+      "name": "BSES Rajdhani Power Limited",
+      "shortName": "BRPL",
+      "servedArea": "Part of the National Capital Territory of Delhi (licence area not captured in the cited sources)",
+      "solarResource": "delhi"
+    },
+    {
+      "id": "bypl",
+      "name": "BSES Yamuna Power Limited",
+      "shortName": "BYPL",
+      "servedArea": "Part of the National Capital Territory of Delhi (licence area not captured in the cited sources)",
+      "solarResource": "delhi"
+    },
+    {
+      "id": "tpddl",
+      "name": "Tata Power Delhi Distribution Limited",
+      "shortName": "TPDDL",
+      "servedArea": "Part of the National Capital Territory of Delhi (licence area not captured in the cited sources)",
+      "solarResource": "delhi"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "status": "partial",
+  "order": {
+    "title": "DERC Tariff Order dated 30.09.2021 (True-up of FY 2019-20 and ARR & Tariff for FY 2021-22), tariff schedule w.e.f. 01.10.2021. DERC has issued no newer retail tariff order, so these rates still apply in FY 2026-27, unchanged since 01.10.2021.",
+    "cite": [
+      { "ref": "derc-to-2021", "page": "Press note p.1", "quote": "The Tariff Schedule for FY 2021-22, which shall be applicable w.e.f. 1st October, 2021, is annexed herewith." },
+      { "ref": "derc-fppas-jun-2026", "page": "p.1", "quote": "the actual power purchase cost for the month of June, 2026 has increased significantly as compared to the approved base power purchase cost considered in the prevailing Tariff Order dated 30.09.2021" },
+      { "ref": "derc-trueup-preface-2025", "page": "p.1", "quote": "these True-up Orders shall not change the current Tariffs for above DISCOMs until the effect of the same is given in the ensuing Tariff Orders or at the time of liquidation of RAs." }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "1.1",
+      "name": "Domestic (individual connections)",
+      "description": "DERC tariff schedule category 1.1, domestic individual connections of BRPL, BYPL and TPDDL. Same slabs for every sanctioned load. Rates are the FY 2021-22 schedule (w.e.f. 01.10.2021), still prevailing in FY 2026-27. Optional ToD for three-phase domestic connections is not encoded (see gaps).",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "domestic-slabs",
+            "label": "All domestic connections",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 200, "rate": 3.0 },
+              { "upTo": 400, "rate": 4.5 },
+              { "upTo": 800, "rate": 6.5 },
+              { "upTo": 1200, "rate": 7.0 },
+              { "upTo": null, "rate": 8.0 }
+            ]
+          }
+        ],
+        "note": "The schedule does not name the slab method. Telescopic is inferred because the Delhi Gazette worked examples of 17.09.2026 (400 units = Rs 2272, 450 units = Rs 2721 at 3 kW) only reproduce with telescopic slabs. Discoms prorate slab boundaries to billing days (TPDDL billing FAQ); the engine uses calendar-month slabs.",
+        "cite": [
+          { "ref": "derc-to-2021", "page": "Tariff schedule p.5", "quote": "0-200 Units ... 201-400 Units 401-800 Units 801-1200 Units >1200 Units ... 3.00 4.50 6.50 7.00 8.00 Rs./kWh" },
+          { "ref": "delhi-gazette-277-2026", "page": "worked examples, pp.25-26", "quote": "Electricity Bill before Solar (corresponding to 400 units) 2272- 800 (after electricity Subsidy of Rs 800) = 1472 ... Electricity bill corresponding to 450 units 2,721" },
+          { "ref": "tpddl-billing-faq-2021", "page": "p.1", "quote": "Slab/Month = 29/30 + 2/31= 0.9666 + 0.6451=1.0311" }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "per-kw-by-load-band",
+            "label": "Fixed charge by sanctioned load band (Rs 20 to 250/kW/month)",
+            "bandBy": "load_kw",
+            "method": "whole",
+            "bands": [
+              { "upTo": 2, "amount": 20, "per": "kw" },
+              { "upTo": 5, "amount": 50, "per": "kw" },
+              { "upTo": 15, "amount": 100, "per": "kw" },
+              { "upTo": 25, "amount": 200, "per": "kw" },
+              { "upTo": null, "amount": 250, "per": "kw" }
+            ],
+            "period": "month",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "Levied on sanctioned load (or contract demand): up to 2 kW Rs 20/kW, above 2 up to 5 kW Rs 50/kW, above 5 up to 15 kW Rs 100/kW, above 15 up to 25 kW Rs 200/kW, above 25 kW Rs 250/kW per month. The schedule does not say whether the whole load is charged at its band rate or telescopically; whole-load billing is inferred because the Delhi Gazette worked examples (3 kW at 100, 400 and 450 units) fit a Rs 150 fixed charge (3 kW x Rs 50) and not a telescopic Rs 90. No load-rounding rule was found, so the load is used as given. Discoms also prorate fixed charges to billing days (TPDDL FAQ).",
+        "cite": [
+          { "ref": "derc-to-2021", "page": "Tariff schedule p.5", "quote": "A Upto 2 kW 20 Rs./kW/month; B > 2kW and 5 kW 50 Rs./kW/month; C > 5kW and 15 kW 100 Rs./kW/month; D >15kW and 25 kW 200 Rs./kW/month; E > 25kW 250 Rs./kW/month" },
+          { "ref": "derc-to-2021", "page": "Tariff schedule p.5", "quote": "For Domestic category of consumers, Fixed Charges shall be levied on Sanctioned Load or Contract Demand as the case may be." },
+          { "ref": "tpddl-billing-faq-2021", "page": "p.1", "quote": "Fixed Charges = Sanctioned Load x Tariff Rate x Slab" }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "percent",
+          "id": "ra-surcharge",
+          "name": "Regulatory asset surcharge (8%, recovery of accumulated deficit)",
+          "percent": 8,
+          "of": ["energy", "fixed"],
+          "variable": false,
+          "asOf": "2021-10-01",
+          "note": "Consumers of BRPL, BYPL and TPDDL. Applied only on basic fixed and energy charges, excluding LPSC, arrears, electricity tax/duty, PPAC/FPPAS and load violation surcharge.",
+          "cite": [{ "ref": "derc-to-2021", "page": "Tariff schedule p.7", "quote": "(a) 8% towards recovery of accumulated deficit" }],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "pension-surcharge",
+          "name": "Pension Trust surcharge (7%, erstwhile DVB employees and pensioners)",
+          "percent": 7,
+          "of": ["energy", "fixed"],
+          "variable": false,
+          "asOf": "2021-10-01",
+          "note": "Same base as the 8% regulatory asset surcharge (basic fixed and energy charges only). The TPDDL billing FAQ of October 2021 also shows 7%.",
+          "cite": [
+            { "ref": "derc-to-2021", "page": "Tariff schedule p.7", "quote": "(b) 7% towards recovery of Pension Trust Charges of erstwhile DVB Employees/ Pensioners as recommended by GoNCTD." },
+            { "ref": "tpddl-billing-faq-2021", "page": "p.1" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "fppas-brpl",
+          "name": "FPPAS (fuel and power purchase adjustment surcharge), BRPL",
+          "percent": 10,
+          "of": ["energy", "fixed"],
+          "utilities": ["brpl"],
+          "variable": true,
+          "asOf": "2026-10-01",
+          "note": "BRPL levy for 01.10.2026 to 31.10.2026 (power procured in August 2026). Since 01.06.2026 FPPAS is computed monthly, billed in month n+2 and capped at 10% of energy and fixed charges unless DERC relaxes the cap (relaxation orders of 10.06, 10.07 and 10.08.2026 allowed BRPL up to 17.94% for one month each). The schedule's note 8 says PPAC is levied after the ToD rebate/surcharge.",
+          "cite": [
+            { "ref": "brpl-fppas-aug-2026", "quote": "BRPL is levying FPPAS @ 10% for the period 01.10.2026 to 31.10.2026 in respect of power procured in August 2026." },
+            { "ref": "derc-tariff-regs-2nd-amend-2026", "quote": "The percentage increase on account of FPPAS shall be applied as a surcharge on the total of Energy Charges & Fixed Charges billed to a consumer of utility and shall be capped at 10% (of the total Energy Charges and Fixed Charges)." }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "fppas-bypl",
+          "name": "FPPAS (fuel and power purchase adjustment surcharge), BYPL",
+          "percent": 10,
+          "of": ["energy", "fixed"],
+          "utilities": ["bypl"],
+          "variable": true,
+          "asOf": "2026-09-10",
+          "note": "BYPL levy of 10% for 01.09.2026 to 30.09.2026 (July 2026 costs). An additional 7.43% applied only from 01.09.2026 to 09.09.2026 under the DERC relaxation order of 10.08.2026 and is not included. The October 2026 levy was not verified; the header of the BYPL FPPAS web page ('Current FPPAS-17.43%+') appears stale.",
+          "cite": [
+            { "ref": "bypl-fppas-jul-2026", "quote": "FPPAS @ 10% towards July 2026 from 01.09.2026 till 30.09.2026 ... An additional FPPAS @ 7.43% from 01.09.2026 till 09.09.2026 in terms of the Relaxation Order dated 10.08.2026." },
+            { "ref": "derc-tariff-regs-2nd-amend-2026" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "fppas-tpddl",
+          "name": "FPPAS (fuel and power purchase adjustment surcharge), TPDDL",
+          "percent": 18.5,
+          "of": ["energy", "fixed"],
+          "utilities": ["tpddl"],
+          "variable": true,
+          "asOf": "2026-08-10",
+          "note": "TPDDL notice effective 10.08.2026: suo motu 10.00% for 01.08.2026 to 31.08.2026 plus a differential 8.50% for 10.08.2026 to 09.09.2026 allowed by the DERC relaxation order of 10.08.2026, total 18.50%. No later TPDDL notice (September or October 2026) was found, so this value is likely stale: the 8.50% part ended on 09.09.2026.",
+          "cite": [
+            { "ref": "tpddl-fppas-2026-08-10", "quote": "Suo motu FPPAS in line with DERC Regulations 10.00% 01.08.2026 to 31.08.2026 ... 8.50% 10.08.2026 to 09.09.2026 ... Total FPPAS levied 18.50%" },
+            { "ref": "derc-fppas-jun-2026" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "electricity-tax",
+          "name": "Electricity Tax (5% of energy charges)",
+          "percent": 5,
+          "of": ["energy"],
+          "variable": false,
+          "note": "Rate and base taken from a TPDDL billing FAQ of October 2021. Not confirmed for BSES areas or for 2026, and the levying instrument was not fetched. The DERC schedule states that its rates exclude duty and taxes.",
+          "cite": [{ "ref": "tpddl-billing-faq-2021", "page": "p.1", "quote": "E. Tax (5% of Energy Charges)" }],
+          "verification": "secondary"
+        },
+        {
+          "kind": "percent",
+          "id": "prepaid-rebate",
+          "name": "Prepayment meter rebate (1%)",
+          "percent": -1,
+          "of": ["energy", "fixed", "ra-surcharge", "pension-surcharge", "fppas-brpl", "fppas-bypl", "fppas-tpddl"],
+          "appliesIf": { "flags": ["prepaid"] },
+          "variable": false,
+          "asOf": "2021-10-01",
+          "note": "1% on energy, fixed and all other charges on the applicable tariff. Electricity tax is left out of the base because it is a government levy rather than a tariff charge; that reading is an interpretation.",
+          "cite": [{ "ref": "derc-to-2021", "page": "Tariff schedule p.7", "quote": "For consumers availing supply through prepayment meters, the additional rebate of 1% shall be applicable on the basic Energy Charges, Fixed Charges and all other charges on the applicable tariff." }],
+          "verification": "verified"
+        }
+      ],
+      "subsidies": [
+        {
+          "rule": "zero_bill_up_to",
+          "id": "gnctd-zero-bill-200",
+          "name": "GNCTD electricity subsidy: zero bill up to 200 units",
+          "authority": "Government of NCT of Delhi",
+          "thresholdUnits": 200,
+          "covers": "total",
+          "optIn": true,
+          "eligibility": "Domestic consumers of BRPL, BYPL and TPDDL (also NDMC and MES areas). Monthly consumption up to 200 units: zero bill. From 01.10.2026 beneficiaries must establish an Aadhaar number (notification S.O. DOP-E/4/2026/E-353955/6764 dated 30.09.2026, read via a third-party summary). The scheme order itself was not fetched. Rs 3,500 crore budgeted for FY 2026-27 (news); in August 2026 the government was considering an opt-out option (news).",
+          "solarInteraction": "Under the Delhi Solar Energy Policy 2023 Second Amendment (17.09.2026), eligibility of rooftop solar households is judged on gross consumption (solar generation + net-meter import - net-meter export), not on net billed units. The engine tests billed units, so check solar households against gross consumption separately.",
+          "cite": [
+            { "ref": "delhi-gazette-277-2026", "quote": "For consumption up to 200 units/month, consumers receive a zero bill, and for consumption between 201-400 units/month, they receive a subsidy up to 800 on their bill." },
+            { "ref": "delhi-gazette-277-2026", "page": "worked examples", "quote": "613 - 613 (Electricity Subsidy) = Zero" },
+            { "ref": "theprint-2026-08-21", "quote": "Those consuming between 201 and 400 units per month receive a 50 per cent subsidy, capped at Rs 800." },
+            { "ref": "energetica-2026-03-25" },
+            { "ref": "taxheal-aadhaar-2026" },
+            { "ref": "swarajya-aadhaar-2026" }
+          ],
+          "verification": "secondary"
+        },
+        {
+          "rule": "percent_band",
+          "id": "gnctd-half-201-400",
+          "name": "GNCTD electricity subsidy: 50% for 201-400 units (max Rs 800)",
+          "authority": "Government of NCT of Delhi",
+          "aboveUnits": 200,
+          "upToUnits": 400,
+          "percent": 50,
+          "capAmount": 800,
+          "covers": "total",
+          "optIn": true,
+          "eligibility": "Domestic consumers of BRPL, BYPL and TPDDL with monthly consumption of 201 to 400 units: 50% of the bill, capped at Rs 800 per month. No subsidy above 400 units. The Delhi Gazette worked example nets Rs 800 off the full bill (400 units: 2272 - 800), so the 50% is applied to the total bill. Aadhaar required from 01.10.2026 (third-party summary of the notification).",
+          "solarInteraction": "Eligibility of solar households is judged on gross consumption (Delhi Solar Energy Policy 2023 Second Amendment, 17.09.2026): a 3 kW household with 450 units gross and 150 net units pays Rs 820 and gets no subsidy. The engine tests billed units, so it can over-credit solar households.",
+          "cite": [
+            { "ref": "delhi-gazette-277-2026", "page": "worked examples, pp.25-26", "quote": "Electricity Bill before Solar (corresponding to 400 units) 2272- 800 (after electricity Subsidy of Rs 800) = 1472" },
+            { "ref": "delhi-gazette-277-2026", "quote": "subsidy eligibility would be determined based on the gross monthly electricity consumption of 450 units, rather than the net metered consumption of 150 units." },
+            { "ref": "theprint-2026-08-21", "quote": "Those consuming between 201 and 400 units per month receive a 50 per cent subsidy, capped at Rs 800." },
+            { "ref": "taxheal-aadhaar-2026" }
+          ],
+          "verification": "secondary"
+        }
+      ]
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (DERC Net Metering for Renewable Energy Regulations 2014, as amended)",
+        "default": true,
+        "minKw": 1,
+        "exportRate": {
+          "value": null,
+          "basis": "Net energy credits still unadjusted at the end of the financial year are paid at the discom's Average Power Purchase Cost (APPC) for that year, provisionally, then trued up (Guidelines 2014, Guideline 7; Regulation 9(7) says at rates notified by the Commission). The current APPC per discom was not verified; the Delhi Gazette of 17.09.2026 uses Rs 6.5/unit only as an illustration.",
+          "variable": true
+        },
+        "settlement": { "period": "financial_year", "surplus": "paid_at_export_rate" },
+        "note": "Surplus export in a billing period is carried forward to the next billing period as energy credit within the financial year (Reg 9(4)). The settlement rules are from the regulations; the regime is marked unverified because the APPC payout rate is unknown, so year-end surplus is credited at Rs 0.",
+        "cite": [
+          { "ref": "derc-net-metering-regs-2014", "page": "pp.6-7, Reg 9(4)", "quote": "If during any billing period, the export of units exceeds the import of units consumed, such surplus units injected by the consumer shall be carried forward to the next billing period as energy credit" },
+          { "ref": "derc-net-metering-regs-2014", "page": "Reg 9(7)", "quote": "At the end of the each Financial Year, any net energy credits, which remain unadjusted, shall be paid for by the distribution licensee to the consumers as per the rates notified by the Commission from time to time." },
+          { "ref": "derc-net-metering-guidelines-2014", "page": "pp.6-7, Guideline 7", "quote": "The Consumer shall be paid for net energy credits which remain unadjusted at the end of the financial year at the rate of Average Power Purchase Cost (APPC) of the Distribution Licensee for the respective year on provisional basis." }
+        ],
+        "verification": "unverified"
+      }
+    ],
+    "capacityLimit": {
+      "note": "Minimum 1 kWp (Reg 5(5)). Capacity is bounded by grid feasibility, service-line capacity and sanctioned load (Reg 5(3)); capacity above sanctioned load is allowed on payment of differential SLD charges (Reg 5(4)). Systems up to 10 kW on the same supply type are exempt from technical feasibility studies (First Amendment Regulations 2024), and the discom carries out any load enhancement."
+    },
+    "stateSubsidy": {
+      "description": "Delhi Solar Energy Policy 2023 (notified 14.03.2024), Second Amendment (Delhi Gazette No. 277, 17.09.2026, valid till 31.03.2030): for domestic rooftop systems the state capital subsidy is the lower of (cost discovered by bidding under the Discom Trusteeship Model minus the PM Surya Ghar subsidy) and Rs 26,000 x kW, up to a maximum of Rs 78,000, for capacity up to 3 kW; no additional state subsidy above 3 kW up to 10 kW. Rs 26,000/kW applies on an interim basis until vendor empanelment. The tiers hold the Rs 26,000/kW ceiling only; the bid-cost limb and the rule that central plus state subsidy may not exceed project cost are not modelled.",
+      "tiers": [
+        { "upToKw": 3, "perKw": 26000 },
+        { "upToKw": null, "perKw": 0 }
+      ],
+      "capInr": 78000,
+      "cite": [{ "ref": "delhi-gazette-277-2026", "page": "Gazette p.18", "quote": "State Subsidy shall be equal to (the cost arrived at through bidding under the Discom Trusteeship Model minus the PM Surya Ghar subsidy) or 26,000 x Plant Capacity (in kW), whichever is lower, subject to a maximum limit of 78,000." }],
+      "verification": "secondary"
+    },
+    "fees": "Registration charges under the 2014 Net Metering Guidelines: Rs 1,000 (1-10 kW), Rs 3,000 (above 10 to 50 kW), Rs 6,000 (above 50 to 100 kW), Rs 9,000 (above 100 to 300 kW), Rs 12,000 (above 300 to 500 kW), Rs 15,000 (above 500 kW). Waived, together with the feasibility application fee, for domestic rooftop connections up to 10 kW whether or not PM Surya Ghar is availed (Second Amendment Guidelines, 16.07.2026).",
+    "notes": [
+      "Generation-based incentive (Delhi Solar Energy Policy 2023, SOP dated 11.10.2024): Rs 3/kWh for residential systems up to 3 kW and Rs 2/kWh above 3 kW up to 10 kW, for five years. The Second Amendment (17.09.2026) discontinued GBI for new domestic installations; existing beneficiaries keep it. Not modelled as a bill line.",
+      "Free solar up to 3 kW for residential consumers whose average gross consumption in the previous financial year was within 400 units/month, under the ULA / Discom Trusteeship model (consumer contribution under ULA capped at Rs 5,000/kW). Subsidised households (under 200 units) also get an incentive of 50% of energy savings, paid annually. Not modelled.",
+      "The Policy's First Amendment (2025) had set the state subsidy at Rs 10,000/kW up to 3 kW (ceiling Rs 30,000); it is known only from the 'existing provision' column of the Second Amendment gazette.",
+      "Net-metered rooftop systems are exempt from wheeling, banking and cross-subsidy charges for five years (Net Metering Regulations 2014, Reg 10).",
+      "ToD consumers: net-metering credits are moderated by the ToD rebate/surcharge, with surplus treated as normal-block generation (GNM/VNM Sixth Amendment Guidelines, 05.06.2025).",
+      "Group and virtual net metering are available under the DERC GNM/VNM Guidelines 2019 and amendments; a news summary says the Seventh Amendment (2025) extends VNM to all consumers (final text not read). Not modelled."
+    ],
+    "cite": [
+      { "ref": "derc-net-metering-regs-2014", "page": "Reg 5(5)", "quote": "The capacity of Renewable Energy system to be installed at the Premises of any consumer shall not be less than one kilo watt peak." },
+      { "ref": "derc-net-metering-1st-amend-2024", "page": "p.1", "quote": "Provided that the Technical feasibility of Renewable Energy System upto 10 kW is exempted from technical feasibility studies on the same supply type" },
+      { "ref": "derc-net-metering-guidelines-2nd-amend-2026", "page": "p.3", "quote": "Provided that no Registration Charges shall be payable in the case of domestic consumers for Rooftop Solar Connections up to 10 kW, irrespective of whether or not such consumers avail benefits under the PM Surya Ghar: Muft Bijli Yojana." },
+      { "ref": "delhi-solar-sop-2024", "page": "OM dated 11-10-2024, p.2 (scanned; OCR)", "quote": "Residential: Maximum up to 3kW 3; Residential: Above 3KW. and up to 10kW 2 (Monthly GBI (INR per kWh))" },
+      { "ref": "delhi-gazette-277-2026", "page": "Gazette p.18", "quote": "GBI for domestic rooftop solar beneficiaries shall be discontinued for new installations, while existing consumers shall continue to receive GBI as per the provisions of the policy." },
+      { "ref": "delhi-gazette-277-2026", "page": "Gazette p.24", "quote": "All residential consumers, whose average gross electricity consumption in the previous Financial Year is within 400 units per month, including from solar power, will be eligible for free solar installation up to 3 KW" },
+      { "ref": "derc-gnm-vnm-6th-amend-2025" }
+    ],
+    "verification": "verified"
+  },
+  "consumerProtection": [
+    {
+      "topic": "meter_testing",
+      "summary": "BYPL schedule of charges (poster file dated December 2023): meter testing Rs 200 (single phase), Rs 500 (three phase), Rs 1,000 (CT meter), Rs 4,000 (HT meter); the same poster lists reconnection charges of Rs 200 (single phase) and Rs 500 (three phase). BRPL and TPDDL fees and the governing DERC Supply Code clause were not fetched.",
+      "feeInr": 200,
+      "cite": [{ "ref": "bypl-schedule-of-charges", "page": "poster (PDF), 1 page", "quote": "7 Meter testing charges i) Single phase 200 ii) Three phase 500 iii) CT meter 1000 iv) HT meter 4000 ... 6 Charges for reconnection i) Single phase connection 200 ii) Three phase connection 500" }],
+      "verification": "verified"
+    }
+  ],
+  "sources": {
+    "derc-to-2021": {
+      "title": "Electricity Tariff for FY 2021-22: DERC Press Note with annexure 'Electricity Tariff Schedule for FY 2021-22 - BRPL, BYPL, TPDDL & NDMC' (TPDDL-hosted copy)",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.tatapower-ddl.com/Editor_UploadedDocuments/Content/Press_Release_2022_Eng_30.09.2021.pdf",
+      "sha256": "2c2134c84d9a9be4c49bf5118c1d784f3de77c2d52cb0806d3c6e606807c1ed2",
+      "type": "regulator_order",
+      "date": "2021-09-30",
+      "accessed": "2026-10-29",
+      "note": "Press note pp.1-2; tariff schedule annexure pp.5-14 (domestic rates p.5, ToD p.6, surcharges and prepaid rebate p.7, taxes and LPSC p.8)."
+    },
+    "derc-trueup-preface-2025": {
+      "title": "Preface to the True-up Order for FY 2022-23",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/Preface%20to%20the%20True-up%20Order%20of%20FY%202022-23_0.pdf",
+      "sha256": "9d3570b46c4e7b0b38e1768944defb483d6aa64087da8f95d178a5b0b5858d33",
+      "type": "regulator_order",
+      "date": "2025-12-31",
+      "accessed": "2026-10-29"
+    },
+    "derc-tariff-regs-2nd-amend-2026": {
+      "title": "DERC (Terms and Conditions for Determination of Tariff) (Second Amendment) Regulations, 2026",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/DERC%20Tariff%20Regulations%20%28Second%20Amendment%29.pdf",
+      "sha256": "0d695078c3ebbedf041c0ffc0cc97932482aab208ba269e1a27887b4e2ebda47",
+      "type": "regulation",
+      "date": "2026-04-30",
+      "accessed": "2026-10-29",
+      "note": "Monthly automatic FPPAS from 01.06.2026 (for power procured from April 2026), billed in month n+2, capped at 10% of energy + fixed charges with any excess carried forward within the FY."
+    },
+    "derc-fppas-apr-2026": {
+      "title": "Relaxation under Regulation 172 (FPPAS): April 2026 power purchase costs",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/PPAC_Order.pdf",
+      "sha256": "e99192a46a542a59da2b54a6ec157590ac07f21e0e02cd107bca44d47f9abe2b",
+      "type": "regulator_order",
+      "date": "2026-06-10",
+      "accessed": "2026-10-29"
+    },
+    "derc-fppas-may-2026": {
+      "title": "Relaxation under Regulation 172 (FPPAS): May 2026 power purchase costs",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/PPAC_Order%20-%20May.pdf",
+      "sha256": "5a6698896ed6305c34d94ffba3114725df973ca8f14067793196fbb6085f6b57",
+      "type": "regulator_order",
+      "date": "2026-07-10",
+      "accessed": "2026-10-29"
+    },
+    "derc-fppas-jun-2026": {
+      "title": "Relaxation under Regulation 172 (FPPAS): June 2026 power purchase costs",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/PPAC_Order%20-%20June.pdf",
+      "sha256": "de71dee920feb68a8e910699132fbe8e3deb5bb7c67510caa7fcbdbb462fb4f8",
+      "type": "regulator_order",
+      "date": "2026-08-10",
+      "accessed": "2026-10-29",
+      "note": "Allowed one month of recovery above the 10% cap: BRPL 17.94%, BYPL 17.43%, TPDDL 18.50%."
+    },
+    "brpl-fppas-page": {
+      "title": "BRPL Fuel and Power Purchase Adjustment Charges page",
+      "publisher": "BSES Rajdhani Power Limited",
+      "url": "https://www.bsesdelhi.com/web/brpl/fuel-power-purchase-adjustment-charges",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "brpl-fppas-aug-2026": {
+      "title": "BRPL FPPAS % calculation up to August 2026 (levy 01.10.2026 to 31.10.2026)",
+      "publisher": "BSES Rajdhani Power Limited",
+      "url": "https://www.bsesdelhi.com/documents/55701/1994451042/FPPAS_Computation_August_2026_01102026_to_31102026.pdf",
+      "sha256": "2eff1b9e30a5937713ddc67d90f5a82827c1311d2c0f75c77efb013115a3bd23",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Issued October 2026 (exact date not captured)."
+    },
+    "bypl-fppas-page": {
+      "title": "BYPL Fuel and Power Purchase Adjustment Charges page",
+      "publisher": "BSES Yamuna Power Limited",
+      "url": "https://www.bsesdelhi.com/web/bypl/fuel-power-purchase-adjustment-charges",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "bypl-fppas-jul-2026": {
+      "title": "BYPL letter RA/BYPL/2026-27/178: FPPAS for July 2026",
+      "publisher": "BSES Yamuna Power Limited",
+      "url": "https://www.bsesdelhi.com/documents/73527/1994127769/178_FPPAS_for_July_2026.pdf",
+      "sha256": "19cce67774142f51b08872f883a7a8a7051ebcbf1ad5e06b59eae088879ef3f8",
+      "type": "utility_page",
+      "date": "2026-08-31",
+      "accessed": "2026-10-29"
+    },
+    "tpddl-fppas-2026-08-10": {
+      "title": "TPDDL FPPAS being levied effective 10.08.2026",
+      "publisher": "Tata Power Delhi Distribution Limited",
+      "url": "https://www.tatapower-ddl.com/Editor_UploadedDocuments/Content/FPPAS_being_levied_effective_10.08.2026.pdf",
+      "sha256": "2d72e1c27b83db83ef244ce6f047d0a39d3dcdbdad5e8bbe76c51b749d3638d2",
+      "type": "utility_page",
+      "date": "2026-08-10",
+      "accessed": "2026-10-29"
+    },
+    "tpddl-billing-faq-2021": {
+      "title": "TPDDL FAQs - Billing (Oct'21)",
+      "publisher": "Tata Power Delhi Distribution Limited",
+      "url": "https://tatapower-ddl.com/Editor_UploadedDocuments/Content/Billing_FAQs_Oct'21.pdf",
+      "sha256": "40d121b4b93845ef5b94eca8907ff3d4fce590ba606899fc19553bf6c08caee3",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Dated October 2021."
+    },
+    "bypl-schedule-of-charges": {
+      "title": "BYPL Schedule of Charges poster",
+      "publisher": "BSES Yamuna Power Limited",
+      "url": "https://www.bsesdelhi.com/web/bypl/schedule-of-charges",
+      "sha256": "66d076b1b002fb493b76649a57037ee4814bb23215fb28a82948726e03966777",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Poster PDF file dated December 2023."
+    },
+    "derc-net-metering-regs-2014": {
+      "title": "DERC (Net Metering for Renewable Energy) Regulations, 2014",
+      "publisher": "Delhi Electricity Regulatory Commission (hosted on the Delhi Solar Portal)",
+      "url": "https://solar.delhi.gov.in/public/assets/solar/1.%20Renewable-Energy-Net-Metering-Regulations2014.pdf",
+      "sha256": "159f647797e02333d87090ebc982d4d14ac61552df88e941a4038019b6665797",
+      "type": "regulation",
+      "date": "2014-09-02",
+      "accessed": "2026-10-29"
+    },
+    "derc-net-metering-1st-amend-2024": {
+      "title": "DERC (Net Metering for Renewable Energy) (First Amendment) Regulations, 2024",
+      "publisher": "Delhi Electricity Regulatory Commission (hosted on the Delhi Solar Portal)",
+      "url": "https://solar.delhi.gov.in/public/assets/solar/2.%20DERC%20Net%20Metering%20for%20Renewable%20Energy)%20(First%20Amendment)%20Regulations,%202024.pdf",
+      "sha256": "73a0c62217d383b4ab0e3868639efb0dc8a38a7a5987467caee8a9cb7fd517c0",
+      "type": "regulation",
+      "date": "2024-07-26",
+      "accessed": "2026-10-29"
+    },
+    "derc-net-metering-guidelines-2014": {
+      "title": "Guidelines under DERC (Net Metering for Renewable Energy) Regulations, 2014 (TPDDL-hosted copy)",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.tatapower-ddl.com/Editor_UploadedDocuments/Content/DERC_Net_metering_Guidelines_2014.pdf",
+      "sha256": "e96302e7d5745d7c65c9a5ef8b096151a171906ddffcce947c5f1effe64001ee",
+      "type": "regulator_order",
+      "accessed": "2026-10-29",
+      "note": "Issued 2014 (exact date not captured)."
+    },
+    "derc-net-metering-guidelines-2nd-amend-2026": {
+      "title": "DERC (Net Metering for Renewable Energy) (Second Amendment) Guidelines, 2026",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/Net%20Metering%20Second%20Amendment%20Final.pdf",
+      "sha256": "f3a6e7c934eff099c15b9b81fa7567f7b9323d9500200404b489a39073b1b861",
+      "type": "regulator_order",
+      "date": "2026-07-16",
+      "accessed": "2026-10-29"
+    },
+    "derc-gnm-vnm-6th-amend-2025": {
+      "title": "DERC (Group Net Metering and Virtual Net Metering for Renewable Energy) (Sixth Amendment) Guidelines, 2025",
+      "publisher": "Delhi Electricity Regulatory Commission",
+      "url": "https://www.derc.gov.in/sites/default/files/DERC%20%28Group%20Net%20Metering%20and%20Virtual%20Net%20Metering%20for%20Renewable%20Energy%29%20%28Sixth%20Amendment%29%20Guidelines%2C%202025.pdf",
+      "sha256": "076fd51d5ed4176dae1a5c72186e992ac246acdc3e273c12c111e70953958df2",
+      "type": "regulator_order",
+      "date": "2025-06-05",
+      "accessed": "2026-10-29"
+    },
+    "delhi-solar-sop-2024": {
+      "title": "OM: SOP on subsidy disbursal under Delhi Solar Energy Policy 2023",
+      "publisher": "GNCTD Department of Power",
+      "url": "https://solar.delhi.gov.in/public/assets/solar/SOP_CAPITAL_SUBSIDY.pdf",
+      "sha256": "6ce53d2fec8c48cb525f226a7fe959b3f40f45414e366d1a8ab2cbc8380c6e41",
+      "type": "government_page",
+      "date": "2024-10-11",
+      "accessed": "2026-10-29"
+    },
+    "delhi-solar-state-subsidy-page": {
+      "title": "Delhi Solar Portal: State Subsidy",
+      "publisher": "GNCTD Delhi Solar Portal",
+      "url": "https://solar.delhi.gov.in/page/state-subsidy",
+      "type": "government_page",
+      "accessed": "2026-10-29"
+    },
+    "delhi-gazette-277-2026": {
+      "title": "Delhi Gazette Extraordinary No. 277: Delhi Solar Energy Policy 2023 (Second Amendment), DOP-EE/21/2026/6436 (third-party hosted copy)",
+      "publisher": "GNCTD Department of Power (copy hosted by Corpseed)",
+      "url": "https://corpseed-main.s3.ap-south-1.amazonaws.com/corpseed/276476.pdf",
+      "sha256": "59a5f496b7f47990767af399bd7954cc7cd688fafc198e93897bed104b80003f",
+      "type": "gazette",
+      "date": "2026-09-17",
+      "accessed": "2026-10-29",
+      "note": "Read from a third-party copy, so values taken only from it are marked secondary. Worked bill examples on pp.25-26 assume a 3 kW sanctioned load; the FPPAS % they assume is not stated."
+    },
+    "taxheal-aadhaar-2026": {
+      "title": "Summary of Aadhaar notification for electricity subsidy, S.O. DOP-E/4/2026/E-353955/6764 (third-party)",
+      "publisher": "Taxheal",
+      "url": "https://www.taxheal.com/?p=142360",
+      "type": "other",
+      "date": "2026-10-01",
+      "accessed": "2026-10-29"
+    },
+    "swarajya-aadhaar-2026": {
+      "title": "Delhi makes Aadhaar mandatory for power subsidy",
+      "publisher": "Swarajya",
+      "url": "https://swarajyamag.com/news-brief/delhi-makes-aadhaar-mandatory-for-power-subsidy-as-annual-outlay-crosses-rs-4000-crore",
+      "type": "news",
+      "date": "2026-10-13",
+      "accessed": "2026-10-29"
+    },
+    "theprint-2026-08-21": {
+      "title": "Delhi govt considers giving power consumers option to opt out of subsidy (PTI)",
+      "publisher": "ThePrint",
+      "url": "https://theprint.in/india/delhi-govt-considers-giving-power-consumers-option-to-opt-out-of-subsidy/3021878/",
+      "type": "news",
+      "date": "2026-08-21",
+      "accessed": "2026-10-29"
+    },
+    "energetica-2026-03-25": {
+      "title": "Delhi Government allocates INR 3,942 crore for power, boosts subsidy and solar push",
+      "publisher": "Energetica India",
+      "url": "https://www.energetica-india.net/news/delhi-government-allocates-inr-3942-crore-for-power-boosts-subsidy-and-solar-push",
+      "type": "news",
+      "date": "2026-03-25",
+      "accessed": "2026-10-29"
+    },
+    "solarquarter-2026-08-13": {
+      "title": "DERC allows higher FPPAS recovery for Delhi discoms",
+      "publisher": "SolarQuarter",
+      "url": "https://solarquarter.com/2026/08/13/derc-allows-higher-fppas-recovery-for-delhi-discoms-amid-rising-power-purchase-costs/",
+      "type": "news",
+      "date": "2026-08-13",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "No DERC retail tariff order for FY 2026-27 was found; the FY 2021-22 schedule (w.e.f. 01.10.2021) is used. An order issued after the fetched pages would supersede this book.",
+    "FPPAS currency: BRPL verified for October 2026 (10%). BYPL verified only to September 2026 (10%; the extra 7.43% for 01.09.2026 to 09.09.2026 is not included). TPDDL verified only to the notice effective 10.08.2026 (18.50%, of which the 8.50% part ended 09.09.2026). No DERC relaxation order for July or August 2026 costs was found.",
+    "Electricity Tax of 5% of energy charges comes from a TPDDL FAQ of October 2021; not confirmed for BSES areas or for 2026, and the levying instrument was not fetched.",
+    "Slab method (telescopic) and fixed-charge method (whole load at its band rate) are inferred from the Delhi Gazette worked examples, not stated in a DERC clause. No load-rounding rule was found.",
+    "Discoms prorate slab boundaries and fixed charges to billing days; the engine uses calendar-month values.",
+    "Optional ToD for three-phase domestic connections (May to September only: peak 14:00-17:00 and 22:00-01:00 at +20%, off-peak 04:00-10:00 at -20%) is not encoded because the schema cannot limit ToD to certain months. FPPAS is levied after ToD.",
+    "GNCTD subsidy scheme order not fetched; the 50% base (whole bill) is taken from the Delhi Gazette worked example and news. The Aadhaar requirement from 01.10.2026 comes from a third-party summary of the notification; modelled as opt-in.",
+    "Subsidy eligibility for solar households is judged on gross consumption; the engine applies the 200/400-unit thresholds to billed (net) units, so it can over-credit solar households.",
+    "Net-metering year-end payout rate (discom APPC) not verified; export value is null, so year-end surplus is credited at Rs 0.",
+    "State solar capital subsidy: only the Rs 26,000/kW (max Rs 78,000) ceiling is modelled; the bid-cost-minus-CFA limb is not. The policy gazette was read from a third-party copy.",
+    "Meter rent not found. Late payment surcharge (18% per annum, per day of delay) not modelled.",
+    "DERC Supply Code clauses on meter testing, check meters and prepaid reconnection were not fetched; BRPL and TPDDL meter test fees were not fetched.",
+    "Served areas and websites of BRPL, BYPL and TPDDL were not captured in the cited sources.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-29",
+      "summary": "First FY2026-27 book. DERC has issued no retail tariff order since 30.09.2021, so energy and fixed charges, the 8% and 7% surcharges and the prepaid rebate are unchanged since 01.10.2021. FPPAS uses the latest per-discom notices found (BRPL October 2026, BYPL September 2026, TPDDL 10.08.2026)."
+    }
+  ]
+}

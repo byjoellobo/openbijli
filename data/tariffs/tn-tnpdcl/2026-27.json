@@ -1,0 +1,371 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "tn-tnpdcl",
+  "title": "Tamil Nadu retail tariff (TNERC), LT IA Domestic (TNPDCL)",
+  "state": "Tamil Nadu",
+  "stateCode": "TN",
+  "regulator": { "name": "Tamil Nadu Electricity Regulatory Commission", "short": "TNERC", "url": "https://tnerc.tn.gov.in/" },
+  "utilities": [
+    {
+      "id": "tnpdcl",
+      "name": "Tamil Nadu Power Distribution Corporation Limited (TNPDCL, erstwhile TANGEDCO)",
+      "shortName": "TNPDCL",
+      "servedArea": "Tamil Nadu (state-wide distribution licensee)",
+      "website": "https://www.tnpdcl.org/",
+      "solarResource": "chennai"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "effectiveTo": "2027-03-31",
+  "status": "partial",
+  "revision": { "month": 7, "note": "TNERC revises retail tariffs on 1 July (CPI-linked)" },
+  "order": {
+    "title": "TNERC Suo-motu Tariff Order No. 6 of 2025 for TNPDCL (FY2025-26, effective 01-07-2025), still in force in FY2026-27 because no FY2026-27 tariff order has been issued; consumer-payable rates from TNERC Orders No. 4 and 5 of 2026",
+    "cite": [
+      { "ref": "tnerc-to-6-2025", "page": 2, "quote": "This Order shall take effect on and from 01st July, 2025." },
+      { "ref": "tnerc-to-6-2025", "page": 10, "quote": "The Tariffs and other Charges determined in this Order will be valid until issue of the next Order." },
+      { "ref": "tnerc-tariff-orders-index" },
+      { "ref": "tnerc-subsidy-4-2026", "page": 7, "quote": "the tariff for energy charges payable by Domestic consumers with effect from 01-07-2025 are as follows" },
+      { "ref": "newkerala-tn-white-paper-2026" }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "LT IA",
+      "name": "LT IA Domestic",
+      "description": "Low Tension Tariff I-A: domestic, multi-tenements, old age homes and handlooms. Billed every two months, so all slab bounds are bimonthly units. The energy table is the TNERC-approved tariff; households pay the lower Government-subsidised payable schedule (see subsidies).",
+      "billingCycle": "bimonthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "approved",
+            "label": "TNERC-approved tariff (before Government subsidy)",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 400, "rate": 4.95 },
+              { "upTo": 500, "rate": 6.65 },
+              { "upTo": 600, "rate": 8.8 },
+              { "upTo": 800, "rate": 9.95 },
+              { "upTo": 1000, "rate": 11.05 },
+              { "upTo": null, "rate": 12.15 }
+            ]
+          }
+        ],
+        "note": "Commission-determined tariff for all LT IA consumers, stated in the order 'per month or ... for two months'. Consumers do not pay these rates: the Government pays the difference down to the payable schedule (payable_schedule subsidy). TNERC Orders No. 4 and 5 of 2026 still use the FY2025-26 approved rate of Rs 4.95 for 0-400 units.",
+        "cite": [
+          { "ref": "tnerc-to-6-2025", "page": 34, "quote": "From 0 to 200 units per month or 0-400 units for two months ... 495 ... From 501 units and above per month or 1001 units and above for two months ... 1215 (paise/kWh); Fixed Charges: Nil; *To be partly subsidised by the Government" },
+          { "ref": "tnerc-subsidy-5-2026", "page": 3, "quote": "101-200 units 2091.08 4.95 2.60 2.35 491.40" }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "nil",
+            "label": "No fixed charge (Nil)",
+            "bandBy": "none",
+            "method": "whole",
+            "bands": [{ "upTo": null, "amount": 0, "per": "connection" }],
+            "period": "month",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "The LT IA schedule shows fixed charges as 'Nil'.",
+        "cite": [{ "ref": "tnerc-to-6-2025", "page": 34, "quote": "Fixed Charges: Nil" }],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "per_solar_kwh",
+          "id": "solar-network-upto-10kw",
+          "name": "Network charge on rooftop solar generation (domestic up to 10 kW: 20% of LT network charge)",
+          "rate": 0.32,
+          "maxSolarKw": 10,
+          "variable": false,
+          "note": "Levied on the total solar generation under net metering and net feed-in. Rs 0.32/kWh is derived as 20% of the FY2025-26 LT network charge of Rs 1.60/kWh. For systems up to 10 kW, generation is assessed at 21% CUF or the inverter reading, whichever is lower (not modelled; pass generated units).",
+          "cite": [
+            { "ref": "tnpdcl-rts-policies", "page": 1, "quote": "20% of Rs1.6 ( up to 10 kW); 75% of Rs.1.6( above 10 kW)" },
+            { "ref": "tnpdcl-giss-salient-features", "page": 6, "quote": "To encourage the growth of solar power in domestic sector, the Commission proposes to levy 20% of network charges for domestic consumers of up to 10KW and 75% of network charges for the domestic consumers of above 10KW." },
+            { "ref": "tnerc-to-6-2025", "page": 19, "quote": "Wheeling/Network Charges HT Rs./kWh 1.04 LT Rs./kWh 1.60 Overall 1.49" },
+            { "ref": "tnerc-giss-regs-2021", "page": "gazette p.171 (reg 6.8)", "quote": "Net work charges are leviable for the total energy generated in Net metering and Net billing or Net feed-in mechanisms." }
+          ],
+          "verification": "secondary"
+        },
+        {
+          "kind": "per_solar_kwh",
+          "id": "solar-network-above-10kw",
+          "name": "Network charge on rooftop solar generation (domestic above 10 kW: 75% of LT network charge)",
+          "rate": 1.2,
+          "minSolarKw": 10,
+          "variable": false,
+          "note": "Levied on the total solar generation under net metering and net feed-in. Rs 1.20/kWh is derived as 75% of the FY2025-26 LT network charge of Rs 1.60/kWh.",
+          "cite": [
+            { "ref": "tnpdcl-rts-policies", "page": 1, "quote": "20% of Rs1.6 ( up to 10 kW); 75% of Rs.1.6( above 10 kW)" },
+            { "ref": "tnpdcl-giss-salient-features", "page": 6 },
+            { "ref": "tnerc-to-6-2025", "page": 19 },
+            { "ref": "tnerc-giss-regs-2021", "page": "gazette p.171 (reg 6.8)" }
+          ],
+          "verification": "secondary"
+        }
+      ],
+      "subsidies": [
+        {
+          "rule": "payable_schedule",
+          "id": "gotn-tariff-subsidy",
+          "name": "Government of Tamil Nadu tariff subsidy (payable schedule, 200 free units up to 500 units)",
+          "authority": "Government of Tamil Nadu",
+          "optIn": false,
+          "eligibility": "All LT IA domestic consumers, automatic. Up to 500 units per two months: first 200 units free (G.O.(Ms) No. 50, from 10-05-2026), 201-400 at Rs 4.70, 401-500 at Rs 6.30. Above 500 units per two months: first 100 units free, then 101-400 at Rs 4.70, 401-500 Rs 6.30, 501-600 Rs 8.40, 601-800 Rs 9.45, 801-1000 Rs 10.50, above 1000 Rs 11.55. Crossing 500 units moves the whole bill to the higher schedule. The Government also absorbed the 3.16% CPI increase of 01-07-2025 for LT IA, so payable rates did not change.",
+          "solarInteraction": "Not specified in the fetched orders.",
+          "schedules": [
+            {
+              "id": "upto-500",
+              "label": "Payable, up to 500 units per two months (from 10-05-2026)",
+              "when": { "upToUnits": 500 },
+              "method": "telescopic",
+              "slabs": [
+                { "upTo": 200, "rate": 0 },
+                { "upTo": 400, "rate": 4.7 },
+                { "upTo": null, "rate": 6.3 }
+              ]
+            },
+            {
+              "id": "above-500",
+              "label": "Payable, above 500 units per two months",
+              "method": "telescopic",
+              "slabs": [
+                { "upTo": 100, "rate": 0 },
+                { "upTo": 400, "rate": 4.7 },
+                { "upTo": 500, "rate": 6.3 },
+                { "upTo": 600, "rate": 8.4 },
+                { "upTo": 800, "rate": 9.45 },
+                { "upTo": 1000, "rate": 10.5 },
+                { "upTo": null, "rate": 11.55 }
+              ]
+            }
+          ],
+          "cite": [
+            { "ref": "tnerc-subsidy-5-2026", "page": "1-2", "quote": "free electricity of total 200 units bimonthly to domestic consumers with consumption upto 500 units bimonthly with effect from 10-05-2026 and those who consume electricity more than 500 units bimonthly, the existing tariff structure would continue including free electricity of 100 units bimonthly." },
+            { "ref": "tnerc-subsidy-5-2026", "quote": "approves the provisional subsidy of Rs.1545.14 Crores for provision of free electricity of total 200 units bimonthly for Domestic consumers with bimonthly consumption upto 500 units for the period from 10-05-2026 to 31-03-2027." },
+            { "ref": "tnerc-subsidy-4-2026", "page": 7, "quote": "the tariff for energy charges payable by Domestic consumers with effect from 01-07-2025 are as follows" },
+            { "ref": "tnerc-subsidy-4-2026", "page": "8-9", "quote": "d) For consumers who consume 251 units and above per month (or) 501 units and above per month ... From 0 to 50 units per month (or) 0 to 100 units for two months 495 495 Nil ... From 501 units and above per month (or) from 1001 units and above for two months ... 60 1155" },
+            { "ref": "tnerc-subsidy-4-2026", "quote": "Domestic (IA) Upto 500 units Rs.4.95/unit. 0 - 100 units (bimonthly) 101 - 200 units (bimonthly) Rs.2.60/unit. 201-300 units Rs.0.25/unit 301-400 units Rs. 0.25/unit 401-500 units Rs. 0.35/unit" },
+            { "ref": "tnerc-to-6-2025", "page": "11-12", "quote": "To exempt the following categories of consumers from the tariff increase for one year and undertake to compensate TNPDCL for the revenue loss apart from subsidy being extended at present." },
+            { "ref": "cag-200-units-2026" }
+          ],
+          "verification": "verified"
+        }
+      ]
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (TNERC GISS Regulations 2021)",
+        "default": true,
+        "exportRate": { "value": 0, "basis": "Surplus at 31 March lapses unpaid", "variable": false },
+        "settlement": { "period": "financial_year", "surplus": "lapses" },
+        "note": "Exports offset imports unit for unit at the retail tariff. Net surplus units are carried to the next billing cycle until the end of the settlement period (1 April to 31 March; the first period runs from commissioning to the next March), when they lapse without payment. The network charge on total generation still applies (see charges).",
+        "cite": [
+          { "ref": "tnerc-giss-regs-2021", "quote": "This process shall continue until the end of the settlement period. At the end of the settlement period, credit i.e the net units of surplus generation available if any shall get lapsed" },
+          { "ref": "tnpdcl-rts-policies", "page": 1, "quote": "TNPDCL is at present adopting Hon'ble TNERC's Generic Tariff Order for Grid interactive PV Solar Energy Generating System (GISS) Order No.8 of 2021 dated 22/10/2021.As per the above order Net-metering is adopted for domestic consumers" }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "net-feed-in",
+        "type": "net_billing",
+        "label": "Net feed-in (net billing), optional for domestic",
+        "default": false,
+        "exportRate": {
+          "value": 3.61,
+          "basis": "TNERC generic levelised feed-in tariff for 1-10 kW (Order No. 8 of 2021, 21% CUF on AC capacity); 11-150 kW Rs 3.37 and 151-999 kW Rs 3.10 are not modelled",
+          "variable": false
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Imports billed at the retail tariff, exports credited at the feed-in tariff, with the monetary credit carried to the next bill. At the end of a 12-month settlement period ending 31 March the consumer may take payment of the net credit or carry it over. The feed-in tariff is 20% higher for 18:00-21:00 exports (not modelled). TNPDCL's policy note says net metering is adopted for domestic consumers; the 2021 Regulations give domestic consumers net feed-in as an additional option.",
+        "cite": [
+          { "ref": "tnpdcl-giss-salient-features", "page": 5, "quote": "1-10 kW Rs.3.61 per kWh; 11-150 kW Rs.3.37 per kWh; 151-999 kW Rs.3.10 per kWh" },
+          { "ref": "tnerc-giss-regs-2021", "quote": "At the end of a 12-month settlement period, the consumer has the option to receive payment of the net credit balance (if any) or have such credit balance carried-over to the next settlement period" },
+          { "ref": "tnpdcl-rts-policies", "page": 1 }
+        ],
+        "verification": "secondary"
+      }
+    ],
+    "capacityLimit": {
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Plant capacity (AC) up to the sanctioned load or contracted demand. Cumulative net-metered and net-billed capacity on a distribution transformer is capped at 90% of the transformer's capacity. Net feed-in is limited to 999 kW."
+    },
+    "fees": "Registration fee Rs 500 for LT systems up to 20 kW (GISS Regulations 2021, reg 15.3). Solar single-phase meter caution deposit Rs 1,490 from 01-07-2025 (TNERC Misc. Charges Order No. 7 of 2025). Network charge on total solar generation: Rs 0.32/kWh up to 10 kW, Rs 1.20/kWh above 10 kW (modelled as charges).",
+    "notes": [
+      "Gross metering is not available to domestic or any LT consumers.",
+      "PM Surya Ghar central financial assistance per TNPDCL: Rs 30,000 (1 kW), Rs 60,000 (2 kW), Rs 78,000 (3 kW and above).",
+      "The TN Budget 2026-27 announced a state rooftop solar subsidy of up to Rs 1 lakh for domestic consumers (Rs 50 crore allocation), in convergence with PM Surya Ghar. Only news reports were found, with no G.O. or per-kW rule, so it is not modelled.",
+      "The Draft GISS Regulations 2024 (14-06-2024) are still listed as a draft by TNERC; the 2021 Regulations and Order No. 8 of 2021 still apply."
+    ],
+    "cite": [
+      { "ref": "tnerc-giss-regs-2021", "page": "reg 15.3" },
+      { "ref": "tnpdcl-giss-salient-features", "quote": "The existing and new consumers of all categories except domestic category and also the generators are eligible for gross metering ... LT consumers are not eligible for gross metering." },
+      { "ref": "tnerc-misc-charges-7-2025" },
+      { "ref": "tnpdcl-pmsg-subsidy", "page": 1, "quote": "SUBSIDY STRUCTURE OF PM-SURYA GHAR SCHEME ... 1 kW Rs 30000/- 2 kW Rs 60000/- 3 KW AND ABOVE Rs 78000/-" },
+      { "ref": "dtnext-tn-budget-2026", "quote": "domestic consumers will receive a subsidy of up to Rs 1 lakh to install rooftop solar panels ... An allocation of Rs 50 crore has been made for the scheme." },
+      { "ref": "deccan-chronicle-tn-rts-subsidy-2026" },
+      { "ref": "tnerc-draft-regulations" }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "tnerc-to-6-2025": {
+      "title": "TNERC Suo-motu Tariff Order No. 6 of 2025: Determination of Tariff for Distribution for FY2025-26 (TNPDCL)",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission (copy hosted by TNPDCL)",
+      "url": "https://www.tnpdcl.org/static/tnpdcl/assets/files/tariff/2025/TO062025/TO62025.pdf",
+      "sha256": "efc5a4600d4319bc81565a0001540fd2f5f5301461f9e61d5ec0f345acdf31c4",
+      "type": "regulator_order",
+      "date": "2025-06-30",
+      "accessed": "2026-10-29"
+    },
+    "tnerc-subsidy-4-2026": {
+      "title": "TNERC Order No. 4 of 2026: Provisional Tariff Subsidy Order for FY2026-27",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission",
+      "url": "https://tnerc.tn.gov.in/Orders/files/TO-Order%20No%20280420261156.pdf",
+      "sha256": "1eb20727bfa8bba5133c5d1a7579af80e42eac92c7400be52810f952f44fae00",
+      "type": "regulator_order",
+      "date": "2026-04-27",
+      "accessed": "2026-10-29"
+    },
+    "tnerc-subsidy-5-2026": {
+      "title": "TNERC Order No. 5 of 2026: Additional Tariff Subsidy Order for FY2026-27 (200 free units, G.O.(Ms) No. 50 dated 10-05-2026)",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission",
+      "url": "https://tnerc.tn.gov.in/Orders/files/TO-Order%20No%20270520261449.pdf",
+      "sha256": "a75c54c0ce775c9c2bbd49e1f55092f342b3bdd15c79217f80c91856b75160e4",
+      "type": "regulator_order",
+      "date": "2026-05-26",
+      "accessed": "2026-10-29"
+    },
+    "tnerc-tariff-orders-index": {
+      "title": "TNERC Tariff Orders index (no FY2026-27 retail tariff revision listed)",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission",
+      "url": "https://tnerc.tn.gov.in/TariffOrders.aspx",
+      "type": "government_page",
+      "accessed": "2026-10-29"
+    },
+    "tnerc-misc-charges-7-2025": {
+      "title": "TNERC Suo-motu Order No. 7 of 2025: Non-Tariff related Miscellaneous Charges",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission (copy hosted by TNPDCL)",
+      "url": "https://www.tnpdcl.org/static/tnpdcl/assets/files/tariff/2025/TO072025/TO072025.pdf",
+      "sha256": "e4ec2d45f824e1412bf353e943997bc5193a337ccc815af4778880ebaf73c13d",
+      "type": "regulator_order",
+      "date": "2025-06-30",
+      "accessed": "2026-10-29"
+    },
+    "tnerc-giss-regs-2021": {
+      "title": "TNERC (Grid Interactive Solar PV Energy Generating System) Regulations, 2021 (TN Govt Gazette No. 421)",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission / Government of Tamil Nadu",
+      "url": "https://tnerc.tn.gov.in/Regulation/files/Reg-221020211743Eng.pdf",
+      "sha256": "0c8be722ad4b0a211cf8bbf529ec16a052fb7ca84a283ec9afd3f7e52cfe2b33",
+      "type": "gazette",
+      "date": "2021-10-20",
+      "accessed": "2026-10-29"
+    },
+    "tnpdcl-giss-salient-features": {
+      "title": "Salient features / guidelines for TNERC Generic Tariff Order for GISS, Order No. 8 of 2021",
+      "publisher": "TANGEDCO / TNPDCL",
+      "url": "https://www.tnpdcl.org/static/tnpdcl/assets/files/linkpdf/Salientfeatures.pdf",
+      "sha256": "b36bfd434d0698fbc716af3ae5ba94a2432a05f65ab88a9c5e551b6d84666715",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Summarises TNERC Order No. 8 of 2021 dated 22-10-2021."
+    },
+    "tnpdcl-rts-policies": {
+      "title": "Roof top Solar: Policies Adopted (PM Surya Ghar Annexure 1)",
+      "publisher": "TNPDCL",
+      "url": "https://www.tnpdcl.org/static/tnpdcl/assets/files/pmsuryaghar/annuxure1.pdf",
+      "sha256": "6aebfbe0c8c41275682aca09a8f31714aa92dbad12b395cdd46a4a343e15e3a8",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Undated."
+    },
+    "tnpdcl-pmsg-subsidy": {
+      "title": "Subsidy Structure of PM-Surya Ghar Scheme (Annexure 3)",
+      "publisher": "TNPDCL",
+      "url": "https://www.tnpdcl.org/static/tnpdcl/assets/files/pmsuryaghar/annuxure3.pdf",
+      "sha256": "7debb41c3812c56e20ed845c750c17ed5d89e84e33d46d43656ebe724a0dfed9",
+      "type": "utility_page",
+      "accessed": "2026-10-29",
+      "note": "Undated."
+    },
+    "tnerc-draft-regulations": {
+      "title": "TNERC Draft Regulations list (Draft GISS Regulations 2024 still a draft)",
+      "publisher": "Tamil Nadu Electricity Regulatory Commission",
+      "url": "https://tnerc.tn.gov.in/ViewDR.aspx",
+      "type": "government_page",
+      "accessed": "2026-10-29"
+    },
+    "tn-electricity-tax-act-2003": {
+      "title": "Tamil Nadu Tax on Consumption or Sale of Electricity Act, 2003",
+      "publisher": "Government of Tamil Nadu",
+      "url": "https://cms.tn.gov.in/cms_migrated/document/act_notification/electricityact_2003_1.pdf",
+      "sha256": "59489db29e345b13deddfb4dea99f2726da6710274086b515ce7a57e8e1c92fa",
+      "type": "gazette",
+      "accessed": "2026-10-29"
+    },
+    "newkerala-tn-white-paper-2026": {
+      "title": "Tamil Nadu Minister CTR Nirmal Kumar releases white paper on Electricity Board (no tariff hike this year)",
+      "publisher": "NewKerala",
+      "url": "https://www.newkerala.com/news/a/tamil-nadu-minister-ctr-nirmal-kumar-releases-white-584.htm",
+      "type": "news",
+      "date": "2026-06-25",
+      "accessed": "2026-10-29"
+    },
+    "dtnext-tn-budget-2026": {
+      "title": "TN Budget 2026: smart meters for Chennai, rooftop solar subsidy and EV charging push announced in first TVK budget",
+      "publisher": "DT Next",
+      "url": "https://www.dtnext.in/news/tamilnadu/tn-budget-2026-smart-meters-for-chennai-rooftop-solar-subsidy-and-ev-charging-push-announced-in-first-tvk-budget",
+      "type": "news",
+      "date": "2026-08-05",
+      "accessed": "2026-10-29"
+    },
+    "deccan-chronicle-tn-rts-subsidy-2026": {
+      "title": "TN's Subsidy Scheme to Bring Down Rooftop Solar Panels Cost for Domestic Consumers",
+      "publisher": "Deccan Chronicle",
+      "url": "https://www.deccanchronicle.com/southern-states/tamil-nadu/tns-subsidy-scheme-to-bring-down-rooftop-solar-panels-cost-for-domestic-consumers-1979505",
+      "type": "news",
+      "date": "2026-08-15",
+      "accessed": "2026-10-29"
+    },
+    "cag-200-units-2026": {
+      "title": "200 units free electricity scheme Tamil Nadu: what you need to know",
+      "publisher": "Citizen consumer and civic Action Group (CAG)",
+      "url": "https://www.cag.org.in/blogs/200-units-free-electricity-scheme-tamil-nadu-what-you-need-know",
+      "type": "other",
+      "date": "2026-06-09",
+      "accessed": "2026-10-29",
+      "note": "Worked examples (220 units about Rs 94, 500 units about Rs 1,570, 510 units about Rs 2,124, energy charges only) match the payable schedules in this book."
+    }
+  },
+  "gaps": [
+    "No FY2026-27 TNERC retail tariff order: T.O. 6/2025 (effective 01-07-2025) stays in force 'until issue of the next Order'. The CPI-linked revision due on 01-07-2026 does not appear on TNERC's tariff orders index, and the Energy Minister said on 25-06-2026 there would be no hike this year (news). A later order would change the approved and possibly the payable rates.",
+    "From 2026-04-01 to 2026-05-09, consumers up to 500 units per two months paid Rs 2.35/unit for 101-200 units (TNERC Order No. 4 of 2026); G.O.(Ms) No. 50 made 101-200 free from 2026-05-10. This book applies the post-10-05-2026 payable schedule to the whole year, so bills for that period are understated by up to Rs 235.",
+    "Electricity tax on LT IA domestic bills: the TN Tax on Consumption or Sale of Electricity Act, 2003 (source tn-electricity-tax-act-2003) allows 5%-10% of the net charge and exempts only agricultural and hut connections; no notification or bill evidence confirms whether domestic consumers pay it. CAG's worked bills match energy charges with no tax. Not modelled.",
+    "Fuel and power purchase cost adjustment: none found in the LT IA schedule of T.O. 6/2025 or any other TN retail source. Not modelled.",
+    "Meter rent: TNERC Misc. Charges Order No. 7 of 2025 lists meter rent only for HT services; none is modelled for LT IA (inferred from absence).",
+    "Net feed-in rate Rs 3.61/kWh (1-10 kW) is from TNERC Order No. 8 of 2021; a 2021 report said it was valid to 31-03-2023 and no TNERC order confirming later validity was found, though TNPDCL still lists it. The 11-150 kW (Rs 3.37) and 151-999 kW (Rs 3.10) rates and the 20% higher feed-in rate for 18:00-21:00 are not modelled. The year-end option to take payment or carry the credit forward is simplified to a per-cycle credit.",
+    "Network charge on rooftop solar: Rs 0.32 and Rs 1.20 per kWh are derived as 20% and 75% of the FY2025-26 LT network charge of Rs 1.60/kWh (TNPDCL's note says 'Rs1.6'). No TNERC order restating the domestic solar network charge at this base (rather than Rs 1.27 in Order No. 8 of 2021) was found. The 21% CUF cap on assessed generation for systems up to 10 kW is not modelled.",
+    "The 90% distribution-transformer cap on net-metered capacity and the 999 kW net feed-in limit are described in capacityLimit.note only.",
+    "State rooftop solar subsidy of up to Rs 1 lakh (TN Budget 2026-27): news only, with no G.O., per-kW formula or start date, so no stateSubsidy is modelled.",
+    "TN still bills domestic consumers bimonthly in all 2026 sources; no monthly billing rollout was found.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-29",
+      "summary": "First FY2026-27 book. No FY2026-27 TNERC tariff order exists, so it encodes T.O. 6/2025 (in force from 01-07-2025 until the next order) with the consumer-payable schedules from TNERC Orders No. 4 and 5 of 2026 (G.O.(Ms) No. 50: 200 free units up to 500 units from 10-05-2026)."
+    }
+  ]
+}

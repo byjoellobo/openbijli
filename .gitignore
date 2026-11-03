@@ -1,0 +1,24 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+
+# Generated from data/ by scripts/build-data.ts
+packages/data/src/generated/
+
+# PlatformIO
+hardware/meter-sakshi/firmware/.pio/
+hardware/meter-sakshi/firmware/include/secrets.h
+
+# Local scratch
+.remember/
+*.local.*
+
+# Browser automation artefacts
+.playwright-mcp/
+
+# Copied into the data package at build time
+packages/data/tariff-book.schema.json

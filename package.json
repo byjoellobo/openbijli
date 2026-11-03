@@ -1,0 +1,39 @@
+{
+  "name": "open-tariff-india",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Versioned, source-linked Indian electricity tariff data, a TypeScript bill engine, a rooftop solar payback simulator and the Meter Sakshi non-contact check meter.",
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "packages/data",
+    "packages/engine",
+    "packages/evidence",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "data:build": "tsx scripts/build-data.ts",
+    "data:check": "tsx scripts/build-data.ts --check",
+    "data:diff": "tsx scripts/tariff-diff.ts",
+    "data:season": "tsx scripts/season-check.ts",
+    "data:hash": "tsx scripts/hash-source.ts",
+    "solar:fetch": "tsx scripts/fetch-solar-resource.ts",
+    "sample:log": "tsx scripts/make-sample-log.ts",
+    "typecheck": "npm run data:build && tsc -p tsconfig.json --noEmit",
+    "test": "npm run data:build && vitest run",
+    "test:coverage": "npm run data:build && vitest run --coverage",
+    "build": "npm run data:build && npm run build --workspaces --if-present",
+    "dev": "npm run data:build && npm run dev -w @open-tariff-india/web"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.0.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5",
+    "zod": "^4.6.7"
+  }
+}

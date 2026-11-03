@@ -1,0 +1,30 @@
+{
+  "name": "@open-tariff-india/engine",
+  "version": "0.1.0",
+  "description": "Indian electricity bill engine (slabs, fixed charges, ToD, subsidies, net metering/net billing/gross metering) and a rooftop solar right-sizing and payback simulator.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["india", "electricity", "bill", "tariff", "rooftop-solar", "net-metering", "payback", "pm-surya-ghar"],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "open-tariff": "./dist/cli.js"
+  },
+  "files": ["dist", "src", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@open-tariff-india/data": "0.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@open-tariff-india/data",
+  "version": "0.1.0",
+  "description": "Versioned, source-linked Indian electricity retail tariffs (slabs, fixed charges, ToD, subsidies, rooftop solar metering and export rates).",
+  "type": "module",
+  "license": "MIT AND CC-BY-4.0",
+  "keywords": ["india", "electricity", "tariff", "discom", "rooftop-solar", "net-metering", "open-data"],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": {
+      "source": "./src/validate.ts",
+      "types": "./dist/validate.d.ts",
+      "import": "./dist/validate.js"
+    },
+    "./tariff-book.schema.json": "./tariff-book.schema.json"
+  },
+  "files": ["dist", "src", "tariff-book.schema.json", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node -e \"require('fs').copyFileSync('../../data/schema/tariff-book.schema.json','tariff-book.schema.json')\""
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

@@ -1,0 +1,42 @@
+name: Tariff season
+
+# Twice a month, check which tariff books need a new financial year's file and keep one
+# tracking issue up to date. Most regulators issue orders around April; Tamil Nadu in July.
+on:
+  schedule:
+    - cron: '30 3 1,15 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsx scripts/season-check.ts > checklist.md
+      - run: npx tsx scripts/season-check.ts --json > checklist.json
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const rows = JSON.parse(fs.readFileSync('checklist.json', 'utf8'));
+            const pending = rows.filter((r) => r.status !== 'current');
+            const title = 'Tariff season checklist';
+            const { owner, repo } = context.repo;
+            const open = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', labels: 'tariff-season' });
+            const existing = open.find((i) => i.title === title);
+            const body = fs.readFileSync('checklist.md', 'utf8');
+            if (pending.length === 0) {
+              if (existing) await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'closed', body });
+              return;
+            }
+            if (existing) await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            else await github.rest.issues.create({ owner, repo, title, body, labels: ['tariff-season'] });

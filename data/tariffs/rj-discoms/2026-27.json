@@ -1,0 +1,403 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "rj-discoms",
+  "title": "Rajasthan DISCOMs retail tariff (RERC), Domestic DS/LT-1",
+  "state": "Rajasthan",
+  "stateCode": "RJ",
+  "regulator": { "name": "Rajasthan Electricity Regulatory Commission", "short": "RERC", "url": "https://rerc.rajasthan.gov.in/" },
+  "utilities": [
+    {
+      "id": "jvvnl",
+      "name": "Jaipur Vidyut Vitran Nigam Limited",
+      "shortName": "JVVNL",
+      "servedArea": "Jaipur Discom area, headquartered in Jaipur (district list not verified)",
+      "solarResource": "jaipur"
+    },
+    {
+      "id": "avvnl",
+      "name": "Ajmer Vidyut Vitran Nigam Limited",
+      "shortName": "AVVNL",
+      "servedArea": "Ajmer Discom area, headquartered in Ajmer (district list not verified)",
+      "solarResource": "ajmer"
+    },
+    {
+      "id": "jdvvnl",
+      "name": "Jodhpur Vidyut Vitran Nigam Limited",
+      "shortName": "JdVVNL",
+      "servedArea": "Jodhpur Discom area, headquartered in Jodhpur (district list not verified)",
+      "solarResource": "jodhpur"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "status": "partial",
+  "order": {
+    "title": "RERC Order in Petition No. RERC 2378/2025, 2379/2025, 2380/2025: True up for FY 2024-25 and Aggregate Revenue Requirement, Tariff and Investment Plan for FY 2026-27 of JVVNL, AVVNL and JdVVNL (30.03.2026). Retail tariff carried over unchanged from the FY 2025-26 order dated 03.10.2025.",
+    "cite": [
+      { "ref": "rerc-to-2026", "page": "p.231, para 5.9.18", "quote": "This tariff order shall come into force from 01.04.2026 and remain in force till the next tariff order of the Commission. All existing provisions which are not modified by this order shall continue to be in force." },
+      { "ref": "rerc-to-2026", "page": "p.222, para 5.7.3", "quote": "This year the Commission has not made any change in the tariff" }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "DS/LT-1",
+      "name": "Domestic (DS/LT-1)",
+      "description": "Low-tension domestic supply: General Domestic groups 1 to 4 (by monthly consumption) and BPL, Astha card holders and Small Domestic consumers. The FY2026-27 order (30.03.2026) made no tariff change, so the FY2025-26 tariff (order of 03.10.2025, applicable from 01.10.2025) carries over from 01.04.2026 until the next order. BPL, Astha card holders and Small Domestic consumers (average monthly consumption up to 50 units in the previous financial year) pay Rs 4.75 for the first 50 units and the general domestic slab rates for additional units, with a Rs 150 per connection fixed charge, so the same tables apply up to 150 units. HT domestic (DS/HT-1, above 50 kVA: Rs 6.50/unit and Rs 300/kVA/month) is out of scope.",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "domestic",
+            "label": "Domestic slabs (all General Domestic groups; BPL/Astha/Small Domestic above 50 units)",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 50, "rate": 4.75 },
+              { "upTo": 150, "rate": 6.0 },
+              { "upTo": 500, "rate": 7.0 },
+              { "upTo": null, "rate": 7.5 }
+            ]
+          }
+        ],
+        "note": "Energy rates are identical across General Domestic groups 1 to 4, so one table covers all of them; the group only changes the fixed charge. Slabs are worded 'up to first 50 units', 'above 50 and up to 150 units' and so on, read as block-by-block (telescopic) pricing.",
+        "cite": [
+          { "ref": "rerc-to-2026", "page": "p.333, Annexure C", "quote": "General Domestic 4 (Consumption above 500 units per month): Consumption up to first 50 units per month Rs. 4.75 per unit; Consumption above 50 units and up to 150 units per month Rs. 6.00 per unit; Consumption above 150 units and up to 500 units per month Rs. 7.00 per unit; Consumption above 500 units per month Rs. 7.50 per unit" },
+          { "ref": "rerc-to-2026", "page": "p.334, Annexure C note", "quote": "In case any BPL, Astha Card Holder and Small Domestic consumers has consumed more than 50 unit per month in any billing cycle, the consumer will be charged as per the applicable tariff of the respective slab under the LT-I domestic category for the additional units consumed." },
+          { "ref": "jvvnl-tariff-2023", "page": "p.2, general condition 11", "quote": "Small Domestic Consumer are those consumers whose average monthly consumption of previous financial year, is upto 50 units." }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "by-consumption-group",
+            "label": "Fixed charge by General Domestic group (Rs 150 to Rs 800 per connection)",
+            "bandBy": "units",
+            "unitsBasis": "cycle",
+            "method": "whole",
+            "bands": [
+              { "upTo": 150, "amount": 150, "per": "connection" },
+              { "upTo": 300, "amount": 300, "per": "connection" },
+              { "upTo": 500, "amount": 500, "per": "connection" },
+              { "upTo": null, "amount": 800, "per": "connection" }
+            ],
+            "period": "month",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "General Domestic 1 (up to 150 units/month) Rs 150, GD-2 (150-300) Rs 300, GD-3 (300-500) Rs 500, GD-4 (above 500) Rs 800 per connection per month; BPL, Astha card holders and Small Domestic Rs 150. The engine picks the group from the billing month's units; the older JVVNL 2023 tariff booklet levied fixed charges on the previous financial year's average monthly consumption, which is not confirmed for this tariff.",
+        "cite": [
+          { "ref": "rerc-to-2026", "page": "p.333, Annexure C, General Domestic 4 row (table layout reconstructed; GD-1 Rs. 150, GD-2 Rs. 300, GD-3 Rs. 500 per connection per month)", "quote": "Rs. 800 per connection per month" },
+          { "ref": "rerc-to-2026", "page": "p.333, Annexure C", "quote": "BPL, Astha Card Holders and Small Domestic* | Consumption up to first 50 units per Month | Rs. 4.75 per unit | Rs. 150 per connection per month" }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "per_kwh",
+          "id": "reg-surcharge-fppas-up-to-100",
+          "name": "Regulatory Surcharge including FPPAS (monthly consumption up to 100 units)",
+          "rate": 0.7,
+          "whenUnits": { "upToUnits": 100 },
+          "variable": true,
+          "asOf": "2026-03-30",
+          "note": "Combined ceiling for FPPAS plus Regulatory Surcharge: the Regulatory Surcharge is Rs 0.70 minus that month's FPPAS, so the consumer pays Rs 0.70/unit in total while FPPAS stays below the ceiling. Levied since the tariff of 01.10.2025 and continued in FY2026-27. The DISCOMs projected FPPAS at Rs 0.14/unit for FY2026-27.",
+          "cite": [
+            { "ref": "rerc-to-2026", "page": "pp.223-224", "quote": "allowed levy of Regulatory Surcharge including FPPAS from the consumers @ Rs. 0.70 from Domestic consumers with monthly consumption up to 100 units and @ Rs. 1.00 from all other consumer categories" },
+            { "ref": "rerc-to-2026", "quote": "based on the actual FPPAS observed during the first six months of FY 2025-26, which was approximately Rs. 0.11 per unit, the Discoms have projected the FPPAS for FY 2026-27 to be Rs. 0.14 per unit." }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "reg-surcharge-fppas-above-100",
+          "name": "Regulatory Surcharge including FPPAS (monthly consumption above 100 units)",
+          "rate": 1.0,
+          "whenUnits": { "aboveUnits": 100 },
+          "variable": true,
+          "asOf": "2026-03-30",
+          "note": "Rs 1.00/unit is the combined ceiling of FPPAS and Regulatory Surcharge for domestic consumers above 100 units/month (and all other categories), applied to all units.",
+          "cite": [
+            { "ref": "rerc-to-2026", "page": "pp.223-224", "quote": "allowed levy of Regulatory Surcharge including FPPAS from the consumers @ Rs. 0.70 from Domestic consumers with monthly consumption up to 100 units and @ Rs. 1.00 from all other consumer categories" },
+            { "ref": "rerc-to-2025", "page": "p.130", "quote": "This essentially implies is that Rs. 1.00/unit shall be the ceiling limit of the FPPAS and Regulatory Surcharge combined." }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "special-fsa",
+          "name": "Special FSA (APRL change-in-law recovery)",
+          "rate": 0.071,
+          "variable": false,
+          "asOf": "2026-03-30",
+          "note": "Rs 0.071/unit for monthly-billed consumers in 60 equal instalments (Rs 0.142/unit in 30 instalments for bimonthly billing), under orders dated 01.09.2022 and 01.07.2024, charged separately from FPPAS and the Regulatory Surcharge. The end month was not verified and may fall within FY2026-27 or FY2027-28.",
+          "cite": [
+            { "ref": "rerc-to-2026", "page": "p.100", "quote": "allowed special FSA at the rate of Rs. 0.142/ unit to be recovered from the consumers being billed on bimonthly basis in 30 equal installments and at the rate of Rs. 0.071/Unit to be recovered from the consumers being billed on monthly basis in 60 equal installments" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "urban-cess",
+          "name": "Urban cess",
+          "rate": 0.15,
+          "appliesIf": { "area": "urban" },
+          "whenUnits": { "aboveUnits": 100 },
+          "variable": false,
+          "note": "Fifteen paise per unit on energy consumed within municipal areas (mapped to area 'urban'). Domestic consumption in a municipal area is exempt when it does not exceed 100 units per month, so the cess applies to all units only above 100 units. Rajasthan Electricity (Duty) Act 1962 s.3C, read from a legal database copy.",
+          "cite": [
+            { "ref": "lawgist-ed-act-1962", "page": "s.3C", "quote": "a cess to be called \" urban cess \" at the rate of 2 [fifteen paise] per unit ... (e) consumed in domestic category in municipal area where consumption does not exceed 100 units per month;" }
+          ],
+          "verification": "secondary"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "water-conservation-cess",
+          "name": "Water conservation cess",
+          "rate": 0,
+          "variable": false,
+          "note": "The cess is ten paise per unit, but energy consumed in the domestic category is exempt (s.3B proviso (c)). Kept at 0 to record the exemption.",
+          "cite": [
+            { "ref": "lawgist-ed-act-1962", "page": "s.3B", "quote": "a cess to be called \"water conservation cess\" at the rate of ten paise per unit: Provided that no cess under this section shall be levied on the energy- ... (c) consumed in domestic category;" }
+          ],
+          "verification": "secondary"
+        }
+      ],
+      "tod": {
+        "applicability": "Consumers with connected load above 10 kW (except agriculture and PSL) that have ToD-capable or smart meters; adjustments are on energy charges",
+        "appliesIf": { "minLoadKw": 10 },
+        "mandatory": true,
+        "periods": [
+          {
+            "id": "morning-peak",
+            "name": "Morning peak surcharge",
+            "windows": [{ "from": "06:00", "to": "08:00" }],
+            "adjustment": { "type": "percent_of_energy_rate", "value": 5 }
+          },
+          {
+            "id": "solar-hours",
+            "name": "Solar-hours rebate",
+            "windows": [{ "from": "12:00", "to": "16:00" }],
+            "adjustment": { "type": "percent_of_energy_rate", "value": -10 }
+          },
+          {
+            "id": "evening-peak",
+            "name": "Evening peak surcharge",
+            "windows": [{ "from": "18:00", "to": "22:00" }],
+            "adjustment": { "type": "percent_of_energy_rate", "value": 10 }
+          }
+        ],
+        "note": "Most small domestic consumers are not on ToD. The order uses connected load above 10 kW; the engine compares sanctioned load and its minimum is inclusive, so a household at exactly 10 kW is treated as eligible. The meter requirement is not checked by the engine.",
+        "cite": [
+          { "ref": "rerc-to-2026", "page": "p.338", "quote": "ToD Rebate and Surcharge (applicable for consumers with connected load above 10kW except agriculture and PSL category) ... 6:00 AM to 8:00 AM ... 12:00 PM to 4:00 PM 6:00 PM to 10:00 PM ... Surcharge on energy charges Rebate on energy charges Surcharge on energy charges ... 5% 10% 10%" }
+        ],
+        "verification": "verified"
+      },
+      "subsidies": [
+        {
+          "rule": "free_units",
+          "id": "mukhyamantri-nishulk-bijli",
+          "name": "Mukhyamantri Nishulk Bijli Yojana",
+          "authority": "Government of Rajasthan",
+          "units": 100,
+          "optIn": true,
+          "eligibility": "Registered domestic beneficiaries (about 1.04 crore registered) receive up to 100 units of free electricity per month; units above 100 are billed at the normal tariff (modelled as the first 100 units credited at the slab rates). Whether fixed charges, the Regulatory Surcharge/FPPAS, duty and cesses are also waived within the free units is not verified, so they stay payable here.",
+          "solarInteraction": "Under the 150 Unit Nishulk Bijli Yojana (launched 14 October 2025, converging with PM Surya Ghar), registered beneficiaries who install at least 1.1 kW of rooftop solar get up to 150 units/month free, with units beyond 150 billed at normal rates; consumers using under 150 units are to be covered in phases through community solar plants at substations. The benefit is being raised from 100 to 150 units in a phased manner. This book applies only the 100-unit benefit; the 150-unit benefit for solar adopters is not modelled.",
+          "cite": [
+            { "ref": "vikaspedia-150-unit", "quote": "Earlier, the state operated the Mukhyamantri Nishulk Bijli Yojana, which provided free electricity for up to 100 units per month." },
+            { "ref": "vikaspedia-150-unit", "quote": "Residents receive free electricity up to 150 units per month after installing a rooftop solar plant." },
+            { "ref": "rerc-to-2026", "page": "p.114", "quote": "increasing the amount of electricity from 100 to 150 units per month in a phased manner by installing free rooftop solar plants under PM Surya Ghar: Muft Bijli Yojana" },
+            { "ref": "rerc-to-2026", "page": "p.25", "quote": "rooftop solar installations are being implemented to provide 150 units/month free electricity under Mukhyamantri Nishulk Bijli Yojana through PM Surya Ghar with additional State subsidy support." },
+            { "ref": "drishti-2025-04" }
+          ],
+          "verification": "secondary"
+        }
+      ]
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering, domestic (RERC DRE Regulations 2021 as amended)",
+        "default": true,
+        "minKw": 1,
+        "maxKw": 1000,
+        "exportRate": {
+          "value": 3.26,
+          "basis": "Domestic net metering: weighted average tariff of large-scale (5 MW and more) solar projects discovered through competitive bidding in the last financial year and adopted by RERC, plus 25%. Rs 3.26/unit as stated in the FY2026-27 order; recomputed annually.",
+          "variable": true
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Domestic surplus exported in a billing period is bought at the export rate and credited as money in the next billing cycle; unadjusted net credited units at the end of the financial year are bought at the same rate and credited in the first month of the next year (Reg. 12.6.1(c)). Net imports are billed at the slab matching total consumption from all sources (First Amendment 2023), which the engine does not model: it applies slabs to net billed units. Inverter AC output above the contracted AC capacity in any 15/30-minute block lapses. Non-domestic net-metering surplus lapses each billing period.",
+        "cite": [
+          { "ref": "rerc-dre-regs-2021", "quote": "the excess quantum exported by such domestic consumer shall be purchased by the Distribution Licensee at the weighted average tariff of large-scale solar projects of 5 MW and more, discovered through Competitive Bidding in last Financial Year, and adopted by the Commission plus 25%." },
+          { "ref": "rerc-dre-regs-2021", "page": "Reg. 12.6.1(c)", "quote": "The unadjusted net credited Units of electricity as at the end of each financial year for the domestic category consumer shall be purchased by the Distribution Licensee at the same rate as mentioned in 12.6.1 (a) and will be credited in the account of the consumer within the first month of the following year." },
+          { "ref": "rerc-dre-amend1-2023", "page": "clause 4(4)", "quote": "Provided that, for Net Metering consumers the Net imported energy (Total Consumption from all sources- Allowable Solar Generation) from the grid shall be billed according to the applicable slab corresponding to the total consumption from all sources." },
+          { "ref": "rerc-to-2026", "page": "p.304", "quote": "the state has set lucrative export tariffs at Rs. 3.26/unit for Net-Metering for domestic category and Rs. 3.66/unit for Net-Billing" }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "net-billing",
+        "type": "net_billing",
+        "label": "Net billing (RERC DRE Regulations 2021 as amended)",
+        "default": false,
+        "minKw": 1,
+        "maxKw": 1000,
+        "exportRate": {
+          "value": 3.66,
+          "basis": "Weighted average tariff discovered through competitive bidding for the technology in the previous financial year and adopted by RERC, plus a 40% incentive (First Amendment 2023); fixed for the whole agreement. Rs 3.66/unit as stated in the FY2026-27 order.",
+          "variable": false
+        },
+        "settlement": { "period": "financial_year", "surplus": "paid_at_export_rate" },
+        "note": "Bill = fixed charges + other levies + (EDL x TRST) - (ERE x TPPA) - billing credit. Monetary billing credit is carried forward month to month; credit left at the end of the settlement period (April to March) is paid by 15 May of the next financial year and lapses if the consumer leaves the arrangement. The engine credits exported units at the export rate each bill.",
+        "cite": [
+          { "ref": "rerc-dre-amend1-2023", "quote": "The Distribution Licensee shall enter into Connection Agreement at the weighted average tariff discovered through Competitive Bidding for respective technology in previous Financial Year and adopted by the Commission plus an incentive of 40%." },
+          { "ref": "rerc-to-2026", "page": "p.304", "quote": "the state has set lucrative export tariffs at Rs. 3.26/unit for Net-Metering for domestic category and Rs. 3.66/unit for Net-Billing" },
+          { "ref": "rerc-dre-regs-2021", "page": "Reg. 2.1(bb)", "quote": "\"Settlement Period\" means the period at the end of which Net Metering/ Net Billing settlement between the Distribution Licensee and the consumer takes place, generally beginning from the first day of April of a calendar year and ending with the thirty-first day of March of the following calendar year" }
+        ],
+        "verification": "verified"
+      }
+    ],
+    "capacityLimit": {
+      "maxKw": 1000,
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Above 1 kW and up to 1 MW per premises, not exceeding 100% of sanctioned load or contract demand (Reg. 7.2-7.3). Distribution transformer cumulative cap raised from 50% to 80% of DT capacity (First Amendment 2023). Domestic applications up to 10 kW are deemed feasible without a technical feasibility study (Second and Third Amendments)."
+    },
+    "stateSubsidy": {
+      "description": "Rajasthan state top-up of a flat Rs 17,000 per eligible system: a rooftop plant of at least 1.1 kW installed under PM Surya Ghar by a registered Mukhyamantri Nishulk Bijli Yojana beneficiary (150 Unit Nishulk Bijli Yojana), on top of Rs 33,000 central assistance for 1.1 kW (Rs 50,000 in total). Drishti IAS describes it as 'up to Rs 17,000'. Encoded as Rs 17,000/kW capped at Rs 17,000, so any system of 1 kW or more gets Rs 17,000; only scheme beneficiaries actually qualify.",
+      "tiers": [{ "upToKw": null, "perKw": 17000 }],
+      "capInr": 17000,
+      "cite": [
+        { "ref": "vikaspedia-150-unit", "quote": "The Rajasthan Government adds Rs. 17,000 as an additional subsidy." },
+        { "ref": "drishti-2025-04", "quote": "up to Rs 17,000" }
+      ],
+      "verification": "secondary"
+    },
+    "fees": "Application fee, security deposit and meter testing charges are waived for domestic consumers under net metering, virtual net metering and group net metering until the target of five lakh houses is reached; the connection agreement is also waived for domestic net metering until then (Third Amendment 2025, Reg. 15.8). Rooftop net and gross metering plants are excluded from Parallel Operation Charges.",
+    "notes": [
+      "150 Unit Nishulk Bijli Yojana: registered Mukhyamantri Nishulk Bijli Yojana beneficiaries who install at least 1.1 kW of rooftop solar under PM Surya Ghar get up to 150 units/month free (consent portal opened 13.10.2025), plus a Rs 1,100 DISCOM incentive for the first 10 lakh beneficiaries and a free smart meter.",
+      "Group Net Metering and Virtual Net Metering (Third Amendment 2025, 1 kW to 1 MW, not open to net-billing prosumers) settle surplus at the domestic net-metering rate; domestic GNM/VNM consumers are exempt from banking, transmission and wheeling charges (Reg. 15.4). Not modelled as regimes because they allocate generation across several connections.",
+      "Export rates of Rs 3.26 (net metering) and Rs 3.66 (net billing) are stated in the discussion section of the FY2026-27 order (p.304), not in a dedicated rate order."
+    ],
+    "cite": [
+      { "ref": "rerc-dre-regs-2021", "page": "Reg. 7.2", "quote": "The maximum Renewable Energy generating system capacity to be installed at any Eligible Consumer's premises shall not exceed 100% of the Sanctioned Load/Contract Demand of the consumer" },
+      { "ref": "rerc-dre-amend3-2025", "page": "Reg. 15.8", "quote": "the requirement of payment of application fee, security deposit and meter testing charges, for domestic category consumers installing plants under the Net Metering, Virtual Net Metering and Group Net Metering arrangement, shall stand waived off till the achievement of the target of five lakh houses" },
+      { "ref": "rerc-dre-amend3-2025", "page": "Reg. 15.4", "quote": "Domestic Consumers (self owned and RESCO Owned) under VNM/GNM ... shall be exempted from all charges viz banking charges, Transmission charges" },
+      { "ref": "rerc-dre-amend2-2024" }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "rerc-to-2026": {
+      "title": "RERC Order: True up FY 2024-25, ARR, Tariff and Investment Plan FY 2026-27 of JVVNL, AVVNL, JdVVNL (Petitions 2378-2380/2025)",
+      "publisher": "Rajasthan Electricity Regulatory Commission",
+      "url": "https://rerc.rajasthan.gov.in/rerc-user-files/tariff-orders",
+      "type": "regulator_order",
+      "date": "2026-03-30",
+      "accessed": "2026-10-29",
+      "note": "Listing row 'True up 2024-25, ARR, Tariff and Investment Plan 2026-27 of Discoms' dated 30/03/2026; the PDF is served by an ASP.NET postback with no direct URL. Printed page numbers equal PDF page numbers."
+    },
+    "rerc-to-2025": {
+      "title": "RERC Order: ARR, Tariff and Investment Plan FY 2025-26 of Discoms (Petitions 2303-2305/2025)",
+      "publisher": "Rajasthan Electricity Regulatory Commission",
+      "url": "https://rerc.rajasthan.gov.in/rerc-user-files/tariff-orders",
+      "type": "regulator_order",
+      "date": "2025-10-03",
+      "accessed": "2026-10-29",
+      "note": "Tariff applicable from 01.10.2025; carried over unchanged into FY2026-27. Served from the same listing page by postback."
+    },
+    "rerc-dre-regs-2021": {
+      "title": "RERC (Grid Interactive Distributed Renewable Energy Generating Systems) Regulations, 2021 (Reg. 144)",
+      "publisher": "Rajasthan Electricity Regulatory Commission (Rajasthan Gazette)",
+      "url": "https://rerc.rajasthan.gov.in/rerc-user-files/regulations",
+      "type": "regulation",
+      "date": "2021-04-08",
+      "accessed": "2026-10-29"
+    },
+    "rerc-dre-amend1-2023": {
+      "title": "RERC DRE (First Amendment) Regulations, 2023 (Reg. 149)",
+      "publisher": "Rajasthan Electricity Regulatory Commission (Rajasthan Gazette)",
+      "url": "https://rerc.rajasthan.gov.in/rerc-user-files/regulations",
+      "type": "regulation",
+      "date": "2023-08-28",
+      "accessed": "2026-10-29"
+    },
+    "rerc-dre-amend2-2024": {
+      "title": "RERC DRE (Second Amendment) Regulations, 2024 (Reg. 154)",
+      "publisher": "Rajasthan Electricity Regulatory Commission (Rajasthan Gazette)",
+      "url": "https://rerc.rajasthan.gov.in/rerc-user-files/regulations",
+      "type": "regulation",
+      "date": "2024-07-25",
+      "accessed": "2026-10-29"
+    },
+    "rerc-dre-amend3-2025": {
+      "title": "RERC DRE (Third Amendment) Regulations, 2025 (Reg. 159)",
+      "publisher": "Rajasthan Electricity Regulatory Commission (Rajasthan Gazette)",
+      "url": "https://rerc.rajasthan.gov.in/rerc-user-files/regulations",
+      "type": "regulation",
+      "date": "2025-10-13",
+      "accessed": "2026-10-29",
+      "note": "Notified 13.10.2025, gazette 03.12.2025; adds group net metering, virtual net metering, P2P and plug-and-play."
+    },
+    "jvvnl-tariff-2023": {
+      "title": "JVVNL Tariff for Supply of Electricity-2023 (FY 2023-24 booklet; used only for definitions)",
+      "publisher": "JVVNL (hosted on rajnivesh.rajasthan.gov.in)",
+      "url": "https://rajnivesh.rajasthan.gov.in/Uploads/a4e78343-5cc0-4048-a339-6f1571758e5b.pdf",
+      "sha256": "be1ed52671501c546299df79c9fe5b73bd4be8d600a0972fd0b239ff23c87822",
+      "type": "utility_page",
+      "date": "2023-04-17",
+      "accessed": "2026-10-29"
+    },
+    "lawgist-ed-act-1962": {
+      "title": "Rajasthan Electricity (Duty) Act, 1962, Sections 3, 3A, 3B, 3C (consolidated text)",
+      "publisher": "Lawgist (legal database)",
+      "url": "https://lawgist.in/states/rajasthan/rajasthan-electricity-duty-act-1962/3",
+      "type": "other",
+      "accessed": "2026-10-29"
+    },
+    "vikaspedia-150-unit": {
+      "title": "150 Unit Nishulk Bijli Yojana",
+      "publisher": "Vikaspedia (MeitY/C-DAC portal)",
+      "url": "https://en.vikaspedia.in/viewcontent/schemesall/state-specific-schemes/welfare-schemes-of-rajasthan/150-unit-nishulk-bijli-yojana",
+      "type": "other",
+      "accessed": "2026-10-29",
+      "note": "Page dated January 2026."
+    },
+    "drishti-2025-04": {
+      "title": "Rajasthan state PCS current affairs: Chief Minister's Free Electricity Scheme",
+      "publisher": "Drishti IAS",
+      "url": "https://www.drishtiias.com/statepcs/05-04-2025/rajasthan",
+      "type": "news",
+      "date": "2025-04-04",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "Electricity duty: the Act's schedule rate of 6 paise/unit for domestic consumption is 'deemed modified' by later State notifications and the current notified rate was not found; no duty is charged in this book (lawgist-ed-act-1962).",
+    "Urban cess and water conservation cess come from a legal database copy of the Rajasthan Electricity (Duty) Act 1962 (Lawgist), not the official gazette; confirm against a current bill. 'Municipal area' is mapped to area 'urban'.",
+    "The monthly FPPAS value for FY2026-27 was not found; the consumer impact is modelled at the verified combined ceiling of FPPAS plus Regulatory Surcharge (Rs 0.70 domestic up to 100 units, Rs 1.00 above).",
+    "Special FSA (Rs 0.071/unit monthly) end date not verified: 60 instalments under orders of 01.09.2022 and 01.07.2024, so it may expire during FY2026-27 or FY2027-28.",
+    "Basis for the General Domestic group and fixed charge (current month versus previous financial year average) is not confirmed for this tariff; the 2023 booklet used the previous year's average. The engine uses the billing month's units.",
+    "BPL, Astha card holders and Small Domestic consumers pay Rs 150 per connection; whether their fixed charge rises with consumption above 150 units is not stated. This book bands the fixed charge by consumption for all domestic consumers, which only differs from the BPL rate above 150 units.",
+    "Rural domestic 10% energy-charge rebate, prepaid (15 paise) rebate and solar water heater rebate exist in the 2023 booklet; their status under the 2025/2026 tariff booklet was not verified (booklet not retrieved). Not modelled.",
+    "Some consumers are billed bimonthly; the slab scaling rule for bimonthly bills was not verified. This book is monthly only.",
+    "Mukhyamantri Nishulk Bijli Yojana: the official guideline or order was not retrieved (Energy Department page https://energy.rajasthan.gov.in/press-release/953/226746 is a JavaScript app). Which charges are waived within the free units, the free-unit rule above 100 units and the phase-out of the 100-unit benefit are unverified; only the energy charge of the first 100 units is credited. The 150-unit benefit for households with at least 1.1 kW of rooftop solar is not modelled.",
+    "Net metering: net imported energy is billed at the slab matching total consumption from all sources (First Amendment 2023), but the engine applies slabs, fixed-charge groups and the 100-unit surcharge and cess thresholds to net billed units, so net-metered bills may be understated.",
+    "Net metering settlement is modelled as a monthly payout at Rs 3.26; the regulation also describes buying unadjusted net credited units at the end of the financial year at the same rate, credited in the first month of the next year (a timing difference only).",
+    "Net billing: the research summary describes the credit as covering the entire RE generation while the bill formula uses exported energy (ERE); the engine credits exported units only.",
+    "The Rs 3.26 and Rs 3.66 export rates are stated in the FY2026-27 order's discussion section (p.304); the financial year of the bid basis is not stated.",
+    "State rooftop subsidy: Rs 17,000 applies only to registered scheme beneficiaries installing at least 1.1 kW under PM Surya Ghar (secondary sources); the solar simulator applies it to every household and every system of 1 kW or more unless the state subsidy is switched off.",
+    "ToD: the order uses connected load above 10 kW and requires a ToD-capable or smart meter; the engine uses sanctioned load (10 kW inclusive) and does not check the meter.",
+    "The tariff order PDF has no stable direct URL (ASP.NET postback on the RERC listing page).",
+    "Served districts and websites of JVVNL, AVVNL and JdVVNL were not verified.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [
+    { "date": "2026-10-29", "summary": "First FY2026-27 book: RERC order of 30.03.2026 carrying over the FY2025-26 tariff (order of 03.10.2025) unchanged, with RERC DRE Regulations 2021 and amendments for rooftop solar." }
+  ]
+}

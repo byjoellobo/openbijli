@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Validate data and check the committed JSON Schemas are current
+        run: npm run data:check
+      - run: npm run typecheck
+      - run: npm run test:coverage
+      - run: npm run build
+      - name: Smoke-test the CLIs
+        run: |
+          node packages/engine/dist/cli.js bill --utility mescom --units 200 --load 3
+          node packages/evidence/dist/cli.js verify hardware/meter-sakshi/samples/sample-log.csv

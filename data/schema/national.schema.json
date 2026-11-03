@@ -1,0 +1,474 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "asOf": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+    },
+    "centralSubsidies": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3
+          },
+          "description": {
+            "type": "string",
+            "minLength": 3
+          },
+          "tiers": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "upToKw": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "perKw": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "upToKw",
+                "perKw"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "specialCategoryTiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "upToKw": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "perKw": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "upToKw",
+                "perKw"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "specialCategoryStates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            }
+          },
+          "capInr": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "specialCategoryCapInr": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "cite": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]*$"
+                },
+                "page": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "quote": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ref"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "secondary",
+              "unverified"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "tiers",
+          "cite",
+          "verification"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "installedCost": {
+      "type": "object",
+      "properties": {
+        "tiers": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "upToKw": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "inrPerKw": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "upToKw",
+              "inrPerKw"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "note": {
+          "type": "string",
+          "minLength": 3
+        },
+        "cite": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]*$"
+              },
+              "page": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                ]
+              },
+              "quote": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "ref"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "verification": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "secondary",
+            "unverified"
+          ]
+        }
+      },
+      "required": [
+        "tiers",
+        "note",
+        "cite",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 3
+          },
+          "value": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "note": {
+            "type": "string"
+          },
+          "cite": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]*$"
+                },
+                "page": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "quote": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ref"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "secondary",
+              "unverified"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "value",
+          "unit",
+          "cite",
+          "verification"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "consumerRights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "enum": [
+              "meter_testing",
+              "check_meter",
+              "prepaid_reconnection",
+              "grievance",
+              "billing_dispute",
+              "smart_meter"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 10
+          },
+          "feeInr": {
+            "type": "number",
+            "minimum": 0
+          },
+          "cite": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]*$"
+                },
+                "page": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "quote": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ref"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "secondary",
+              "unverified"
+            ]
+          }
+        },
+        "required": [
+          "topic",
+          "summary",
+          "cite",
+          "verification"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sources": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 3
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 2
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "regulator_order",
+              "regulation",
+              "gazette",
+              "utility_page",
+              "government_page",
+              "news",
+              "dataset",
+              "other"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+          },
+          "accessed": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "archiveUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "publisher",
+          "url",
+          "type",
+          "accessed"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "centralSubsidies",
+    "installedCost",
+    "assumptions",
+    "consumerRights",
+    "sources"
+  ],
+  "title": "Open Tariff India national parameters"
+}

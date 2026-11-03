@@ -1,0 +1,14 @@
+# Each tariff book should have at least one maintainer who reads that state's orders.
+# Uncomment and replace <owner> with real GitHub handles or teams once maintainers sign up.
+#
+# /data/tariffs/ka-kerc/    <owner>
+# /data/tariffs/mh-msedcl/  <owner>
+# /data/tariffs/gj-guvnl/   <owner>
+# /data/tariffs/dl-derc/    <owner>
+# /data/tariffs/up-uppcl/   <owner>
+# /data/tariffs/tn-tnpdcl/  <owner>
+# /data/tariffs/kl-kseb/    <owner>
+# /data/tariffs/tg-discoms/ <owner>
+# /data/tariffs/rj-discoms/ <owner>
+# /packages/                <owner>
+# /hardware/                <owner>

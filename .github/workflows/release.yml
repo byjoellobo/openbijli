@@ -1,0 +1,36 @@
+name: Release
+
+# Publishes @open-tariff-india/data, /engine and /evidence to npm when a v* tag on main is
+# pushed. Uses npm trusted publishing (OIDC, no long-lived token) with provenance; configure
+# the three packages for this repository and workflow on npmjs.com, and protect v* tags.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm-release   # add required reviewers to this environment
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Only release commits that are on main
+        run: git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm ci --ignore-scripts
+      - run: npm run data:check
+      - run: npm test
+      - run: npm run build
+      - name: Publish packages in dependency order
+        run: |
+          for pkg in packages/data packages/engine packages/evidence; do
+            npm publish --workspace "$pkg" --access public --provenance --ignore-scripts
+          done

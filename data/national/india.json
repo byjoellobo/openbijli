@@ -1,0 +1,248 @@
+{
+  "$schema": "../schema/national.schema.json",
+  "schemaVersion": 1,
+  "asOf": "2026-10-29",
+  "centralSubsidies": [
+    {
+      "id": "pm-surya-ghar",
+      "name": "PM Surya Ghar: Muft Bijli Yojana central financial assistance (CFA)",
+      "description": "CFA for residential rooftop solar: 60% of the benchmark cost for the first 2 kWp and 40% for the 3rd kWp; nothing beyond 3 kWp. Made-in-India modules with Indian cells are mandatory. Applied for through the national portal; the CFA is not tied to inverter size.",
+      "tiers": [
+        { "upToKw": 2, "perKw": 30000 },
+        { "upToKw": 3, "perKw": 18000 },
+        { "upToKw": null, "perKw": 0 }
+      ],
+      "specialCategoryTiers": [
+        { "upToKw": 2, "perKw": 33000 },
+        { "upToKw": 3, "perKw": 19800 },
+        { "upToKw": null, "perKw": 0 }
+      ],
+      "specialCategoryStates": ["UK", "HP", "JK", "LA", "AR", "AS", "MN", "ML", "MZ", "NL", "SK", "TR", "AN", "LD"],
+      "capInr": 78000,
+      "specialCategoryCapInr": 85800,
+      "cite": [{ "ref": "pmsg-guidelines", "page": "para 5(e), 5(h)" }],
+      "verification": "verified"
+    }
+  ],
+  "installedCost": {
+    "tiers": [
+      { "upToKw": 2, "inrPerKw": 50000 },
+      { "upToKw": null, "inrPerKw": 45000 }
+    ],
+    "note": "MNRE benchmark cost used to compute the CFA (first 2 kW at Rs 50,000/kW, additional kW at Rs 45,000/kW, from 13 Feb 2024). It is a scheme reference, not a market price: 2026 market quotes for a 3 kW system are often Rs 1.65-2.1 lakh before subsidy. Use your vendor's quote when you have one.",
+    "cite": [{ "ref": "pmsg-guidelines", "page": "para 5(g)", "quote": "The benchmark cost for 1 kW system is fixed at Rs 50,000/kW for the first 2 kW of RTS capacity and Rs 45,000 for the additional kW" }],
+    "verification": "verified"
+  },
+  "assumptions": [
+    {
+      "id": "market-cost-per-kw",
+      "label": "Typical 2026 market price, residential rooftop (before subsidy)",
+      "value": 62500,
+      "unit": "INR/kW",
+      "note": "Midpoint of the Rs 1.65-2.1 lakh range quoted for 3 kW systems. Indicative market prices, not verified quotes.",
+      "cite": [{ "ref": "greentechlead-2026" }],
+      "verification": "secondary"
+    },
+    {
+      "id": "performance-ratio",
+      "label": "Performance ratio",
+      "value": 0.75,
+      "unit": "ratio",
+      "note": "PM Surya Ghar vendors must deliver PR 75% at commissioning and maintain it through the 5-year warranty. Used as the simulator default.",
+      "cite": [{ "ref": "pmsg-guidelines", "page": "Annexure 2, clause 18", "quote": "The Performance Ratio (PR) of Plant must be 75% at the time of commissioning" }],
+      "verification": "verified"
+    },
+    {
+      "id": "degradation-warranty-floor",
+      "label": "Module degradation implied by the warranty floor",
+      "value": 0.008,
+      "unit": "fraction/yr",
+      "note": "PM Surya Ghar modules must keep >90% of rated output for 10 years and >80% for the next 15. 80% after 25 years is about 0.8%/yr. Used as the simulator default.",
+      "cite": [{ "ref": "pmsg-guidelines", "page": "Annexure 3, clause 1.9" }],
+      "verification": "verified"
+    },
+    {
+      "id": "degradation-field-rooftop",
+      "label": "Measured degradation of rooftop crystalline modules in India",
+      "value": 0.0199,
+      "unit": "fraction/yr",
+      "note": "NISE / NCPRE IIT Bombay field survey (2018) measured 1.99%/yr for roof-mounted c-Si modules vs 1.33%/yr ground-mounted. Use for a pessimistic case.",
+      "cite": [{ "ref": "nise-survey-2018", "quote": "the roof-(rack)-mounted modules show a degradation rate of 1.99 %/year" }],
+      "verification": "verified"
+    },
+    {
+      "id": "plant-life",
+      "label": "Useful life of a rooftop plant",
+      "value": 25,
+      "unit": "years",
+      "cite": [{ "ref": "kerc-dspv-2026", "quote": "the useful life of the plant shall be 25 years" }],
+      "verification": "verified"
+    },
+    {
+      "id": "inverter-life",
+      "label": "Residential string inverter life",
+      "value": 12,
+      "unit": "years",
+      "note": "Typical 10-15 years (not India-specific).",
+      "cite": [{ "ref": "pv-magazine-inverters" }],
+      "verification": "secondary"
+    }
+  ],
+  "consumerRights": [
+    {
+      "topic": "meter_testing",
+      "summary": "Electricity (Rights of Consumers) Rules, rule 5(7): the distribution licensee must test the meter within thirty days of receiving a complaint.",
+      "cite": [{ "ref": "rocr-2024", "quote": "The testing of meters shall be done by the distribution licensee within thirty days of receipt of the complaint" }],
+      "verification": "secondary"
+    },
+    {
+      "topic": "check_meter",
+      "summary": "Rule 5(7) proviso (2024 amendment): if you complain that readings are not commensurate with your consumption, the licensee must install an additional meter within five days to verify consumption for at least three months.",
+      "cite": [{ "ref": "merc-em-supply-2024", "quote": "Distribution Licensee shall install an additional meter within five days from the date of receipt of the complaint, to verify the consumption, for a minimum period of three months." }],
+      "verification": "verified"
+    },
+    {
+      "topic": "meter_testing",
+      "summary": "Rule 5(11): if you dispute the licensee's test result, the meter is tested at a third-party laboratory you choose from the regulator's approved list; that result is final and binding on both sides.",
+      "cite": [{ "ref": "rocr-2020", "quote": "the said results are final and binding on both the consumer and the distribution licensee" }],
+      "verification": "verified"
+    },
+    {
+      "topic": "prepaid_reconnection",
+      "summary": "Rule 9(3): a prepaid meter cutting off when credit runs out is not a disconnection, and supply is to be resumed whenever the meter is recharged. The national rules set no number of hours; check your state Supply Code and standards of performance.",
+      "cite": [{ "ref": "rocr-2020", "quote": "This shall however not be treated as a disconnection and the supply will be resumed whenever" }],
+      "verification": "verified"
+    },
+    {
+      "topic": "smart_meter",
+      "summary": "Rule 8A (2023 amendment): time-of-day tariffs apply immediately after a smart meter is installed. Solar-hours rates must be at least 20% below normal, and peak rates for domestic consumers at least 1.10 times normal, on the energy charge only.",
+      "cite": [{ "ref": "rocr-2023", "quote": "shall be atleast twenty percent less than the normal tariff for that category of consumers" }],
+      "verification": "secondary"
+    },
+    {
+      "topic": "billing_dispute",
+      "summary": "CEA (Installation and Operation of Meters) Regulations, reg. 15(2) and 18(2): consumers may report readings not commensurate with consumption; meters must be tested on site through an accredited laboratory at least once in five years, and out of cycle when consumption changes drastically.",
+      "cite": [{ "ref": "cea-meters-2006", "quote": "The testing of Consumer Meters shall be done at site through accredited test laboratory at least once in five years" }],
+      "verification": "secondary"
+    },
+    {
+      "topic": "grievance",
+      "summary": "Electricity Act, 2003, Section 42(5)-(6): every licensee must have a Consumer Grievance Redressal Forum; if it does not resolve your complaint you can appeal to the State Electricity Ombudsman.",
+      "cite": [{ "ref": "electricity-act-ch6" }],
+      "verification": "verified"
+    }
+  ],
+  "sources": {
+    "pmsg-guidelines": {
+      "title": "Guidelines for PM-Surya Ghar: Muft Bijli Yojana, CFA to Residential Consumers (consolidated, as amended 7 July 2025)",
+      "publisher": "Ministry of New and Renewable Energy",
+      "url": "https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2025/07/202507081690964295.pdf",
+      "sha256": "80dd0294d4a43c509bef2743a17cd6551ac588ba29c15a9cd266cdb8674a4bd1",
+      "type": "government_page",
+      "date": "2025-07-07",
+      "accessed": "2026-10-29"
+    },
+    "kerc-dspv-2026": {
+      "title": "KERC Order dated 25.08.2026: tariff for DSPV/SPV projects, 25.08.2026 to 30.06.2029",
+      "publisher": "Karnataka Electricity Regulatory Commission",
+      "url": "https://srtpv.bescom.org/document/KERC%20Tariff%20Order%20from%2025.08.2026.pdf",
+      "sha256": "4799995f52c9047adf7a679d1ef76e30b354268bae92a07b095b917c7e9bf855",
+      "type": "regulator_order",
+      "date": "2026-08-25",
+      "accessed": "2026-10-29"
+    },
+    "nise-survey-2018": {
+      "title": "All India Survey of Photovoltaic Module Reliability 2018",
+      "publisher": "National Institute of Solar Energy and NCPRE, IIT Bombay",
+      "url": "https://nise.res.in/upload/All-India-Survey-of-Photovoltaic-Module-Reliability_2018_Report.pdf",
+      "sha256": "77b8300cb482ad969d748d296831e35e8bb2c7ec1edc9987acb60efdd0c97a63",
+      "type": "dataset",
+      "date": "2018-01-01",
+      "accessed": "2026-10-29"
+    },
+    "greentechlead-2026": {
+      "title": "Solar Panel Installation Cost in India 2026: 3 kW, 5 kW and 10 kW prices",
+      "publisher": "GreentechLead",
+      "url": "https://greentechlead.com/solar/solar-panel-installation-cost-in-india-2026-3-kw-5-kw-and-10-kw-prices-subsidy-savings-and-payback-56076/amp",
+      "type": "news",
+      "accessed": "2026-10-29"
+    },
+    "pv-magazine-inverters": {
+      "title": "How long do residential solar inverters last?",
+      "publisher": "pv magazine",
+      "url": "https://www.pv-magazine.com/2025/08/06/how-long-do-residential-solar-inverters-last-5/",
+      "type": "news",
+      "date": "2025-08-06",
+      "accessed": "2026-10-29"
+    },
+    "rocr-2020": {
+      "title": "Electricity (Rights of Consumers) Rules, 2020, G.S.R. 818(E), Gazette of India Extraordinary No. 681 (copy hosted by MERC)",
+      "publisher": "Ministry of Power",
+      "url": "https://merc.gov.in/wp-content/uploads/2022/07/1.-Gazette_Electricity-Rights-of-Consumers-Rules-2020-1.pdf",
+      "sha256": "afbe1c73b533a8b0689fcf786a0e7f944641efe2a36126a60079ab58fea7ad0c",
+      "type": "gazette",
+      "date": "2020-12-31",
+      "accessed": "2026-10-29"
+    },
+    "rocr-2021": {
+      "title": "Electricity (Rights of Consumers) Amendment Rules, 2021, G.S.R. 448(E) (copy hosted by MERC)",
+      "publisher": "Ministry of Power",
+      "url": "https://merc.gov.in/wp-content/uploads/2022/07/2.-Electricity_Rights_of_Consumers_Amendment_Rule_2021-1.pdf",
+      "sha256": "cf6e12e34f10c24f300109b757fda11c065b04b0e3fde549d3cdf980b10297e4",
+      "type": "gazette",
+      "date": "2021-06-28",
+      "accessed": "2026-10-29"
+    },
+    "rocr-2023": {
+      "title": "Electricity (Rights of Consumers) Amendment Rules, 2023 (text reproduction)",
+      "publisher": "LegitQuest",
+      "url": "https://www.legitquest.com/act/electricity-rights-of-consumers-amendment-rules-2023/D53E",
+      "type": "other",
+      "date": "2023-06-14",
+      "accessed": "2026-10-29",
+      "note": "Secondary reproduction; Gazette copy not reached. MERC confirms the 14 June 2023 notification."
+    },
+    "rocr-2024": {
+      "title": "Electricity (Rights of Consumers) Amendment Rules, 2024, G.S.R. 125(E) (text reproduction)",
+      "publisher": "LegitQuest",
+      "url": "https://www.legitquest.com/act/electricity-rights-of-consumers-amendment-rules-2024/F72A",
+      "type": "other",
+      "date": "2024-02-22",
+      "accessed": "2026-10-29",
+      "note": "Secondary reproduction; Gazette copy not reached."
+    },
+    "merc-em-supply-2024": {
+      "title": "Explanatory Memorandum, Draft MERC (Supply Code) (First Amendment) Regulations, 2024",
+      "publisher": "Maharashtra Electricity Regulatory Commission",
+      "url": "https://merc.gov.in/wp-content/uploads/2024/05/EM-1st-Amendment-Supply-Code-Regulations-2024.pdf",
+      "sha256": "d32e0d3213acab2a7a4ae159bf6f1c0518bb4b02e9b0ebc2997ba1de568a92b4",
+      "type": "regulation",
+      "date": "2024-05-01",
+      "accessed": "2026-10-29"
+    },
+    "electricity-act-ch6": {
+      "title": "Electricity Act, 2003, Chapter VI (Sections 42 and 57)",
+      "publisher": "Electricity Department, Government of Puducherry",
+      "url": "https://electricity.py.gov.in/chapter-vi-indian-electricity-act-2003",
+      "type": "government_page",
+      "accessed": "2026-10-29"
+    },
+    "cea-meters-2006": {
+      "title": "CEA (Installation and Operation of Meters) Regulations, 2006, consolidated text incl. 2019 amendment",
+      "publisher": "LegitQuest",
+      "url": "https://www.legitquest.com/act/central-electricity-authority-installation-and-operation-of-meters-regulations-2006/820d",
+      "type": "other",
+      "accessed": "2026-10-29",
+      "note": "Secondary consolidated text; cea.nic.in PDFs did not load."
+    },
+    "bis-is13779": {
+      "title": "BIS guidelines for implementation of IS 13779:2020 (includes cl. 12.13 no-load test)",
+      "publisher": "Bureau of Indian Standards",
+      "url": "https://services.bis.gov.in/tmp/Guidelines_for_implementation_IS_13779_merged_I7iN_2021-04-01.pdf",
+      "sha256": "95feadcca4ba6f0ad4e81a6e6ad2403304b3244add86f9482101f8606c4a7e11",
+      "type": "government_page",
+      "date": "2021-03-23",
+      "accessed": "2026-10-29"
+    }
+  }
+}

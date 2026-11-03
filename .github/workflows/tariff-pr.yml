@@ -1,0 +1,37 @@
+name: Tariff PR review
+
+# Runs on untrusted PR code with a read-only token. It validates the data and writes a
+# Markdown summary as an artifact; tariff-pr-comment.yml posts it with write access.
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Validate every tariff book
+        run: npm run data:check
+      - name: Summarise changes and bill impact
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          mkdir -p review
+          npx tsx scripts/tariff-diff.ts --base "origin/$BASE_REF" --out review/summary.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tariff-review
+          path: review/
+          retention-days: 7

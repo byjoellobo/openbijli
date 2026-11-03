@@ -1,0 +1,449 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "kl-kseb",
+  "title": "Kerala retail tariff (KSERC), LT-I Domestic (KSEB Ltd)",
+  "state": "Kerala",
+  "stateCode": "KL",
+  "regulator": { "name": "Kerala State Electricity Regulatory Commission", "short": "KSERC", "url": "https://erckerala.org/" },
+  "utilities": [
+    {
+      "id": "kseb",
+      "name": "Kerala State Electricity Board Limited",
+      "shortName": "KSEB",
+      "servedArea": "Kerala (principal distribution licensee; the KSERC schedule also applies to the other licensees in the State)",
+      "website": "https://kseb.in/",
+      "solarResource": "thiruvananthapuram"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "effectiveTo": "2027-03-31",
+  "status": "partial",
+  "order": {
+    "title": "KSERC Order dated 05.12.2024 in OP No. 18/2023 and Schedule of Tariff (Kerala Gazette Extraordinary No. 3939), LT-I rates w.e.f. 01.04.2025 to 31.03.2027 ('No revision' approved for FY2026-27)",
+    "cite": [
+      { "ref": "kserc-schedule-2024", "page": 1, "quote": "SCHEDULE OF TARIFF AND TERMS AND CONDITIONS FOR RETAIL SUPPLY OF ELECTRICITY BY KERALA STATE ELECTRICITY BOARD LIMITED AND ALL OTHER LICENSEES WITH EFFECT FROM 05.12.2024 to 31.03.2027" },
+      { "ref": "kserc-order-op18-2023", "page": 48, "quote": "Table 3.22 Energy charge approved by the Commission ... Approved by KSERC 2024-25 2025-26 2026-27 ... No revision" },
+      { "ref": "onmanorama-tariff-2024" }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "LT-I",
+      "name": "LT-I Domestic",
+      "description": "Domestic supply, single and three phase. Most consumers are billed every two months; slab limits below are bimonthly units (twice the monthly limits in the KSERC schedule). Up to 500 units per two months (250 a month) energy is telescopic; above that, all units are charged at the rate of the band the consumption falls in.",
+      "billingCycle": "bimonthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "telescopic",
+            "label": "Up to 500 units per two months (telescopic)",
+            "when": { "upToUnits": 500 },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 100, "rate": 3.35 },
+              { "upTo": 200, "rate": 4.25 },
+              { "upTo": 300, "rate": 5.35 },
+              { "upTo": 400, "rate": 7.2 },
+              { "upTo": null, "rate": 8.5 }
+            ]
+          },
+          {
+            "id": "non-telescopic",
+            "label": "Above 500 units per two months (all units at one rate)",
+            "when": { "aboveUnits": 500 },
+            "method": "whole",
+            "slabs": [
+              { "upTo": 600, "rate": 6.75 },
+              { "upTo": 700, "rate": 7.6 },
+              { "upTo": 800, "rate": 7.95 },
+              { "upTo": 1000, "rate": 8.25 },
+              { "upTo": null, "rate": 9.2 }
+            ]
+          }
+        ],
+        "note": "KSERC monthly slabs: 0-50 Rs 3.35, 51-100 Rs 4.25, 101-150 Rs 5.35, 151-200 Rs 7.20, 201-250 Rs 8.50 (telescopic); above 250 units a month the whole consumption is billed at Rs 6.75 (up to 300), 7.60 (350), 7.95 (400), 8.25 (500) or 9.20 (above 500). KSEB doubles the slab limits for bimonthly bills; its ready reckoner gives 500 units Rs 2,865, 501 units Rs 3,381.75, 1000 units Rs 8,250 and 1001 units Rs 9,209.20. The BPL concessional tariff (Rs 1.50/unit) is not modelled.",
+        "cite": [
+          { "ref": "kserc-schedule-2024", "page": 5, "quote": "w.e.f 01.04.2025 to 31.03.2027 ... 0-50 50 130 3.35; 51-100 85 175 4.25; 101-150 105 205 5.35 Telescopic; 151-200 140 215 7.20; 201-250 160 235 8.50; 0-300 220 240 6.75; 0-350 240 250 7.60; 0-400 260 260 7.95 Non- Telescopic; 0-500 285 285 8.25; Above 500 310 310 9.20" },
+          { "ref": "kseb-circular-2025", "page": "Annexure F (OCR)", "quote": "READY RECKONER- for LT - I (Bi-monthly Consumption ... w.e.f. 01.04.2025) ... 500 2815.00 2865.00 ... 501 3281.55 3381.75" },
+          { "ref": "kseb-faq", "quote": "Energy charge is calculated in telescopic style for domestic customers (if monthly usage is less than 250 units)." },
+          { "ref": "kserc-order-op18-2023", "page": 48 }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "three-phase",
+            "label": "Fixed charge, three phase (by bimonthly consumption)",
+            "when": { "phase": "three" },
+            "bandBy": "units",
+            "unitsBasis": "cycle",
+            "method": "whole",
+            "bands": [
+              { "upTo": 100, "amount": 260, "per": "connection" },
+              { "upTo": 200, "amount": 350, "per": "connection" },
+              { "upTo": 300, "amount": 410, "per": "connection" },
+              { "upTo": 400, "amount": 430, "per": "connection" },
+              { "upTo": 500, "amount": 470, "per": "connection" },
+              { "upTo": 600, "amount": 480, "per": "connection" },
+              { "upTo": 700, "amount": 500, "per": "connection" },
+              { "upTo": 800, "amount": 520, "per": "connection" },
+              { "upTo": 1000, "amount": 570, "per": "connection" },
+              { "upTo": null, "amount": 620, "per": "connection" }
+            ],
+            "period": "cycle",
+            "loadRounding": "none"
+          },
+          {
+            "id": "single-phase",
+            "label": "Fixed charge, single phase (by bimonthly consumption)",
+            "bandBy": "units",
+            "unitsBasis": "cycle",
+            "method": "whole",
+            "bands": [
+              { "upTo": 100, "amount": 100, "per": "connection" },
+              { "upTo": 200, "amount": 170, "per": "connection" },
+              { "upTo": 300, "amount": 210, "per": "connection" },
+              { "upTo": 400, "amount": 280, "per": "connection" },
+              { "upTo": 500, "amount": 320, "per": "connection" },
+              { "upTo": 600, "amount": 440, "per": "connection" },
+              { "upTo": 700, "amount": 480, "per": "connection" },
+              { "upTo": 800, "amount": 520, "per": "connection" },
+              { "upTo": 1000, "amount": 570, "per": "connection" },
+              { "upTo": null, "amount": 620, "per": "connection" }
+            ],
+            "period": "cycle",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "The fixed charge depends on consumption, not on connected load. Amounts are per two months: exactly twice the KSERC monthly amounts (single phase Rs 50/85/105/140/160/220/240/260/285/310, three phase Rs 130/175/205/215/235/240/250/260/285/310), as in KSEB's bimonthly billing table. BPL consumers up to 1000 W and 40 units a month pay no fixed charge (not modelled).",
+        "cite": [
+          { "ref": "kserc-schedule-2024", "page": 5 },
+          { "ref": "kserc-order-op18-2023", "page": 46, "quote": "The fixed charge of the domestic consumers is not linked to connected load or contract demand, but linked to the monthly consumption levels." },
+          { "ref": "kseb-circular-2025", "page": "Table-3 (OCR)" }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "percent",
+          "id": "electricity-duty",
+          "name": "Electricity duty (Kerala Electricity Duty Act, 1963)",
+          "percent": 10,
+          "of": ["energy", "tod"],
+          "variable": false,
+          "note": "10% of the energy charge, computed on the entire energy charge before any Government subsidy; not levied on the fixed charge. ToD adjustments are part of the energy charge, so they are included in the base. Whether duty is also levied on the fuel surcharge is not confirmed.",
+          "cite": [
+            { "ref": "kseb-faq", "quote": "At present 10 percent of the energy charge is levied as duty." },
+            { "ref": "kseb-circular-2025", "quote": "Compute the electricity duty on energy charge as per Kerala Electricity Duty Act, 1963 for the entire energy charges without reckoning subsidy." },
+            { "ref": "kserc-schedule-2024", "page": 2, "quote": "The rates specified in this Schedule are exclusive of Electricity Duty and / or surcharge" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "fuel-surcharge",
+          "name": "Fuel surcharge (monthly, levied by KSEB)",
+          "rate": 0.03,
+          "variable": true,
+          "asOf": "2026-10-01",
+          "note": "3 paise/unit on bills issued in October 2026, the same for monthly and bimonthly bills (news). The rate changes every month; January 2026 was 8 paise (monthly-billed) and 7 paise (bimonthly-billed).",
+          "cite": [
+            { "ref": "keralakaumudi-surcharge-2026-10", "quote": "The surcharge will be three paise per unit. ... The same rate will apply to both monthly and bimonthly electricity bills." },
+            { "ref": "manorama-surcharge-2026-01" }
+          ],
+          "verification": "secondary"
+        },
+        {
+          "kind": "flat",
+          "id": "meter-rent-single",
+          "name": "Meter rent (single-phase static meter)",
+          "amount": 6,
+          "period": "month",
+          "appliesIf": { "phase": "single" },
+          "variable": false,
+          "note": "Rs 6 per month (Rs 12 per bimonthly bill) for a licensee-provided meter.",
+          "cite": [{ "ref": "kserc-schedule-2024", "page": 34, "quote": "Single phase static energy meters with LCD and ToD facility and with ISI certification 6" }],
+          "verification": "verified"
+        },
+        {
+          "kind": "flat",
+          "id": "meter-rent-three",
+          "name": "Meter rent (three-phase static meter)",
+          "amount": 15,
+          "period": "month",
+          "appliesIf": { "phase": "three" },
+          "variable": false,
+          "note": "Rs 15 per month (Rs 30 per bimonthly bill) for a licensee-provided meter.",
+          "cite": [{ "ref": "kserc-schedule-2024", "page": 34, "quote": "Three phase static meters with LCD and ToD facility with ISI certification 15" }],
+          "verification": "verified"
+        },
+        {
+          "kind": "flat",
+          "id": "net-meter-rent-single",
+          "name": "Net meter rent (single phase, solar prosumers)",
+          "amount": 30,
+          "period": "month",
+          "appliesIf": { "phase": "single", "flags": ["solar_prosumer"] },
+          "variable": false,
+          "note": "Payable when the licensee provides the net meter.",
+          "cite": [
+            { "ref": "kserc-schedule-2024", "page": 35, "quote": "6 Net Meter - single phase 5-30A class 1.0 30" },
+            { "ref": "kserc-re-regs-2025", "page": "Reg. 15.9", "quote": "The distribution licensee may collect from the eligible consumer the security deposit and rent for the Renewable Generation Meter and net meter, at the rates approved by the Commission from time to time, if they are provided by the licensee." }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "flat",
+          "id": "net-meter-rent-three",
+          "name": "Net meter rent (three phase, solar prosumers)",
+          "amount": 35,
+          "period": "month",
+          "appliesIf": { "phase": "three", "flags": ["solar_prosumer"] },
+          "variable": false,
+          "note": "Payable when the licensee provides the net meter.",
+          "cite": [
+            { "ref": "kserc-schedule-2024", "page": 35, "quote": "7 Net Meter - Three phase 10-60A class 1.0 35" },
+            { "ref": "kserc-re-regs-2025", "page": "Reg. 15.9" }
+          ],
+          "verification": "verified"
+        }
+      ],
+      "tod": {
+        "applicability": "LT-I domestic consumers with monthly consumption above 250 units (500 units per two months) once a ToD meter is installed; ToD billing applies in any month consumption exceeds 250 units, slab billing otherwise. Also applies to domestic prosumers whose net billable consumption exceeds 250 units a month.",
+        "appliesIf": { "flags": ["smart_meter"] },
+        "aboveUnits": 500,
+        "mandatory": true,
+        "periods": [
+          {
+            "id": "normal",
+            "name": "Normal period (90% of ruling tariff)",
+            "windows": [{ "from": "06:00", "to": "18:00" }],
+            "adjustment": { "type": "percent_of_energy_rate", "value": -10 }
+          },
+          {
+            "id": "peak",
+            "name": "Peak period (125% of ruling tariff)",
+            "windows": [{ "from": "18:00", "to": "22:00" }],
+            "adjustment": { "type": "percent_of_energy_rate", "value": 25 }
+          }
+        ],
+        "note": "The ruling tariff is the non-telescopic energy rate for consumption above 250 units a month, which is the bill's single energy rate in this book. Off-peak (22:00-06:00) is billed at 100% of the ruling tariff, so it needs no adjustment. The smart_meter flag stands in for an installed ToD meter. KSEB monitors six months of consumption from bimonthly readings in January/February and July/August to decide who gets a ToD meter (not modelled).",
+        "cite": [
+          { "ref": "kserc-schedule-2024", "page": 40, "quote": "ToD Tariff for Domestic Consumers (Applicable to HT-V Domestic and LT consumers with monthly consumption above 250 units) ... Energy charge 90% of the ruling tariff 125% of the ruling tariff 100% of the ruling tariff ... The ruling tariff for LT- domestic is the energy charge approved for the monthly consumption above 250 units." },
+          { "ref": "kserc-schedule-2024", "page": 4, "quote": "ToD tariff shall be applicable to all LT-IV Industrial consumers (except the pumphouses of Kerala Water Authority, Municipal Corporations, Municipalities and Panchayats) and to LT-I domestic consumers (3 Phase) having monthly consumption above 250 units." },
+          { "ref": "kseb-circular-2025", "page": "5 (item 27)", "quote": "Time-of-Day (ToD) tariff shall also be applicable to domestic prosumers when their net billable consumption exceeds 250 units in a month." }
+        ],
+        "verification": "verified"
+      },
+      "subsidies": []
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering, new domestic prosumers (KSERC RE Regulations 2025)",
+        "default": true,
+        "minKw": 1,
+        "maxKw": 20,
+        "exportRate": { "value": 2.79, "basis": "Reg. 28.6 settlement rate for surplus banked energy of new solar prosumers, paid on the financial-year-end balance", "variable": false },
+        "settlement": { "period": "financial_year", "surplus": "paid_at_export_rate", "bankingChargePercentPerMonth": 2 },
+        "note": "For prosumers seeking feasibility on or after 06-11-2025; energy accounting under the 2025 Regulations applies from 01-01-2026. Export is first netted within the same time zone; the residual is banked after zone normalisation (domestic, to bank: solar hours 1.0, peak 1.33, off-peak 1.17; to draw back: 1.0, 0.75, 0.85; factor 1 in all zones for systems up to 2 kW) and carried forward monthly less a 2% banking charge. Each bill, banked units needed to offset fixed and other charges are monetised ('zero billing'); the balance at the end of the financial year is paid at Rs 2.79/kWh before 30 April. Systems above 10 kW need a hybrid inverter with storage (10% of generation potential above 10-15 kW, 20% above 15-20 kW; from 01-04-2027 also 10% above 5-10 kW). New domestic systems up to 10 kW are exempt from grid support charges, except those seeking feasibility from 01-04-2027 above 5 kW.",
+        "cite": [
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 6.1", "quote": "(i) Domestic: 1 kW to 20 kW;" },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 28.6", "quote": "The rate for settlement of surplus banked energy in respect of existing prosumers shall be the APPC rate of Rs 3.08/- per kWh and for new prosumers shall be Rs 2.79/- per kWh (Solar) and Rs 2.87/- per kWh (Wind)." },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 28.4(vi)", "quote": "The balance units, if any, will be carried forward to next billing period, after deducting a monthly banking charge of 2% of the balance units. This banking facility shall be allowed till the end of each financial year" },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 6.3", "quote": "Provided that REGS having plant capacity above 10 kW and up to and including 15 kW, shall install hybrid inverters with a minimum storage capacity of 10% of the energy generation potential of the plant" }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "net-metering-existing",
+        "type": "net_metering",
+        "label": "Net metering, prosumers already on net metering before 06-11-2025",
+        "default": false,
+        "exportRate": { "value": 3.08, "basis": "Reg. 28.6 APPC rate for existing prosumers, paid on the financial-year-end balance", "variable": false },
+        "settlement": { "period": "financial_year", "surplus": "paid_at_export_rate", "bankingChargePercentPerMonth": 2 },
+        "note": "Only for prosumers billed under net metering as on 06-11-2025 (2020 Regulations). They stay on net metering until they opt out, the plant's useful life ends or capacity is enhanced (panel additions and inverter swaps within 10% of the original inverter capacity do not count). Same zone normalisation and 2% monthly banking charge as new prosumers. Existing domestic systems up to 10 kW are exempt from grid support charges.",
+        "cite": [
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 2.3", "quote": "The existing prosumers billed under Net metering in the State as on the date of coming into effect of these regulations, shall be under the Net metering system as specified in these Regulations, until the occurrence of any of the following conditions" },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 28.6" },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 28.7", "quote": "The existing domestic prosumers with RE generating systems having capacity up to and including 10 kW shall be exempted from payment of grid support charges" }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "net-billing",
+        "type": "net_billing",
+        "label": "Net billing (KSERC RE Regulations 2025)",
+        "default": false,
+        "minKw": 1,
+        "maxKw": 1000,
+        "exportRate": { "value": 3.07, "basis": "Reg. 29.5 feed-in tariff for solar; peak-hour exports earn 1.5 times this rate (not modelled)", "variable": false },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Imports billed at the retail tariff and exports credited at the feed-in tariff; any credit is carried to the next bill and the financial-year-end balance is paid before 30 April. Capacity up to the connected load or 1000 kW, or up to 3000 kW with storage of at least 30% of generation potential.",
+        "cite": [
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 7.2-7.3", "quote": "The minimum plant capacity of the RE generating system shall be 1 kW." },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 29.5", "quote": "The Feed-in Tariff applicable for net billing shall be Rs 3.07/- per kWh (Solar) and Rs 4.15/- per kWh (Wind)." },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 29", "quote": "For the energy injected during peak hours TRE shall be 1.5 times the feed-in tariff" },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 29.7", "quote": "The amount at the credit of the prosumer at the end of the financial year shall be paid by the distribution licensee to the prosumers before 30th day of April of the subsequent financial year" }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "gross-metering",
+        "type": "gross_metering",
+        "label": "Gross metering (KSERC RE Regulations 2025)",
+        "default": false,
+        "minKw": 1,
+        "maxKw": 3000,
+        "exportRate": { "value": 3.63, "basis": "Reg. 30.5 feed-in tariff for solar; Rs 7.50/kWh for peak-hour supply from storage (not modelled)", "variable": false },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "All generation is sold at the feed-in tariff and all consumption is billed at the retail tariff.",
+        "cite": [
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 8.2-8.3", "quote": "The maximum plant capacity of the RE generating system shall be 3000 kW" },
+          { "ref": "kserc-re-regs-2025", "page": "Reg. 30.5", "quote": "Feed-in Tariff applicable for gross metering shall be Rs 3.63/- per kWh (Solar) and Rs 4.20/- per kWh (Wind)" }
+        ],
+        "verification": "verified"
+      }
+    ],
+    "capacityLimit": {
+      "maxKw": 1000,
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Domestic net metering: 1-20 kW and not above the connected load, with storage required above 10 kW (and above 5 kW for feasibility from 01-04-2027). Net billing: up to the connected load or 1000 kW (3000 kW with 30% storage). Gross metering: 1-3000 kW. Single-phase inverters are limited to 3 kW; larger systems need three-phase inverters."
+    },
+    "fees": "Application fee Rs 1,000 plus registration fee Rs 300 per kW or part thereof (non-refundable, Reg. 17.8 Table 1); the licensee may waive them against Central or State grants, and for PM Surya Ghar systems they are collected in bills after commissioning. Net meter rent Rs 30/month single phase or Rs 35/month three phase (modelled as charges); RE generation meter rent Rs 10/month single phase or Rs 20/month three phase where a generation meter is provided. Grid support charge, where payable: 50 paise/kWh for the first 300 units and Re 1/kWh beyond, on non-solar-hour grid draw offset by banked energy.",
+    "notes": [
+      "Time zones for energy accounting: solar hours 08:00-18:00, peak 18:00-23:30 and off-peak 23:30-08:00 where meters are programmed for them; otherwise solar hours are zone 1 (06:00-18:00) and peak is zone 2 (18:00-22:00).",
+      "Zone-wise netting, banking normalisation factors and monthly 'zero billing' monetisation of banked units are not modelled; the engine nets kWh one for one and applies the 2% monthly banking charge.",
+      "Domestic net metering above 10 kW requires a hybrid inverter with storage; the simulator does not price storage.",
+      "No Kerala state top-up over the PM Surya Ghar central subsidy was found."
+    ],
+    "cite": [
+      { "ref": "kserc-re-regs-2025", "page": "Reg. 17.8", "quote": "Application Fee Rs 1000 Registration Fee Rs 300 per kW or part thereof" },
+      { "ref": "kserc-re-regs-2025", "page": "Reg. 6.3", "quote": "For domestic consumers the maximum permissible plant capacity shall be 20 kW, subject to Regulations 6.6" },
+      { "ref": "kserc-re-regs-2025", "page": "Reg. 28.4, Table 3", "quote": "Domestic Others Domestic Others; Solar Hours 1.0 1.0 1.0 1.0; Peak Hours 1.33 1.5 0.75 0.667; Off Peak Hours 1.17 1.17 0.85 0.85" },
+      { "ref": "kserc-re-regs-2025", "page": "Reg. 28.7", "quote": "The grid support charges shall be levied monthly, at the rates of 50 paise per kWh for the first 300 units and Re.1/- per kWh for the balance units." },
+      { "ref": "kserc-re-regs-2025-gazette", "page": "Gazette PDF p.18 (Reg 6.1)" },
+      { "ref": "kserc-schedule-2024", "page": 35 }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "kserc-schedule-2024": {
+      "title": "KSERC Schedule of Tariff and Terms and Conditions for Retail Supply of Electricity, 05.12.2024 to 31.03.2027 (Kerala Gazette Extraordinary No. 3939)",
+      "publisher": "Kerala State Electricity Regulatory Commission",
+      "url": "https://dev.erckerala.org/api/storage/orders/vnp1XnN5z47r0dCh18rj3s2e1q2utii3T8AtwUMm.pdf",
+      "sha256": "564eca3960c38dd9dd82d94eec29f6c0edb26a1074b999662c563f15683f4335",
+      "type": "gazette",
+      "date": "2024-12-05",
+      "accessed": "2026-10-29",
+      "note": "No. 427/D(T)/2023/KSERC. Served from dev.erckerala.org; the main erckerala.org site is a JavaScript app."
+    },
+    "kserc-order-op18-2023": {
+      "title": "KSERC Order dated 05.12.2024 in OP No. 18/2023 (revision of Schedule of Tariff, 01.07.2024 to 31.03.2027)",
+      "publisher": "Kerala State Electricity Regulatory Commission",
+      "url": "https://dev.erckerala.org/api/storage/orders/o0sDy6ZmrpxIKwgD9dz8lMNuYvVEq11l9P1VcHeP.pdf",
+      "sha256": "6f19a9eba3b9c7ff36da7deb6a176c3417eb9c17ad600b82c70b66a837b7cda8",
+      "type": "regulator_order",
+      "date": "2024-12-05",
+      "accessed": "2026-10-29"
+    },
+    "kseb-circular-2025": {
+      "title": "KSEB Circular KSEBL/TRAC/G/Tariff Revision/2025-26 dated 22.03.2025: billing procedure 01.04.2025 to 31.03.2027",
+      "publisher": "KSEB Ltd (copy hosted by ampstell.com)",
+      "url": "https://ampstell.com/wp-content/uploads/2025/07/KSEB-Tariff-Revision-Circular-2025-2027.pdf",
+      "sha256": "19ca81930fba9913f2e9a4c9343b1853c206549064f58d0df5ce8b5703bd2f46",
+      "type": "utility_page",
+      "date": "2025-03-22",
+      "accessed": "2026-10-29",
+      "note": "Third-party hosted, OCR'd copy. Bimonthly fixed charges and the ready reckoner were read from OCR text; they match exactly twice the KSERC monthly values."
+    },
+    "kseb-circular-2023": {
+      "title": "KSEB Circular dated 16.11.2023 (interim tariff, subsidy table)",
+      "publisher": "KSEB Ltd",
+      "url": "https://kseb.in/uploads/Downloadtemsuppy/Tariff%20Revision%20Circular%202023-24-1700134451843511849.pdf",
+      "sha256": "ea097fbf725999be58d562dcd2f79f1d1b65d882e2f0887d4e60a388fcee8410",
+      "type": "utility_page",
+      "date": "2023-11-16",
+      "accessed": "2026-10-29"
+    },
+    "kseb-faq": {
+      "title": "KSEB FAQ (electricity duty, meter rent, telescopic billing)",
+      "publisher": "KSEB Ltd",
+      "url": "https://kseb.in/sbufaq/eyJpdiI6IkJQWWpYVk15b3dxb1lZUjdpZ2NyZlE9PSIsInZhbHVlIjoiM3UvUk5pYlQzcWZZaEJZZ0JBMHQwZz09IiwibWFjIjoiMmQ4ZmI2NTI3MTU4Y2UzYzEzZWUxOTA3NTIyYzA4MWExYjQyNDM1Y2NlMzkwODJmMjgwNmI4MGM2NGQ5NDQ3MyIsInRhZyI6IiJ9",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "kserc-re-regs-2025": {
+      "title": "KSERC (Renewable Energy and Related Matters) Regulations, 2025 (Notification No. 3228/Con.Engg/2023/KSERC dated 05-11-2025), KSERC-hosted copy",
+      "publisher": "Kerala State Electricity Regulatory Commission",
+      "url": "https://dev.erckerala.org/api/storage/draft-regulations/WHGPRV4PWntRfaPDsgbf2asrVyAPoW7dJLaVrK1p.pdf",
+      "sha256": "79ac91326b8be32d5e2758110b156366dca0f88b42c5a48cc3bf980f23bb262b",
+      "type": "regulation",
+      "date": "2025-11-05",
+      "accessed": "2026-10-29",
+      "note": "Served under a draft-regulations path but carries the final notification text (checked 2026-10-29). Repeals the 2020 Net Metering Regulations; the energy accounting, billing and settlement chapter is in force from 01-01-2026."
+    },
+    "kserc-re-regs-2025-gazette": {
+      "title": "KSERC (Renewable Energy and Related Matters) Regulations, 2025, Kerala Gazette Extraordinary No. 3944 dated 06-11-2025",
+      "publisher": "KSERC / Government of Kerala (copy hosted by simpliance.in)",
+      "url": "https://simpliance.in/download/file/dXBsb2Fkcy9nb3Z0bm90aWZpY2F0aW9uL05vdGlmaWNhdGlvbiBvbiB0aGUgS2VyYWxhIFN0YXRlIEVsZWN0cmljaXR5IFJlZ3VsYXRvcnkgQ29tbWlzc2lvbiAoUmVuZXdhYmxlIEVuZXJneSBhbmQgUmVsYXRlZCBNYXR0ZXJzKSBSZWd1bGF0aW9ucywgMjAyNS5wZGY=",
+      "sha256": "99fc855277d3c8b350f1f1a7ce9ff8ef9ae229cbca5e844ff033f06170747f07",
+      "type": "gazette",
+      "date": "2025-11-05",
+      "accessed": "2026-10-29",
+      "note": "Third-party hosted copy of the gazette."
+    },
+    "keralakaumudi-surcharge-2026-10": {
+      "title": "KSEB October surcharge 3 paise per unit",
+      "publisher": "Kerala Kaumudi",
+      "url": "https://keralakaumudi.com/en/kerala/general/kseb-october-surcharge-3-paise-per-unit-1808723",
+      "type": "news",
+      "date": "2026-09-28",
+      "accessed": "2026-10-29"
+    },
+    "manorama-surcharge-2026-01": {
+      "title": "New year shock: KSEB increases fuel surcharge on electricity bills",
+      "publisher": "Manorama News",
+      "url": "https://www.manoramanews.com/kerala/latest/2026/01/01/new-year-shock-kseb-increases-fuel-surcharge-on-electricity-bills.html",
+      "type": "news",
+      "date": "2026-01-01",
+      "accessed": "2026-10-29"
+    },
+    "onmanorama-tariff-2024": {
+      "title": "Kerala electricity rate go up: revised tariff (commission rejected 2026-27 hike)",
+      "publisher": "Onmanorama",
+      "url": "https://onmanorama.com/news/kerala/2024/12/06/kerala-electriicty-rate-go-up-revised-tariff-rate.html",
+      "type": "news",
+      "date": "2024-12-06",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "Government energy-charge subsidy for consumers using up to 240 units per two months (120 a month): KSEB circulars say it continues at the 'present level' tied to the 25-07-2012 tariff increase (source kseb-circular-2023), but no per-unit amount was found in any primary source. Not modelled, so bills for these consumers are overstated by the subsidy.",
+    "Fixed-charge subsidy of Rs 40 per two months for single-phase consumers using up to 240 units per two months (Rs 0 for three phase), per the KSEB 22.03.2025 circular: no subsidy rule type expresses a flat credit by consumption band, so it is not modelled and these bills are overstated by Rs 40. The circular deducts subsidies after duty is computed on the full energy charge.",
+    "BPL concessional tariff not modelled (no BPL flag in the schema): Rs 1.50/unit and no fixed charge for BPL consumers up to 1000 W and 40 units a month; Rs 1.50/unit with Government subsidy at 41-50 units; BPL families with cancer patients or 40%+ disability (up to 2000 W) at Rs 1.50/unit up to 100 units a month; consumers up to 500 W averaging up to 30 units a month are exempt from electricity charges.",
+    "Some domestic consumers are billed monthly; this book models bimonthly billing only (monthly slab limits are half the bimonthly ones).",
+    "Fuel surcharge of 3 paise/unit for October 2026 is from news only; no KSEB or KSERC notice was fetched. It changes monthly, and whether electricity duty is also levied on it is not confirmed.",
+    "ToD applicability wording conflict: KSERC schedule general condition 10 says 'LT-I domestic consumers (3 Phase) having monthly consumption above 250 units', while Annexure E and the KSEB circular apply ToD to single and three phase consumers once a ToD meter is installed. The book applies it to both phases with the smart_meter flag.",
+    "Rooftop solar: time-zone netting, banking normalisation factors, monthly 'zero billing' monetisation of banked units, grid support charges (domestic up to 10 kW exempt; new systems above 10 kW, and from 01-04-2027 above 5 kW, pay 50 paise/Re 1 per kWh), the 1.5x peak-hour net-billing credit, the Rs 7.50/kWh gross-metering storage tariff and storage requirements above 10 kW are not modelled.",
+    "Whether the regular meter rent is replaced by the net meter rent for prosumers is not stated; the engine charges both.",
+    "Grid support charges for new domestic prosumers above 10 kW apply only 'till such time' KSERC fixes them in a tariff petition; no later determination was found.",
+    "Hosting caveats: KSERC tariff PDFs are served from dev.erckerala.org; the KSEB 22.03.2025 circular is a third-party hosted OCR copy (ampstell.com), used for the bimonthly fixed-charge table and ready reckoner, whose values match exactly twice the KSERC monthly figures. The RE Regulations values were checked in the KSERC-hosted copy.",
+    "No KSERC order after 05-12-2024 changing LT-I rates for FY2026-27 (for example a regulatory or true-up surcharge) was found.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-29",
+      "summary": "First FY2026-27 book from the KSERC order and Schedule of Tariff of 05-12-2024 (LT-I rates w.e.f. 01-04-2025 to 31-03-2027, no revision for FY2026-27) and the KSERC (Renewable Energy and Related Matters) Regulations, 2025."
+    }
+  ]
+}

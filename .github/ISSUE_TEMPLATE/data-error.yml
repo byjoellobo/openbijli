@@ -1,0 +1,28 @@
+name: Wrong number or bill
+description: The dataset or calculator gives a different bill than your utility, or a value disagrees with its source.
+title: '[data] '
+labels: ['data-error']
+body:
+  - type: input
+    id: utility
+    attributes:
+      label: Utility and tariff category
+      placeholder: MESCOM, LT-1 domestic
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What the bill or order says
+      description: Paste the line items from your bill (remove your name, account number and address) or quote the order with a page number.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What Open Tariff India gives
+      description: Units, sanctioned load, and the engine's line items.
+  - type: input
+    id: source
+    attributes:
+      label: Source link

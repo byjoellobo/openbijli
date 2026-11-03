@@ -1,0 +1,362 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "ka-kerc",
+  "title": "Karnataka ESCOMs retail tariff (KERC), LT-1 Domestic",
+  "state": "Karnataka",
+  "stateCode": "KA",
+  "regulator": { "name": "Karnataka Electricity Regulatory Commission", "short": "KERC", "url": "https://kerc.karnataka.gov.in/" },
+  "utilities": [
+    {
+      "id": "mescom",
+      "name": "Mangalore Electricity Supply Company Limited",
+      "shortName": "MESCOM",
+      "servedArea": "Dakshina Kannada, Udupi, Shivamogga and Chikkamagaluru districts",
+      "website": "https://mescom.karnataka.gov.in/",
+      "solarResource": "mangaluru"
+    },
+    {
+      "id": "bescom",
+      "name": "Bangalore Electricity Supply Company Limited",
+      "shortName": "BESCOM",
+      "servedArea": "Bengaluru and seven surrounding districts",
+      "website": "https://bescom.karnataka.gov.in/",
+      "solarResource": "bengaluru"
+    },
+    {
+      "id": "hescom",
+      "name": "Hubli Electricity Supply Company Limited",
+      "shortName": "HESCOM",
+      "servedArea": "North-western Karnataka (Hubballi-Dharwad and neighbouring districts)",
+      "website": "https://hescom.karnataka.gov.in/",
+      "solarResource": "hubballi"
+    },
+    {
+      "id": "gescom",
+      "name": "Gulbarga Electricity Supply Company Limited",
+      "shortName": "GESCOM",
+      "servedArea": "North-eastern Karnataka (Kalaburagi and neighbouring districts)",
+      "website": "https://gescom.karnataka.gov.in/",
+      "solarResource": "kalaburagi"
+    },
+    {
+      "id": "cesc-mysore",
+      "name": "Chamundeshwari Electricity Supply Corporation Limited",
+      "shortName": "CESC Mysore",
+      "servedArea": "Southern Karnataka (Mysuru and neighbouring districts)",
+      "website": "https://cescmysore.karnataka.gov.in/",
+      "solarResource": "mysuru"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-04-01",
+  "effectiveTo": "2027-03-31",
+  "status": "partial",
+  "order": {
+    "title": "KERC Combined Tariff Order 2025 for BESCOM, MESCOM, CESC, HESCOM and GESCOM (control period FY2025-26 to FY2027-28), FY2026-27 column",
+    "cite": [{ "ref": "kerc-to-2025", "page": "Annexure-9, p.534", "quote": "Fixed Charges (Per KW / Month of sanctioned load) | Rs.145/- | Rs.150/- | Rs.160/- | Energy Charges (Per kWh) | 580 paise | 580 paise | 575 paise" }],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "LT-1",
+      "name": "LT-1 Domestic",
+      "description": "Lighting, heating and motive power in residential houses, including erstwhile Bhagyajyothi/Kutirjyothi installations. Since Tariff Order 2025, one statewide slab with no rural/urban or load split. Tariff applies from the first meter reading on or after 1 April 2026.",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [{ "id": "single-slab", "label": "All units", "method": "telescopic", "slabs": [{ "upTo": null, "rate": 5.8 }] }],
+        "note": "KERC merged the two-tier LT-1 structure into a single slab in Tariff Order 2025 (p.217).",
+        "cite": [
+          { "ref": "kerc-to-2025", "page": "Annexure-9, p.534" },
+          { "ref": "mescom-tariff-booklet", "page": "p.20", "quote": "Energy Charges (Per kWh) 580 Paise 580 Paise 575 Paise" }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "per-kw",
+            "label": "Fixed charge (₹150/kW/month)",
+            "bandBy": "none",
+            "method": "whole",
+            "bands": [{ "upTo": null, "amount": 150, "per": "kw" }],
+            "period": "month",
+            "loadRounding": "round_quarter",
+            "minimumKw": 1
+          }
+        ],
+        "note": "Billing load is the higher of sanctioned load and recorded maximum demand on static/smart meters; fractions rounded to the nearest quarter kW, minimum 1 kW. The engine bills sanctioned load.",
+        "cite": [
+          { "ref": "kerc-to-2025", "page": "Annexure-9, p.534" },
+          { "ref": "kerc-to-2025", "page": "p.533, item 23", "quote": "Fraction of KW / HP shall be rounded off to the nearest quarter KW / HP for purpose of billing and the minimum billing being for 1 KW" }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "per_kwh",
+          "id": "pg-surcharge",
+          "name": "P&G surcharge (Government portion of pension and gratuity)",
+          "rate": 0.35,
+          "variable": false,
+          "asOf": "2025-03-18",
+          "note": "FY2025-26 Rs 0.36, FY2026-27 Rs 0.35, FY2027-28 Rs 0.34 per kWh, shown as a separate line on monthly bills.",
+          "cite": [{ "ref": "kerc-pg-2025", "page": "p.8", "quote": "FY2026-27 | 2845.75 | 81,095.29 | 35 [Paise / Unit]" }],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_kwh",
+          "id": "fppca",
+          "name": "FPPCA (fuel and power purchase cost adjustment)",
+          "rate": 0,
+          "variable": true,
+          "note": "Set monthly per ESCOM. No official current value was found; news in October 2026 reported an expected 40-50 paise/unit for the Oct-Nov 2026 cycle, not confirmed as KERC-approved. Placeholder 0 until a notified value is added.",
+          "cite": [{ "ref": "mescom-apr-2026", "quote": "ESCOMs are complying by including these arrears in monthly FPPCA charges." }],
+          "verification": "unverified"
+        },
+        {
+          "kind": "percent",
+          "id": "electricity-tax",
+          "name": "Electricity Tax (Government of Karnataka)",
+          "percent": 9,
+          "of": ["energy", "fixed"],
+          "variable": false,
+          "asOf": "2018-07-19",
+          "note": "Ad valorem on charges for electricity consumed, excluding arrears. Applied here to energy and fixed charges; whether it also applies to the P&G surcharge and FPPCA lines is not confirmed.",
+          "cite": [{ "ref": "bescom-tariff-booklet", "page": "p.43", "quote": "the Electricity Tax is levied at 9% on advolorem basis on the charges payable on electricity sold to or consumed by any consumer excluding arrears" }],
+          "verification": "verified"
+        },
+        {
+          "kind": "per_solar_kw",
+          "id": "srtpv-rebate",
+          "name": "Rooftop solar fixed-charge rebate",
+          "amount": -25,
+          "period": "month",
+          "maxKw": 10,
+          "appliesIf": { "maxLoadKw": 10 },
+          "variable": false,
+          "note": "LT domestic installations up to 10 kW sanctioned load with rooftop solar get Rs 25/kW of installed solar off fixed charges. Per-month application is inferred from fixed charges being per kW per month.",
+          "cite": [{ "ref": "kerc-to-2025", "page": "p.535, note (b) to LT-1", "quote": "The eligible consumers shall be allowed a rebate of Rs.25/kW in fixed charges for the installed SRTPV capacity." }],
+          "verification": "verified"
+        }
+      ],
+      "subsidies": [
+        {
+          "rule": "entitlement",
+          "id": "gruha-jyothi",
+          "name": "Gruha Jyothi",
+          "authority": "Government of Karnataka",
+          "capUnits": 200,
+          "baselineMultiplier": 1.1,
+          "excessBilling": "excess_only",
+          "fullBillAboveUnits": 200,
+          "covers": "total",
+          "optIn": true,
+          "eligibility": "Registered domestic connections (Seva Sindhu, Aadhaar linked). Entitlement is the household's FY2022-23 monthly average plus 10%, capped at 200 units; new connections get 53 units. Within entitlement: zero bill. Above entitlement up to 200 units: the eligible amount is deducted. Above 200 units: full bill that month.",
+          "solarInteraction": "Not specified in the fetched orders.",
+          "cite": [
+            { "ref": "gj-faq-2023", "quote": "If my monthly consumption is more than 200 units? Will I have to pay the entire bill amount? Yes for that particular month alone you will have to pay the entire bill amount." },
+            { "ref": "gj-faq-2026", "page": "Q11, Q17, Q18", "quote": "the eligible units--determined as the average electricity consumption for the financial year 2022-23 plus an additional 10%--will continue to remain unchanged" }
+          ],
+          "verification": "verified"
+        }
+      ]
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (KERC DSPV Regulations 2026)",
+        "default": true,
+        "minKw": 1,
+        "maxKw": 1000,
+        "exportRate": {
+          "value": 3.89,
+          "basis": "KERC DSPV tariff for domestic 1-10 kW without capital subsidy, new projects 25.08.2026 to 30.06.2029, fixed for the 25-year PPA",
+          "variable": false,
+          "withCentralSubsidy": [
+            { "upToKw": 2, "value": 1.96 },
+            { "upToKw": 3, "value": 2.14 },
+            { "upToKw": null, "value": 2.58 }
+          ]
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "note": "Monthly settlement with no banking: surplus export over import is bought at the PPA tariff each month. Fixed charges and levies are always payable. Systems commissioned 01.07.2025-24.08.2026 keep the earlier tariff (Rs 3.86; PM Surya Ghar 2.30/2.48/2.93).",
+        "cite": [
+          { "ref": "kerc-dspv-order-2026", "page": "pp.15-16", "quote": "For grid connected Distributed Solar PV Plants under net-metering/gross metering/net billing of 1 kW to 10 kW for domestic consumers, the approved tariff is Rs. 3.89 per unit, without capital subsidy." },
+          { "ref": "kerc-dspv-regs-2026", "quote": "Excess energy exported, if any and purchased by the Distribution Licensee at the PPA tariff, and amount settled on monthly basis." }
+        ],
+        "verification": "verified"
+      },
+      {
+        "id": "net-billing",
+        "type": "net_billing",
+        "label": "Net billing (KERC DSPV Regulations 2026)",
+        "default": false,
+        "minKw": 1,
+        "exportRate": {
+          "value": 3.89,
+          "basis": "Same DSPV tariff as net metering",
+          "variable": false,
+          "withCentralSubsidy": [
+            { "upToKw": 2, "value": 1.96 },
+            { "upToKw": 3, "value": 2.14 },
+            { "upToKw": null, "value": 2.58 }
+          ]
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "cite": [{ "ref": "kerc-dspv-regs-2026", "quote": "Energy Bill of consumer = Fixed Charges + Other applicable charges and levies + (EDL x TRST) - (ERE x TRR)" }],
+        "verification": "verified"
+      },
+      {
+        "id": "gross-metering",
+        "type": "gross_metering",
+        "label": "Gross metering (KERC DSPV Regulations 2026)",
+        "default": false,
+        "minKw": 1,
+        "exportRate": {
+          "value": 3.89,
+          "basis": "Entire generation bought at the DSPV tariff",
+          "variable": false,
+          "withCentralSubsidy": [
+            { "upToKw": 2, "value": 1.96 },
+            { "upToKw": 3, "value": 2.14 },
+            { "upToKw": null, "value": 2.58 }
+          ]
+        },
+        "settlement": { "period": "billing_cycle", "surplus": "paid_at_export_rate" },
+        "cite": [{ "ref": "kerc-dspv-regs-2026", "quote": "The distribution licensee shall purchase entire energy generated from the DSPV system at the tariff determined by the Commission." }],
+        "verification": "verified"
+      }
+    ],
+    "capacityLimit": {
+      "maxKw": 1000,
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Net metering: 1 kW up to the lower of sanctioned load and 1000 kW. Up to 10 kW, DC capacity may exceed the AC inverter rating by 10%, but the inverter must not exceed sanctioned load."
+    },
+    "fees": "No fee schedule in the 2026 Regulations. A BESCOM 2023 guideline hosted on MESCOM's SRTPV portal lists Rs 1,500 + GST (registration + facilitation) for 1-5 kWp and Rs 5,000 + GST for 5-50 kWp, plus Rs 10 e-sign for domestic 1-10 kW. MESCOM says these fees apply under PM Surya Ghar too.",
+    "notes": [
+      "Grid support charges on rooftop solar are barred until KERC determines them (order of 15.01.2025).",
+      "No Karnataka state top-up over PM Surya Ghar CFA was found in primary sources."
+    ],
+    "cite": [
+      { "ref": "kerc-dspv-regs-2026", "page": "Reg. 15.1" },
+      { "ref": "bescom-srtpv-guidelines-2023", "page": "p.1" }
+    ],
+    "verification": "verified"
+  },
+  "sources": {
+    "kerc-to-2025": {
+      "title": "Combined Tariff Order 2025 of BESCOM, MESCOM, CESC, HESCOM, GESCOM (control period FY2025-26 to FY2027-28)",
+      "publisher": "Karnataka Electricity Regulatory Commission",
+      "url": "https://kerc.karnataka.gov.in/uploads/96731743148968.pdf",
+      "type": "regulator_order",
+      "date": "2025-03-27",
+      "accessed": "2026-10-29"
+    },
+    "kerc-pg-2025": {
+      "title": "Order: Government portion of Pension and Gratuity surcharge payable by electricity consumers",
+      "publisher": "Karnataka Electricity Regulatory Commission",
+      "url": "https://kerc.karnataka.gov.in/uploads/media_to_upload1742361922.pdf",
+      "type": "regulator_order",
+      "date": "2025-03-18",
+      "accessed": "2026-10-29",
+      "note": "Amended 27.03.2025 to exclude DERS consumption: https://kerc.karnataka.gov.in/uploads/98041743075668.pdf"
+    },
+    "mescom-apr-2026": {
+      "title": "Order on Annual Performance Review for FY2024-25, MESCOM (APR Petition No.38)",
+      "publisher": "Karnataka Electricity Regulatory Commission",
+      "url": "https://kerc.karnataka.gov.in/uploads/19911776426955.pdf",
+      "type": "regulator_order",
+      "date": "2026-04-17",
+      "accessed": "2026-10-29"
+    },
+    "bescom-apr-2026": {
+      "title": "Order on Annual Performance Review for FY2024-25, BESCOM (APR Petition No.39)",
+      "publisher": "Karnataka Electricity Regulatory Commission",
+      "url": "https://kerc.karnataka.gov.in/uploads/17731776422105.pdf",
+      "type": "regulator_order",
+      "date": "2026-04-17",
+      "accessed": "2026-10-29"
+    },
+    "mescom-tariff-booklet": {
+      "title": "MESCOM Electricity Tariff 2026 to 2028 (KERC order 27.03.2025)",
+      "publisher": "MESCOM",
+      "url": "https://mescom.karnataka.gov.in/uploads/media_to_upload1753185199.pdf",
+      "sha256": "64953b2ab00bd087ba9840319f1701b140855ed06c2d0d989c39b6dd17d5c66e",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "bescom-tariff-booklet": {
+      "title": "BESCOM Electricity Tariff 2026 to 2028 (KERC order 27.03.2025)",
+      "publisher": "BESCOM",
+      "url": "https://bescom.karnataka.gov.in/uploads/media_to_upload1775021662.pdf",
+      "sha256": "5a7302cf7144b782ee499dfc70108cc882f5d7231c38b01354ac58f6e29615e0",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "gj-faq-2023": {
+      "title": "Gruha Jyothi - Frequently Asked Questions",
+      "publisher": "Government of Karnataka (Centre for e-Governance)",
+      "url": "https://ceg.karnataka.gov.in/assets/front/pdf/FAQ%20for%20%20Gruha%20Jyothi.pdf",
+      "sha256": "7da91cd8f4da8edbe36a5c68b2088afc61f92a99dff7e05ebf750f3e4c1b09da",
+      "type": "government_page",
+      "date": "2023-06-15",
+      "accessed": "2026-10-29"
+    },
+    "gj-faq-2026": {
+      "title": "Gruha Jyothi Scheme Verification FAQ, July 2026",
+      "publisher": "Government of Karnataka / BESCOM",
+      "url": "https://bescom.karnataka.gov.in/uploads/media_to_upload1782968637.pdf",
+      "sha256": "af1e360f27e5e8692a21fa9011dd9597ecaf5483910b51215bc2de9848c82a1a",
+      "type": "utility_page",
+      "date": "2026-07-01",
+      "accessed": "2026-10-29"
+    },
+    "gj-go-2023": {
+      "title": "Gruha Jyothi GO No. Energy/164/PSR/2023 dated 05.06.2023 (Kannada)",
+      "publisher": "Government of Karnataka, Energy Department",
+      "url": "https://bescom.karnataka.gov.in/storage/pdf-files/aetomd/GODated05-06-2023_GJ.pdf",
+      "sha256": "1b77700092cd56da537dc222b5848f3829c966b53eca24b17c299b393b04b762",
+      "type": "gazette",
+      "date": "2023-06-05",
+      "accessed": "2026-10-29"
+    },
+    "kerc-dspv-regs-2026": {
+      "title": "KERC (Grid Interactive Distributed Solar Photovoltaic (DSPV) Plants) Regulations, 2026",
+      "publisher": "Karnataka Electricity Regulatory Commission (Karnataka Gazette 24.08.2026)",
+      "url": "https://kerc.karnataka.gov.in/uploads/media_to_upload1787642381.pdf",
+      "type": "regulation",
+      "date": "2026-08-19",
+      "accessed": "2026-10-29"
+    },
+    "kerc-dspv-order-2026": {
+      "title": "KERC Order: tariff for DSPV/SPV plants with different metering mechanisms, 25.08.2026 to 30.06.2029",
+      "publisher": "Karnataka Electricity Regulatory Commission",
+      "url": "https://kerc.karnataka.gov.in/uploads/48561787653428.pdf",
+      "type": "regulator_order",
+      "date": "2026-08-25",
+      "accessed": "2026-10-29"
+    },
+    "bescom-srtpv-guidelines-2023": {
+      "title": "Guidelines for grid connectivity of SRTPV systems (BESCOM/BC-51/2023-24/1317), hosted on MESCOM SRTPV portal",
+      "publisher": "BESCOM",
+      "url": "https://srtpv.mesco.in/SRTPV/document/1_Guidelines_2023_05.08.2023.pdf",
+      "type": "utility_page",
+      "date": "2023-08-05",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "FPPCA: no official current monthly value for any ESCOM; modelled as 0 (unverified). Oct 2026 news reports 40-50 paise/unit expected for Oct-Nov billing.",
+    "FY25 true-up charges (MESCOM refund 9 paise/unit, BESCOM recovery 56 paise/unit) are computed on each consumer's FY2024-25 consumption and spread over May 2026-April 2027 bills; not modelled because they do not depend on current consumption. Sources: mescom-apr-2026, bescom-apr-2026.",
+    "Gruha Jyothi: a January 2024 news report says the +10% buffer became +10 units; the GO was not found and BESCOM's July 2026 FAQ still says +10%. How fixed charges and tax are treated above the entitlement is not specified; the engine bills the units above the entitlement as a separate smaller bill.",
+    "Electricity tax base beyond energy and fixed charges (P&G surcharge, FPPCA) is not confirmed.",
+    "Billing load uses recorded maximum demand when higher than sanctioned load; the engine uses sanctioned load.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [{ "date": "2026-10-29", "summary": "First FY2026-27 book from KERC Tariff Order 2025, P&G order, DSPV Regulations and tariff order of August 2026." }]
+}

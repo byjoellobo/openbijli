@@ -1,0 +1,311 @@
+/*
+ * Open Tariff India: bill paper, stamp ink, and one red LED.
+ * The itemised bill slip (.slip) is the single bold element; everything else is quiet.
+ */
+:root {
+  --paper: #f3f6f1;
+  --sheet: #ffffff;
+  --ink: #1e2b4a;
+  --ink-soft: #4a5672;
+  --stamp: #4f3cb8;
+  --stamp-wash: #ece9fa;
+  --led: #d9302b;
+  --rule: #c9cfd8;
+  --ok: #1d6b4f;
+  --warn: #9a5b00;
+  --radius-control: 6px;
+  --measure: 68ch;
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  font-family: 'Mukta', 'Noto Sans', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+a { color: var(--stamp); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 3px solid var(--stamp); outline-offset: 2px; border-radius: 3px; }
+
+h1, h2, h3 { line-height: 1.15; font-weight: 800; margin: 0; }
+h1 { font-size: var(--step-3); letter-spacing: -0.01em; max-width: 22ch; }
+h2 { font-size: var(--step-2); margin-top: 2.2rem; }
+h3 { font-size: var(--step-1); font-weight: 600; }
+p { max-width: var(--measure); }
+
+/* ---------- masthead ---------- */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 2rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  font-size: var(--step-1);
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand-led {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--led);
+  box-shadow: 0 0 0 3px #f7d4d2;
+}
+.masthead nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.masthead nav a { color: var(--ink-soft); text-decoration: none; padding: 0.2rem 0; border-bottom: 2px solid transparent; }
+.masthead nav a[aria-current='page'] { color: var(--ink); border-bottom-color: var(--stamp); font-weight: 600; }
+
+main { padding: 2rem clamp(1rem, 4vw, 3rem) 3rem; max-width: 1240px; }
+
+.lede { font-size: var(--step-1); color: var(--ink-soft); margin: 0.75rem 0 2rem; }
+
+/* ---------- two-column work area ---------- */
+.workbench { display: grid; gap: 2rem; align-items: start; }
+@media (min-width: 900px) {
+  .workbench { grid-template-columns: minmax(300px, 380px) 1fr; gap: 3rem; }
+  /* Short forms stay beside a long result; they scroll inside if they outgrow the screen. */
+  .workbench > .controls { position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow-y: auto; padding: 0 0.4rem 0.4rem 0.2rem; }
+  .workbench > .controls.steps { position: static; max-height: none; overflow: visible; }
+}
+
+/* ---------- form controls ---------- */
+.controls { display: grid; gap: 1.1rem; }
+.field { display: grid; gap: 0.3rem; align-content: start; }
+.field > span { font-weight: 600; }
+.field small, .hint { color: var(--ink-soft); font-size: var(--step--1); }
+input[type='number'], input[type='text'], input[type='datetime-local'], select, textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-control);
+  padding: 0.5rem 0.65rem;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--stamp); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.check { display: flex; gap: 0.55rem; align-items: flex-start; }
+.check input { margin-top: 0.35rem; accent-color: var(--stamp); }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+legend { font-weight: 600; padding: 0; margin-bottom: 0.3rem; }
+details > summary { cursor: pointer; font-weight: 600; color: var(--stamp); }
+details[open] > summary { margin-bottom: 0.8rem; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  border-radius: var(--radius-control);
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  border: 1px solid var(--stamp);
+  background: var(--stamp);
+  color: #fff;
+}
+button.quiet { background: transparent; color: var(--stamp); }
+button:disabled { opacity: 0.55; cursor: progress; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.segmented { display: inline-flex; justify-self: start; border: 1px solid var(--rule); border-radius: var(--radius-control); overflow: hidden; }
+.segmented button { border: 0; border-radius: 0; background: var(--sheet); color: var(--ink-soft); font-weight: 400; }
+.segmented button[aria-pressed='true'] { background: var(--stamp-wash); color: var(--ink); font-weight: 600; }
+
+/* ---------- the bill slip ---------- */
+.slip {
+  --edge: 10px;
+  background: var(--sheet);
+  padding: 1.6rem clamp(1rem, 3vw, 2rem) 1.4rem;
+  max-width: 44rem;
+  filter: drop-shadow(0 1px 0 var(--rule)) drop-shadow(0 8px 18px rgba(30, 43, 74, 0.08));
+  /* perforated top and bottom edges, like a bill torn from the printer */
+  -webkit-mask:
+    radial-gradient(circle at 50% 0, transparent 4px, #000 4.5px) top / var(--edge) var(--edge) repeat-x,
+    radial-gradient(circle at 50% 100%, transparent 4px, #000 4.5px) bottom / var(--edge) var(--edge) repeat-x,
+    linear-gradient(#000, #000) center / 100% calc(100% - 2 * var(--edge)) no-repeat;
+  mask:
+    radial-gradient(circle at 50% 0, transparent 4px, #000 4.5px) top / var(--edge) var(--edge) repeat-x,
+    radial-gradient(circle at 50% 100%, transparent 4px, #000 4.5px) bottom / var(--edge) var(--edge) repeat-x,
+    linear-gradient(#000, #000) center / 100% calc(100% - 2 * var(--edge)) no-repeat;
+}
+.slip-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--ink); }
+.slip-head h2 { margin: 0; font-size: var(--step-1); }
+.slip-head p { margin: 0; color: var(--ink-soft); font-size: var(--step--1); }
+.slip table { width: 100%; border-collapse: collapse; margin-top: 0.4rem; }
+.slip td { padding: 0.5rem 0; border-bottom: 1px dashed var(--rule); vertical-align: top; }
+.slip td.amount { text-align: right; white-space: nowrap; padding-left: 1rem; font-weight: 600; }
+.slip td.amount.credit { color: var(--ok); }
+.slip .line-detail { display: block; color: var(--ink-soft); font-size: var(--step--1); }
+.slip sup a { text-decoration: none; font-weight: 600; font-size: 0.72em; padding: 0 0.1em; }
+.slip tfoot td { border-bottom: 0; padding-top: 0.9rem; font-size: var(--step-1); font-weight: 800; }
+.slip tfoot td.amount { font-size: var(--step-2); }
+.slip .payable { color: var(--ink-soft); font-size: var(--step--1); font-weight: 400; }
+
+.mark { display: inline-block; width: 0.62em; height: 0.62em; border-radius: 50%; margin-left: 0.35em; vertical-align: 0.05em; border: 1.5px solid var(--ink-soft); }
+.mark.verified { background: var(--ink-soft); }
+.mark.secondary { background: linear-gradient(90deg, var(--ink-soft) 50%, transparent 50%); }
+.mark.unverified { background: transparent; border-color: var(--warn); }
+
+.notes { margin: 1.2rem 0 0; padding: 0.8rem 1rem; background: #fbf6ea; border-left: 3px solid var(--warn); }
+.notes h3 { font-size: var(--step-0); }
+.notes ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+.notes li { font-size: var(--step--1); margin: 0.2rem 0; }
+
+.sources { margin-top: 1.2rem; font-size: var(--step--1); }
+.sources ol { padding-left: 1.4rem; margin: 0.4rem 0 0; }
+.sources li { margin: 0.25rem 0; }
+.sources q { color: var(--ink-soft); }
+
+.compare { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin: 1rem 0 0; color: var(--ink-soft); }
+.compare strong { color: var(--ink); }
+
+/* ---------- solar ---------- */
+.verdict { font-size: var(--step-1); margin: 0 0 0.6rem; max-width: 40ch; }
+.verdict strong { font-weight: 800; }
+.rationale { padding-left: 1.1rem; margin: 0.4rem 0 1.4rem; }
+.rationale li { margin: 0.35rem 0; max-width: var(--measure); }
+.chart { width: 100%; max-width: 44rem; height: auto; display: block; margin: 0.6rem 0 0.2rem; }
+.chart .bar { fill: #b9c1d3; }
+.chart .bar.best { fill: var(--stamp); }
+.chart .bar.loss { fill: #e7b9b6; }
+.chart text { font-family: inherit; font-size: 12px; fill: var(--ink-soft); }
+.chart .axis { stroke: var(--ink); stroke-width: 1; }
+
+.table-wrap { overflow-x: auto; max-width: 100%; }
+table.data { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+table.data th, table.data td { text-align: right; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+table.data th:first-child, table.data td:first-child { text-align: left; }
+table.data th { font-weight: 600; color: var(--ink-soft); }
+table.data tr.best td { background: var(--stamp-wash); font-weight: 600; }
+table.data td.left, table.data th.left { text-align: left; white-space: normal; }
+
+/* ---------- Meter Sakshi ---------- */
+.pulse { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--led); margin-right: 0.6rem; vertical-align: 0.15rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .pulse { animation: blink 1.6s steps(1, end) infinite; }
+  @keyframes blink { 0%, 12% { opacity: 1; box-shadow: 0 0 10px 2px rgba(217, 48, 43, 0.55); } 13%, 100% { opacity: 0.25; box-shadow: none; } }
+}
+.bill-rows { display: grid; gap: 0.8rem; }
+.bill-row { display: grid; gap: 0.5rem; grid-template-columns: 1fr; padding: 0.8rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius-control); }
+@media (min-width: 520px) and (max-width: 899px) { .bill-row { grid-template-columns: 1fr 1fr; } }
+.controls, .controls > *, .workbench > * { min-width: 0; }
+input, select, textarea { min-width: 0; }
+.report-frame { width: 100%; min-height: 80vh; border: 1px solid var(--rule); background: #fff; }
+.error { color: var(--led); font-weight: 600; }
+.privacy { padding: 0.7rem 1rem; background: var(--stamp-wash); border-radius: var(--radius-control); font-size: var(--step--1); max-width: var(--measure); }
+
+/* ---------- data ---------- */
+.badge { font-size: var(--step--1); font-weight: 600; padding: 0.05rem 0.5rem; border-radius: 999px; border: 1px solid currentColor; }
+.badge.partial { color: var(--warn); }
+.badge.complete { color: var(--ok); }
+.gaps li { font-size: var(--step--1); color: var(--ink-soft); margin: 0.2rem 0; max-width: var(--measure); }
+
+.colophon { padding: 1.5rem clamp(1rem, 4vw, 3rem) 2.5rem; border-top: 1px solid var(--rule); color: var(--ink-soft); font-size: var(--step--1); }
+
+/* ---------- navigation and layout helpers ---------- */
+.skip { position: absolute; left: -999px; top: 0.5rem; background: var(--sheet); padding: 0.5rem 0.8rem; border-radius: var(--radius-control); z-index: 20; }
+.skip:focus { left: 0.5rem; }
+main:focus { outline: none; }
+.result { scroll-margin-top: 1rem; min-width: 0; }
+@media (max-width: 640px) {
+  .masthead { gap: 0.4rem; padding-bottom: 0; }
+  .masthead nav { flex-wrap: nowrap; overflow-x: auto; width: calc(100% + 2rem); margin: 0 -1rem; padding: 0 1rem; scrollbar-width: none; }
+  .masthead nav::-webkit-scrollbar { display: none; }
+  .masthead nav a { white-space: nowrap; padding: 0.55rem 0; }
+  h1 { font-size: 1.9rem; }
+  .lede { font-size: var(--step-0); margin-bottom: 1.4rem; }
+  main { padding-bottom: 5rem; }
+}
+
+/* Sticky headline on phones until the result scrolls into view. */
+.result-bar { display: none; }
+@media (max-width: 899px) {
+  .result-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+    background: var(--ink); color: #fff;
+  }
+  .result-bar strong { font-size: var(--step-1); }
+  .result-bar button { background: #fff; color: var(--ink); border-color: #fff; white-space: nowrap; }
+}
+
+.legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; color: var(--ink-soft); font-size: var(--step--1); margin: 0.4rem 0 0.8rem; }
+.legend .mark { margin: 0 0.3em 0 0; }
+.notes p { margin: 0.6rem 0 0; font-size: var(--step--1); }
+
+/* ---------- solar result ---------- */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.6rem 1.5rem; margin: 0.4rem 0 1.2rem; max-width: 44rem; }
+.facts div { border-left: 3px solid var(--stamp); padding-left: 0.7rem; }
+.facts dt { color: var(--ink-soft); font-size: var(--step--1); }
+.facts dd { margin: 0; font-size: var(--step-1); font-weight: 800; }
+.bars { list-style: none; padding: 0; margin: 0.6rem 0 1rem; max-width: 44rem; display: grid; gap: 0.55rem; }
+.bars li { display: grid; grid-template-columns: 5.5rem 1fr; grid-template-areas: 'size track' 'size value'; column-gap: 0.8rem; align-items: center; }
+.bar-size { grid-area: size; font-weight: 600; display: grid; line-height: 1.2; }
+.bar-size em { font-style: normal; font-size: 0.75rem; font-weight: 600; color: var(--stamp); }
+.bar-track { grid-area: track; height: 0.9rem; background: #e3e7ee; border-radius: 3px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: #9aa6bf; border-radius: 3px; }
+.bars li.best .bar-fill { background: var(--stamp); }
+.bar-fill.loss { background: #e2a7a3; }
+.bar-value { grid-area: value; font-size: var(--step--1); color: var(--ink-soft); }
+.bar-value strong { color: var(--ink); }
+.compare-all { margin: 1.2rem 0; max-width: 100%; }
+
+/* ---------- dispute steps and report ---------- */
+.steps { gap: 1.4rem; }
+.step { border-top: 1px solid var(--rule); padding-top: 1rem; gap: 0.9rem; }
+.step > legend { font-size: var(--step-1); font-weight: 800; float: left; width: 100%; margin-bottom: 0.2rem; }
+.step > legend + * { clear: both; }
+button.small { padding: 0.25rem 0.6rem; font-size: var(--step--1); justify-self: start; }
+.placeholder { border: 2px dashed var(--rule); border-radius: var(--radius-control); padding: 1.4rem; color: var(--ink-soft); }
+.placeholder h2 { margin: 0 0 0.4rem; font-size: var(--step-1); color: var(--ink); }
+.finding-list { list-style: none; padding: 0; margin: 0.8rem 0 1.2rem; display: grid; gap: 0.4rem; max-width: 46rem; }
+.finding-list li { padding: 0.45rem 0.7rem; background: var(--sheet); border-left: 4px solid var(--rule); border-radius: 3px; }
+.finding-list .sev { display: block; font-size: var(--step--1); font-weight: 600; color: var(--ink-soft); }
+.finding-list .high { border-left-color: var(--led); }
+.finding-list .high .sev { color: var(--led); }
+.finding-list .medium { border-left-color: var(--warn); }
+.finding-list .medium .sev { color: var(--warn); }
+.finding-list .ok { border-left-color: var(--ok); }
+.report-frame { min-height: 0; display: block; margin-top: 0.8rem; }
+
+/* ---------- data page ---------- */
+.state-index { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.6rem; }
+.state-index a { padding: 0.25rem 0.75rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--sheet); text-decoration: none; color: var(--ink); font-size: var(--step--1); }
+.state-index a:hover { border-color: var(--stamp); color: var(--stamp); }
+details.book { border-top: 2px solid var(--ink); padding: 0.9rem 0; scroll-margin-top: 1rem; }
+details.book > summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; align-items: baseline; color: var(--ink); list-style: none; }
+details.book > summary::-webkit-details-marker { display: none; }
+details.book > summary::before { content: '+'; font-weight: 800; color: var(--stamp); margin-right: 0.5rem; }
+details.book[open] > summary::before { content: '\2212'; }
+.book-title { font-size: var(--step-1); font-weight: 800; flex: 1 1 auto; }
+.book-meta { display: inline-flex; gap: 0.6rem; align-items: baseline; color: var(--ink-soft); font-weight: 400; }
+details.book h3 { margin: 1rem 0 0.3rem; font-size: var(--step-0); }
+.cell-note { display: block; font-weight: 400; color: var(--ink-soft); }
+table.data th.left { font-weight: 600; color: var(--ink); white-space: normal; min-width: 12rem; }
+.sources-list { margin-top: 0.6rem; }
+
+@media print {
+  .masthead, .colophon, .controls { display: none; }
+  .slip { filter: none; -webkit-mask: none; mask: none; }
+}

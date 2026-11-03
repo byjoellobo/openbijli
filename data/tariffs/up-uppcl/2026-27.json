@@ -1,0 +1,429 @@
+{
+  "$schema": "../../schema/tariff-book.schema.json",
+  "schemaVersion": 1,
+  "bookId": "up-uppcl",
+  "title": "Uttar Pradesh discoms retail tariff (UPERC), LMV-1 Domestic",
+  "state": "Uttar Pradesh",
+  "stateCode": "UP",
+  "regulator": { "name": "Uttar Pradesh Electricity Regulatory Commission", "short": "UPERC", "url": "https://pvvnl.org/en/20/53/Tariff-Order" },
+  "utilities": [
+    {
+      "id": "pvvnl",
+      "name": "Pashchimanchal Vidyut Vitran Nigam Limited, Meerut",
+      "shortName": "PVVNL",
+      "servedArea": "Western Uttar Pradesh including Noida, Ghaziabad and Meerut (per task brief; licence area not verified in the cited sources)",
+      "solarResource": "noida"
+    },
+    {
+      "id": "mvvnl",
+      "name": "Madhyanchal Vidyut Vitran Nigam Limited, Lucknow",
+      "shortName": "MVVNL",
+      "servedArea": "Headquartered in Lucknow (licence area not captured in the cited sources)",
+      "solarResource": "lucknow"
+    },
+    {
+      "id": "dvvnl",
+      "name": "Dakshinanchal Vidyut Vitran Nigam Limited, Agra",
+      "shortName": "DVVNL",
+      "servedArea": "Headquartered in Agra (licence area not captured in the cited sources)",
+      "solarResource": "agra"
+    },
+    {
+      "id": "puvvnl",
+      "name": "Purvanchal Vidyut Vitran Nigam Limited, Varanasi",
+      "shortName": "PuVVNL",
+      "servedArea": "Headquartered in Varanasi (licence area not captured in the cited sources)",
+      "solarResource": "varanasi"
+    },
+    {
+      "id": "kesco",
+      "name": "Kanpur Electricity Supply Company Limited",
+      "shortName": "KESCO",
+      "servedArea": "Kanpur (licence area not captured in the cited sources)",
+      "solarResource": "kanpur"
+    }
+  ],
+  "financialYear": "2026-27",
+  "effectiveFrom": "2026-07-02",
+  "status": "partial",
+  "order": {
+    "title": "UPERC Order dated 02.07.2026: Truing up of FY 2024-25, APR for FY 2025-26 and ARR & Tariff for FY 2026-27 for DVVNL, MVVNL, PVVNL, PuVVNL and KESCO (Petition Nos. 2316/2025, 2314/2025, 2318/2025, 2317/2025, 2315/2025), Rate Schedule Annexure-I. In force seven days after the discoms publish it in newspapers; effectiveFrom is set to the order date because the publication date was not verified. Bills before the actual effective date fall under the FY 2025-26 order, which is not encoded.",
+    "cite": [
+      { "ref": "uperc-to-2026", "page": "p.407", "quote": "The Tariff so published shall be in force after seven days from the date of such publication of the Tariffs and unless amended or revoked, shall continue to be in force till issuance of the next Tariff Order." },
+      { "ref": "powerpeak-2026-07-06" },
+      { "ref": "mercom-2026-07-15" }
+    ],
+    "verification": "verified"
+  },
+  "categories": [
+    {
+      "id": "domestic",
+      "code": "LMV-1",
+      "name": "LMV-1 Domestic Light, Fan & Power (metered)",
+      "description": "Urban (default): LMV-1 (c)(2) 'Others', metered domestic consumers not on Rural Schedule supply and not lifeline. Rural (area: rural): Rural Schedule 'Others'. Rates are the 'Tariff Payable' columns: urban after cross-subsidy adjustment, rural after the GoUP subsidy. Lifeline consumers (1 kW, up to 100 kWh/month) are not modelled. Consumers with contracted load of 10 kW and above are billed on kVAh, which is not modelled.",
+      "billingCycle": "monthly",
+      "energy": {
+        "schedules": [
+          {
+            "id": "rural-others",
+            "label": "Rural Schedule, Others (tariff payable after GoUP subsidy)",
+            "when": { "area": "rural" },
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 100, "rate": 3.35 },
+              { "upTo": 150, "rate": 3.85 },
+              { "upTo": 300, "rate": 5.0 },
+              { "upTo": null, "rate": 5.5 }
+            ]
+          },
+          {
+            "id": "urban-others",
+            "label": "LMV-1 (c)(2) Others (tariff payable by consumer)",
+            "method": "telescopic",
+            "slabs": [
+              { "upTo": 100, "rate": 5.5 },
+              { "upTo": 150, "rate": 5.5 },
+              { "upTo": 300, "rate": 6.0 },
+              { "upTo": null, "rate": 6.5 }
+            ]
+          }
+        ],
+        "note": "The rate schedule does not state the slab method; telescopic is assumed (para 8.2.1 refers to incentivising energy conservation through telescopic tariff in general terms). Urban rates are the 'Tariff Payable by Consumer': Rs 7.35/kWh excluding cross subsidy, less a cross-subsidy adjustment of Rs 1.85/1.85/1.35/0.85 per kWh by slab. Rural payable rates already net off the GoUP subsidy of Rs 3.70/kWh (up to 100 kWh) and Rs 3.50/kWh (101-150 kWh); the rural slab bounds above 150 kWh are assumed to match the urban schedule (151-300, above 300).",
+        "cite": [
+          { "ref": "uperc-to-2026", "page": "p.422", "quote": "Up to 100 kWh / month ... Rs. 5.50 / kWh; 101 - 150 kWh / month ... Rs. 110.00/ kW / month Rs. 5.50 / kWh; 151 - 300 kWh / month ... Rs. 6.00 / kWh; Above 300 kWh / month ... Rs. 6.50 / kWh (Tariff Payable by Consumer)" },
+          { "ref": "uperc-to-2026", "page": "p.422", "quote": "Tariff Excluding Cross Subsidy adjustment ... Rs. 110.00/ kW / month Rs. 7.35 / kWh ... Cross Subsidy adjustment Rs. 1.85 / Rs. 1.85 / Rs. 1.35 / Rs. 0.85 / kWh ... The consumer bill will be prepared on the basis of the Tariff Payable." },
+          { "ref": "uperc-to-2026", "page": "Rate Schedule, LMV-1 Rural Schedule", "quote": "Up to 100 kWh / month ... Rs. 3.70 / kWh ... Rs. 3.35 / kWh; 101 - 150 kWh / month ... Rs. 3.50 / kWh ... Rs. 3.85 / kWh" }
+        ],
+        "verification": "verified"
+      },
+      "fixed": {
+        "rules": [
+          {
+            "id": "rural-per-kw",
+            "label": "Fixed charge, Rural Schedule (Rs 90/kW/month)",
+            "when": { "area": "rural" },
+            "bandBy": "none",
+            "method": "whole",
+            "bands": [{ "upTo": null, "amount": 90, "per": "kw" }],
+            "period": "month",
+            "loadRounding": "none"
+          },
+          {
+            "id": "urban-per-kw",
+            "label": "Fixed charge (Rs 110/kW/month)",
+            "bandBy": "none",
+            "method": "whole",
+            "bands": [{ "upTo": null, "amount": 110, "per": "kw" }],
+            "period": "month",
+            "loadRounding": "none"
+          }
+        ],
+        "note": "Per kW of contracted load per month. Where a demand-recording meter is installed (General Provision 6), billable load is the higher of recorded maximum demand (parts of a kW allowed) and 75% of contracted load. The engine bills the contracted load, which overstates the charge when recorded demand is below contracted load.",
+        "cite": [
+          { "ref": "uperc-to-2026", "page": "p.422", "quote": "101 - 150 kWh / month ... Rs. 110.00/ kW / month Rs. 5.50 / kWh" },
+          { "ref": "uperc-to-2026", "page": "p.410", "quote": "the billable load / demand during a month shall be the actual maximum load / demand as recorded by the meter (can be in parts of kW or kVA) or 75% of the contracted load / demand (kW or kVA), whichever is higher." }
+        ],
+        "verification": "verified"
+      },
+      "charges": [
+        {
+          "kind": "percent",
+          "id": "fppas",
+          "name": "FPPAS (fuel and power purchase adjustment surcharge)",
+          "percent": 0,
+          "of": ["energy", "fixed"],
+          "variable": true,
+          "note": "Automatic monthly pass-through under the UPERC (Multi Year Tariff for Distribution) Regulations, 2025, shown on monthly bills. Petitioners say it is capped at +/-10% (regulation text not fetched). No FY 2026-27 monthly value was found for any discom: placeholder 0. The base (energy + fixed) is also unverified.",
+          "cite": [
+            { "ref": "uperc-to-2026", "quote": "The Commission, in MYT Regulations, 2025, has provided automatic recovery of increased power purchase cost through the mechanism of Fuel and Power Purchase Adjustment Surcharge (FPPAS)" },
+            { "ref": "uperc-to-2026", "page": "p.416", "quote": "The Licensee will display the FPPAS in the monthly bills that have been applied." },
+            { "ref": "uperc-to-2026", "page": "p.40 (petitioners' submission)", "quote": "It is also submitted that FPPAS is capped at +/-10% as provided in the Regulations" }
+          ],
+          "verification": "unverified"
+        },
+        {
+          "kind": "percent",
+          "id": "electricity-duty",
+          "name": "Electricity Duty (Government of Uttar Pradesh)",
+          "percent": 0,
+          "of": ["energy", "fixed"],
+          "variable": false,
+          "note": "Payable extra on bills, and still payable when net-metered energy charges are zero (UPPCL FAQ). Rate and base not verified: placeholder 0.",
+          "cite": [{ "ref": "uperc-to-2026", "quote": "Regulatory Surcharge, Duty, Taxes etc. will be payable extra." }],
+          "verification": "unverified"
+        },
+        {
+          "kind": "percent",
+          "id": "prepaid-discount",
+          "name": "Prepaid meter discount (2%)",
+          "percent": -2,
+          "of": ["energy", "fixed"],
+          "appliesIf": { "flags": ["prepaid"] },
+          "variable": false,
+          "asOf": "2026-07-02",
+          "note": "2% of the 'RATE' for consumers with prepaid meters; 'RATE' is read here as energy plus fixed charges. UPPCL switched all smart prepaid meters to postpaid mode from May 2026 consumption (FAQ of 27.05.2026), so few consumers may qualify now. The prepaid token charge of Rs 10 per token is not modelled.",
+          "cite": [
+            { "ref": "uperc-to-2026", "quote": "Any consumer having prepaid meters shall also be entitled to a discount of 2.00 % on the `RATE' as defined in the Tariff Order." },
+            { "ref": "uppcl-smart-faq-2026", "page": "pp.1-2, Q1 and Q6" }
+          ],
+          "verification": "verified"
+        },
+        {
+          "kind": "percent",
+          "id": "prompt-payment-rebate",
+          "name": "Rebate for payment by the due date (1%)",
+          "percent": -1,
+          "of": ["energy", "fixed"],
+          "appliesIf": { "flags": ["prompt_payment"] },
+          "variable": false,
+          "asOf": "2026-07-02",
+          "note": "1% of the 'RATE' (read as energy plus fixed charges) when the bill is paid on or before the due date; not available when the bill carries arrears.",
+          "cite": [{ "ref": "uperc-to-2026", "quote": "A rebate at the rate of 1.00 % on the `RATE' shall be given in case the payment is made on or before the due date." }],
+          "verification": "verified"
+        }
+      ],
+      "subsidies": []
+    }
+  ],
+  "rooftopSolar": {
+    "regimes": [
+      {
+        "id": "net-metering",
+        "type": "net_metering",
+        "label": "Net metering (UPERC RSPV Regulations)",
+        "default": true,
+        "exportRate": {
+          "value": null,
+          "basis": "Surplus export units left at the end of March are not carried into April; they are credited in money in the April bill at a prescribed per-unit rate (UPPCL FAQ, Q33). The rate and its basis were not verified.",
+          "variable": false
+        },
+        "settlement": { "period": "financial_year", "surplus": "paid_at_export_rate" },
+        "note": "Surplus export units are carried forward month to month within the financial year ('Closing Surplus Solar Units'); the order says net metering allows 100% banking and withdrawal at any time of day, including peak hours. Fixed charge, Electricity Duty and other charges stay payable even when the energy charge is zero. The UPERC RSPV Regulations text was not fetched; the regime is marked unverified because the year-end rate is unknown, so year-end surplus is credited at Rs 0.",
+        "cite": [
+          { "ref": "uppcl-smart-faq-2026", "page": "pp.10-11, Q33", "quote": "(translated from Hindi) Surplus export units left at the end of March are not carried forward to April. Instead, for these units you are given a credit (amount adjustment) in the April bill at the prescribed per-unit rate." },
+          { "ref": "uperc-to-2026", "page": "p.65", "quote": "Net metering allows 100% banking and withdrawal of such banked power at any time of the day, including peak hours." }
+        ],
+        "verification": "unverified"
+      }
+    ],
+    "capacityLimit": {
+      "maxPercentOfSanctionedLoad": 100,
+      "note": "Maximum capacity equals the sanctioned load (UPNEDA FAQ Q1.8). Applications up to 10 kW are deemed accepted without a technical feasibility study and the licensee carries out any load enhancement; larger systems get a feasibility study within 15 days (UPERC letter, May 2024)."
+    },
+    "stateSubsidy": {
+      "description": "UP Solar Energy Policy 2022, clause 7.3(a): Rs 15,000/kW up to Rs 30,000 per consumer, on top of central financial assistance, for grid-connected residential rooftop systems with net metering, reimbursed after installation and commissioning. UPNEDA releases it after the CFA is disbursed through the national portal. The policy runs five years from issuance (issuance date not captured); continued disbursal in FY 2026-27 is not confirmed beyond UPNEDA pages.",
+      "tiers": [{ "upToKw": null, "perKw": 15000 }],
+      "capInr": 30000,
+      "cite": [
+        { "ref": "up-solar-policy-2022", "page": "p.18, clause 7.3(a)", "quote": "State Government will provide subsidy of Rs 15000/KW to a maximum limit of subsidy Rs 30000/- per consumer. This Subsidy will be disbursed to beneficiary on reimbursement basis after successful installation and commissioning of Rooftop solar systems with net metering" },
+        { "ref": "up-solar-policy-2022", "page": "p.4, clause 3.2", "quote": "This policy shall come into operation from date of issuance and shall remain in operation for a period of five (5) years or till the Government notifies the new policy whichever is earlier." },
+        { "ref": "upneda-state-subsidy" }
+      ],
+      "verification": "verified"
+    },
+    "fees": "Net meter / special meter testing Rs 400 per meter (UPERC FY 2026-27 Schedule of Miscellaneous Charges, p.455). Registration and application fees under the RSPV Regulations were not verified.",
+    "notes": [
+      "The FY 2026-27 order promotes rooftop net metering for subsidised domestic consumers. Industrial consumers cannot use net metering but can opt for net billing, net feed-in or gross metering under the RSPV Regulations; those regimes are not encoded for domestic.",
+      "Fixed charge, Electricity Duty and other charges remain payable even when net-metered energy charges are zero (UPPCL FAQ)."
+    ],
+    "cite": [
+      { "ref": "upneda-rooftop-faq", "page": "p.3, Q1.8", "quote": "The maximum capacity that can be installed will be equivalent to the sanctioned load." },
+      { "ref": "uperc-rts-feasibility-2024", "page": "p.1", "quote": "The applications for roof top solar photo voltaic systems upto 10 kW capacity, complete in all respects shall be deemed to have been accepted without requiring technical feasibility study" },
+      { "ref": "uperc-to-2026", "quote": "Therefore, domestic consumers who are subsidized consumers are promoted to install a rooftop and avail net metering. While industrial consumers cannot avail net metering, they can opt for net billing and reduce their Power Purchase cost." },
+      { "ref": "uperc-to-2026", "page": "p.455" }
+    ],
+    "verification": "verified"
+  },
+  "consumerProtection": [
+    {
+      "topic": "meter_testing",
+      "summary": "Checking and testing a prepaid or smart meter (also recording-type watt-hour meters) costs Rs 175 per meter under the UPERC FY 2026-27 Schedule of Miscellaneous Charges. Conventional single-phase and three-phase meters Rs 50, maximum demand indicator Rs 350, tri-vector meter Rs 1,000, special/net meters Rs 400, initial testing nil. Column alignment of the table was reconstructed from raw text; a news report also gives Rs 175 for smart prepaid meters.",
+      "feeInr": 175,
+      "cite": [{ "ref": "uperc-to-2026", "page": "p.455, Schedule of Miscellaneous Charges", "quote": "Checking and Testing of Meters: a. Single Phase Meters b. Three Phase Meters c. Recording Type Watt-hour Meters / Prepaid Meters / Smart Meters d. Maximum Demand Indicator e. Tri-vector Meters f. Ammeters and Volt Meters g. Special Meters / Net Meters h. Initial Testing of Meters ... Per Meter ... 50.00 50.00 175.00 350.00 1000.00 50.00 400.00 NIL" }],
+      "verification": "verified"
+    },
+    {
+      "topic": "meter_testing",
+      "summary": "A news report (Amar Ujala, 03.09.2025, citing an order of the Nigam's Director (Commercial), about postpaid check-meter applications) says consumers must pay at least 50% of outstanding dues before applying for a meter test. Not confirmed in any UPERC or UPPCL document.",
+      "cite": [{ "ref": "amarujala-2025-09-03", "quote": "(translated from Hindi) Smart prepaid meter: 175 ... Paying at least 50% of the outstanding bill is mandatory before applying." }],
+      "verification": "secondary"
+    },
+    {
+      "topic": "smart_meter",
+      "summary": "UPPCL converted all smart meters working in prepaid mode back to postpaid: May 2026 consumption was billed monthly in June 2026 (due date 15 days, then 7 days before disconnection). The tariff order notes that the choice of prepaid or postpaid mode lies with the consumer. The 2% prepaid discount therefore reaches few consumers now.",
+      "cite": [
+        { "ref": "uppcl-smart-faq-2026", "page": "pp.1-2, Q1 and Q6", "quote": "(translated from Hindi) It has been decided that all smart meters currently working in prepaid mode will be converted to postpaid mode as before ... bills for May 2026 consumption will be issued in June 2026 through monthly billing." },
+        { "ref": "uperc-to-2026", "page": "p.62", "quote": "the choice of selection of the mode lies with the consumer." },
+        { "ref": "amarujala-2026-05-11" }
+      ],
+      "verification": "verified"
+    },
+    {
+      "topic": "prepaid_reconnection",
+      "summary": "In Suo Moto Petition No. 74 SM (order of 03.06.2026, recited in the tariff order), UPERC held that reconnection of a smart prepaid meter after recharge must be immediate or take a few minutes; failure within two hours violates the Standards of Performance Regulations 2019, and UPPCL was fined Rs 7,18,000. Reconnection charge for smart-meter and prepaid consumers is nil. UPPCL says supply normally returns automatically within 2 hours of payment; otherwise complain on 1912.",
+      "feeInr": 0,
+      "cite": [
+        { "ref": "uperc-to-2026", "page": "p.63", "quote": "in case of smart prepaid meters the reconnection must be immediate or alternatively take few minutes. However, if such reconnection does not take place within two hours of the payment or recharge, it is violative of the Regulations" },
+        { "ref": "uperc-to-2026", "page": "p.63", "quote": "imposed a penalty of 7,18,000 on UPPCL for contravention of the UPERC (Standards of Performance) Regulations, 2019." },
+        { "ref": "uperc-to-2026", "page": "p.455", "quote": "d. Smart Meters consumers having load up to 5 kW e. Smart Meters consumers having load above 5 kW f. Pre-Paid Meters ... Per Job ... NIL NIL NIL" },
+        { "ref": "uppcl-smart-faq-2026", "page": "pp.10-11, Q34", "quote": "(translated from Hindi) Normally, electricity supply is restored automatically within 2 hours of successful payment. If not, register a complaint on 1912." }
+      ],
+      "verification": "verified"
+    },
+    {
+      "topic": "check_meter",
+      "summary": "Discoms told UPERC that check meters equal to 5% of smart meters are being installed; the Commission directed them to file accuracy-test reports for the RDSS sample by meter supplier, AMISP and district, and said consumers aggrieved with smart-meter accuracy can approach the CGRF. UPPCL (FAQ, 27.05.2026): about 5.22 lakh old meters installed as check meters against about 83 lakh smart meters; a committee including an IIT Kanpur professor (formed 12.04.2026) found smart meters within standards; consumers can apply for meter testing at the division or sub-division office, on the UPPCL website or by calling 1912, and testing is done by installing a check meter.",
+      "cite": [
+        { "ref": "uperc-to-2026", "page": "p.61", "quote": "To ensure the quality of smart meters, check meters equivalent to 5 percent are also being installed at consumers' premises." },
+        { "ref": "uperc-to-2026", "page": "p.63", "quote": "Notwithstanding the above, the consumers who are aggrieved with accuracy of smart meter can approach CGRF as well." },
+        { "ref": "uppcl-smart-faq-2026", "page": "p.4, Q14", "quote": "(translated from Hindi) About 83 lakh smart meters have been installed across the state, against which about 5.22 lakh old meters have been installed as check meters." }
+      ],
+      "verification": "verified"
+    },
+    {
+      "topic": "check_meter",
+      "summary": "The consumer council UP Rajya Vidyut Upbhokta Parishad contested the Rs 6,016 smart-meter charge and the lack of a prepaid/postpaid choice (Amar Ujala, 01.11.2025), and argued that the NABL accreditation of the Gomti Nagar meter lab covers IS 14697 and IS 13779 but not IS 16444 smart meters (Swarajya, May 2026). No Parishad petition text specifically on check meters was found.",
+      "cite": [
+        { "ref": "amarujala-2025-11-01" },
+        { "ref": "swarajya-2026-05-20" }
+      ],
+      "verification": "secondary"
+    }
+  ],
+  "sources": {
+    "uperc-to-2026": {
+      "title": "UPERC Order: Truing up of Tariff for FY 2024-25, APR for FY 2025-26 and Approval of ARR and Tariff for FY 2026-27 for DVVNL, MVVNL, PVVNL, PuVVNL and KESCO (PVVNL-hosted copy)",
+      "publisher": "Uttar Pradesh Electricity Regulatory Commission",
+      "url": "https://pvvnl.org/uploads/pdf_file/1783407079.pdf",
+      "sha256": "3a046bfa2e2fb0e76aa93dca2d1ecc602ef09a62ba72977fb8351b7a01ab8d95",
+      "type": "regulator_order",
+      "date": "2026-07-02",
+      "accessed": "2026-10-29",
+      "note": "Cover p.1; applicability p.407; Rate Schedule Annexure-I pp.408-459 (general provisions pp.408-416, LMV-1 pp.417-422, miscellaneous charges p.455)."
+    },
+    "pvvnl-tariff-page": {
+      "title": "PVVNL Tariff Order page",
+      "publisher": "Pashchimanchal Vidyut Vitran Nigam Limited",
+      "url": "https://pvvnl.org/en/20/53/Tariff-Order",
+      "type": "utility_page",
+      "accessed": "2026-10-29"
+    },
+    "uppcl-smart-faq-2026": {
+      "title": "UPPCL Smart Post-paid Meter FAQ (Hindi), dated 27.05.2026",
+      "publisher": "Uttar Pradesh Power Corporation Limited (PVVNL-hosted)",
+      "url": "https://pvvnl.org/uploads/1783056407.pdf",
+      "sha256": "88fe8f3ce992db5ddada14d29f65bd5719a1d7f62442aa53df0fa4d939212df9",
+      "type": "utility_page",
+      "date": "2026-05-27",
+      "accessed": "2026-10-29",
+      "note": "Kruti Dev encoded Hindi; quotes are English translations."
+    },
+    "up-solar-policy-2022": {
+      "title": "Uttar Pradesh Solar Energy Policy 2022",
+      "publisher": "Government of Uttar Pradesh / UPNEDA",
+      "url": "https://upneda.org.in/MediaGallery/Documents/SolarEnergyPolicy_2022.pdf",
+      "sha256": "a5fbfc91aecf59c925591155ef9737efc49de8bc493c2cb857c37b9432d364d4",
+      "type": "government_page",
+      "accessed": "2026-10-29",
+      "note": "Issued 2022 (exact date not captured)."
+    },
+    "upneda-rooftop-faq": {
+      "title": "FAQs related to Rooftop",
+      "publisher": "UPNEDA",
+      "url": "https://upneda.org.in/MediaGallery/Documents/FAQRooftop.pdf",
+      "sha256": "d51f5e25e922c443078d84540f3e308c60f5073ce90e722c7a01c90cb4766dd6",
+      "type": "government_page",
+      "accessed": "2026-10-29"
+    },
+    "uperc-rts-feasibility-2024": {
+      "title": "UPERC letter UPERC/Secy/D(D)/2024: changes in Technical Feasibility Report requirement (rooftop solar up to 10 kW deemed accepted)",
+      "publisher": "Uttar Pradesh Electricity Regulatory Commission (UPNEDA-hosted)",
+      "url": "https://upneda.org.in/MediaGallery/Documents/SRPGO.pdf",
+      "sha256": "d3b9e1a674d9e0d4e357a87a8161d9071b988f05405cbb930bf1bad02d81059c",
+      "type": "regulator_order",
+      "accessed": "2026-10-29",
+      "note": "Dated May 2024 (exact day not captured)."
+    },
+    "upneda-state-subsidy": {
+      "title": "How to Avail State Subsidy",
+      "publisher": "UPNEDA",
+      "url": "https://upneda.org.in/MediaGallery/Documents/AvailStateSubsidy.pdf",
+      "sha256": "254adc9c71ab9292a3dd4811c6f395d04cc904dd7396eb74cac92a18a0afb764",
+      "type": "government_page",
+      "accessed": "2026-10-29"
+    },
+    "powerpeak-2026-07-06": {
+      "title": "UPERC retains FY27 power tariffs, raises subsidy and expands EV benefits",
+      "publisher": "Power Peak Digest",
+      "url": "https://powerpeakdigest.com/uperc-retains-fy27-power-tariffs-raises-subsidy-and-expands-ev-benefits/",
+      "type": "news",
+      "date": "2026-07-06",
+      "accessed": "2026-10-29"
+    },
+    "mercom-2026-07-15": {
+      "title": "Uttar Pradesh retains retail power tariffs for FY 2026-27",
+      "publisher": "Mercom India",
+      "url": "https://mercomindia.com/uttar-pradesh-retains-retail-power-tariffs-for-fy-2026-27",
+      "type": "news",
+      "date": "2026-07-15",
+      "accessed": "2026-10-29"
+    },
+    "amarujala-2025-09-03": {
+      "title": "Postpaid smart meter running fast? Get it checked for Rs 50 (Hindi)",
+      "publisher": "Amar Ujala",
+      "url": "https://www.amarujala.com/lucknow/up-if-your-postpaid-smart-meter-is-running-fast-get-it-checked-for-just-rs-50-this-is-the-method-2025-09-03",
+      "type": "news",
+      "date": "2025-09-03",
+      "accessed": "2026-10-29"
+    },
+    "amarujala-2025-11-01": {
+      "title": "Power Corporation on back foot in smart prepaid meter case (Upbhokta Parishad objections) (Hindi)",
+      "publisher": "Amar Ujala",
+      "url": "https://www.amarujala.com/lucknow/up-power-corporation-on-the-back-foot-in-the-smart-prepaid-meter-case-filed-a-reply-and-said-2025-11-01",
+      "type": "news",
+      "date": "2025-11-01",
+      "accessed": "2026-10-29"
+    },
+    "amarujala-2026-05-11": {
+      "title": "Kanpur smart prepaid meters to shift to postpaid billing (Hindi)",
+      "publisher": "Amar Ujala",
+      "url": "https://www.amarujala.com/uttar-pradesh/kanpur/kanpur-smart-prepaid-electricity-meters-to-shift-to-postpaid-billing-from-june-2026-2026-05-11",
+      "type": "news",
+      "date": "2026-05-11",
+      "accessed": "2026-10-29"
+    },
+    "swarajya-2026-05-20": {
+      "title": "UP's smart meter climbdown",
+      "publisher": "Swarajya",
+      "url": "https://swarajyamag.com/amp/story/states/ups-smart-meter-climbdown-yogi-might-manage-political-costs-but-governance-damage-is-harder-to-undo",
+      "type": "news",
+      "date": "2026-05-20",
+      "accessed": "2026-10-29"
+    }
+  },
+  "gaps": [
+    "Effective date: the tariff is in force seven days after the discoms' newspaper publication, a date not verified. effectiveFrom is set to the order date (02.07.2026) as a placeholder; consumption before the actual effective date falls under the FY 2025-26 order, which is not encoded (news says FY 2026-27 retained the previous retail tariffs).",
+    "Electricity Duty rate and base for LMV-1 not verified (only that it is payable extra); placeholder 0.",
+    "FPPAS: no FY 2026-27 monthly value found for any discom; placeholder 0. The UPERC MYT Regulations 2025 FPPAS clause was not fetched; the +/-10% cap is from the petitioners' submission.",
+    "Slab method (telescopic) is assumed; the rate schedule does not state it. Rural slab bounds above 150 kWh are assumed to match the urban schedule.",
+    "Billable load is the higher of recorded maximum demand and 75% of contracted load where a demand-recording meter is installed; the engine bills contracted load.",
+    "kVAh billing for contracted load of 10 kW and above is not modelled.",
+    "Lifeline consumers (LMV-1 (c)(1): 1 kW and up to 100 kWh/month; Rs 6.75/kWh less GoUP subsidy Rs 3.75/kWh, payable Rs 3.00/kWh plus Rs 50/kW/month, per GoUP Letter No. 1307/2020 dated 19.05.2026) are not encoded: it is a consumer classification (a consumer moves to 'Others' the next FY if annual use crosses 1,200 units), and billing of a month above 100 kWh was not verified. Could be added as a separate category.",
+    "The GoUP subsidy for Rural Schedule consumers is embedded in the rural payable rates, not shown as a separate subsidy credit.",
+    "Optional Green Energy Tariff (Rs 0.17/kWh extra for LMV consumers who opt in for at least a year) is not modelled: no matching context flag.",
+    "Late payment surcharge (1.25% per month for the first three months, then 2%) and the prepaid token charge (Rs 10 per token) are not modelled. Regulatory Surcharge is nil.",
+    "UPERC RSPV (rooftop solar) Regulations text not fetched: year-end surplus rate, registration fees and any caps beyond sanctioned load are unverified; export value is null.",
+    "The '50% of outstanding dues before a meter test' condition comes only from an Amar Ujala report. The Cost Data Book of 31.12.2025 (https://pvvnl.org/uploads/1774331381.pdf) was not read.",
+    "No UP Rajya Vidyut Upbhokta Parishad petition specifically on smart-meter check meters was found.",
+    "Served areas of DVVNL, MVVNL, PuVVNL and KESCO not verified (headquarters from the order cover only); PVVNL area taken from the task brief. The UPERC website URL was not captured in the research, so regulator.url points to the PVVNL tariff order page.",
+    "UP Solar Energy Policy 2022 issuance date not captured; continued disbursal of the Rs 15,000/kW state subsidy in FY 2026-27 is not confirmed beyond UPNEDA pages.",
+    "Meter rent not found.",
+    "PDF sources were hashed on 2026-10-29 where the host allowed it; sources without sha256 could not be fetched (regulator site refused the connection) or are web pages, which change too often to fingerprint."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-29",
+      "summary": "First FY2026-27 book from the UPERC tariff order of 02.07.2026 (LMV-1 rate schedule, general provisions and miscellaneous charges), the UPPCL smart post-paid meter FAQ of 27.05.2026, the UP Solar Energy Policy 2022 and UPNEDA rooftop guidance."
+    }
+  ]
+}

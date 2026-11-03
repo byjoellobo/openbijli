@@ -1,0 +1,86 @@
+# Meter Sakshi, ESPHome variant: live power and energy in Home Assistant.
+#
+# Same sensor and clip as the main firmware, but no hash-chained evidence log. Use the
+# PlatformIO firmware (../firmware) when you need a dispute report; use this when you
+# only want a dashboard.
+#
+# Set meter_constant to the imp/kWh printed on YOUR meter (Indian meters vary: 6400,
+# 3200 and 1280 all occur). Do not guess it.
+#
+# secrets.yaml needs: wifi_ssid, wifi_password, api_key (generate with
+# `openssl rand -base64 32`), ota_password and ap_password. Never leave them empty: the
+# fallback access point appears whenever home Wi-Fi is down.
+
+substitutions:
+  name: meter-sakshi
+  meter_constant: "3200"     # imp/kWh from the meter label
+  pulse_pin: GPIO27
+  supply_pin: GPIO34
+
+esphome:
+  name: ${name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "${name} fallback"
+    password: !secret ap_password
+
+time:
+  - platform: sntp
+    id: sntp_time
+
+sensor:
+  # pulse_meter measures the interval between pulses, so it resolves low loads well.
+  # internal_filter 15 ms: below the 78 ms interval of a 3200 imp/kWh meter at 14.4 kW.
+  # PULSE mode needs the LED's on-time to exceed the filter; switch to EDGE if counts drop.
+  - platform: pulse_meter
+    pin:
+      number: ${pulse_pin}
+      inverted: true          # LM393 modules pull DO low on light
+      mode:
+        input: true
+        pullup: true
+    name: "Meter power"
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    internal_filter: 15ms
+    internal_filter_mode: PULSE
+    timeout: 10min            # longer than one pulse interval at standby load
+    filters:
+      # pulses/min -> W: 60 s / imp_per_kWh x 1000 W/kW
+      - lambda: return x * 60000.0 / ${meter_constant};
+      - throttle_average: 30s
+    total:
+      name: "Meter energy"
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      accuracy_decimals: 3
+      filters:
+        - lambda: return x / ${meter_constant};
+
+binary_sensor:
+  - platform: gpio
+    pin: ${supply_pin}
+    name: "Household supply"
+    device_class: power
+    filters:
+      - delayed_off: 5s
